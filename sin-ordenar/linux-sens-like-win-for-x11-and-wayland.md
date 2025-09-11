@@ -10,7 +10,7 @@ sudo nano /etc/X11/xorg.conf.d/50-mouse-acceleration.conf
 ```
 
 El archivo contendra lo siguiente:
-```
+```bash
 Section "InputClass"
     Identifier "Mouse Settings"
     MatchIsPointer "yes"
@@ -91,7 +91,16 @@ PointerAccelerationProfile=1
 
 [Mouse]
 X11LibInputXAccelProfileFlat=true
+XLbInptPointerAcceleration=-0.72
 ```
 
 `2025-08-30`
 Mi sens parecida a Xfce X11, para Wayland Plasma 6 es: `-0.35`
+
+
+Fijate bien, en KDE plasma 6, es importante que tambien agreges esto: Asi la config de X11 tambien jalara, algunas apps jalan con X11.
+```
+[Mouse]
+X11LibInputXAccelProfileFlat=true
+XLbInptPointerAcceleration=-0.72
+```
