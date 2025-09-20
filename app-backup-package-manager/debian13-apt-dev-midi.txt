@@ -1,0 +1,4 @@
+timidity
+pipewire-alsa
+pipewire-jack
+pipewire-pulse

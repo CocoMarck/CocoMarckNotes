@@ -1,0 +1,15 @@
+libreoffice
+libreoffice-base-core
+libreoffice-core-nogui
+libreoffice-help-common
+libreoffice-help-*
+libreoffice-l10n-*
+
+hunspell-*
+
+
+libreoffice-kf6
+libreoffice-qt6
+libreoffice-qt5
+libreoffice-plasma
+libreoffice-style-breeze

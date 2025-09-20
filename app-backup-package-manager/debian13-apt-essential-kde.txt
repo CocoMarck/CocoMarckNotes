@@ -1,12 +1,20 @@
 # KDE aparence, mejor integracion
-breeze-gtk-theme
-adwaita-qt
-adwaita-qt6
+
+# Dependencias
 libadwaitaqt6-dev
 libadwaitaqt1
-breeze-gtk-theme
-oxygen-icon-theme
-arc-kde
-qt5-style-kvantum
+
+# Iconos y temas
+adwaita-qt
+adwaita-qt6
 plasma-theme-oxygen
+breeze-gtk-theme
+qt5-style-kvantum
 kwin-decoration-oxygen
+arc-kde
+oxygen-icon-theme
+numix-icon-theme-circle
+
+# Calculadora
+qalculate-qt
+

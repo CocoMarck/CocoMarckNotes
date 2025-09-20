@@ -1,0 +1,14 @@
+# LibreOffice
+libreoffice
+libreoffice-help-common
+libreoffice-help-es
+libreoffice-l10n-es
+
+# LibreOffice | Estilo qt
+libreoffice-qt6
+libreoffice-qt5
+libreoffice-kf6
+libreoffice-style-breeze
+
+# Diccionario
+hunspell-es

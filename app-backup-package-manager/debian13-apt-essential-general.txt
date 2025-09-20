@@ -35,6 +35,7 @@ gparted
 # Texto Emojis
 fonts-recommended
 fonts-noto-color-emoji
+fonts-dejavu
 node-emojis-list
 fonts-symbola
 fonts-noto
@@ -67,4 +68,9 @@ unrar
 
 # Lenguaje
 task-spanish
+task-spanish-desktop
+manpages-es
 
+
+# Calculadora
+qalculate-qt
