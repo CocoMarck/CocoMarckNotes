@@ -1,0 +1,2 @@
+# Comparitir archivos por red local
+Recuerda que para compartir archivos por medio de red local, necesitas que las pc's involucradas esten usando el mismo Rooter. No vale con que se use el Rooter por medio otro Rooter (un duplicador).
