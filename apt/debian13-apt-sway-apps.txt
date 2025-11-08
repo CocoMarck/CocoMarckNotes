@@ -1,0 +1,16 @@
+sway --no-install-recommends # Sway
+swayidle # Idle
+sway-backgrounds # Fondo de pantalla
+swaybg # Fondo de pantalla gui
+wmenu # Menu
+swaylock # Scren locker for wayland
+
+fuzzel # Launcher
+blackbox-terminal # Terminal
+gobby # Text editor
+nwg-displays # Editor de pantalla | Para wayland
+fcitx5-frontend-gtk4 # Teclado
+kmousetool # Mouse
+
+connman-ui # Network Wifi, Bluetooth, Ethernet
+
