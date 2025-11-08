@@ -1,5 +1,0 @@
-# Desarrollo Java
-default-jdk
-
-# Java Apps Minecraft
-openjfx
