@@ -25,3 +25,19 @@ Sistema operativo `GNU/Linux` significa software libre como base. Y el software 
 No veo mal que digan distribuciones Linux, pero tampoco veo mal el mencionar a GNU. GNU es software, y filosofía de desarrollo.
 
 > En general los argumentos que daban contra de decir `GNU/Linux` no me parecían buenos, eran tipo: *"`GNU/Linux` es mas largo y feo"*, *"solo lo dicen los creídos"*, o *"nadie le dice así"*. 
+
+
+
+
+# Sin ordenar
+Los argumentos son a los usuarios que creen que esta mal decirle GNU/Linux. Y que de una u otra manera niegan la importancia de GNU: Tanto del software como su filosofía. 
+
+GNU es el principal pionero del software libre. Decir per se distro linux, no esta mal, pero negar que esta bien decir "distro GNU/Linux", si esta mal. 
+
+Creo que en el futuro tendrá mas peso y importancia decir GNU/Linux, por culpa de productos empresariales que quieren usar Linux, pero sin GNU y su filosofía de software libre. 
+
+Este tipo de productos, son equivalentes a windows (en telemetria, y recopilación de datos). Por ejemplo; Google y su Chrome OS, es el inicio del desktop con distros linux privadoras de libertades, lo bueno es que el Chrome OS ta medio feo, y como que no gusta mucho.
+
+GNU/Linux, tiende a ser especifico. Linux a secas te deja mas a la imaginación lo demas.
+
+No lo se, hasta capaz en el futuro GNU deje de usarse tanto, pero pos alli se pasara a decir: "distro linux libre", o "distro linux privativa".
