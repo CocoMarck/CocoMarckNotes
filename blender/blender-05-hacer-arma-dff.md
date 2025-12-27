@@ -5,7 +5,7 @@ Bueno, primero importamos el `dff` del arma que queremos remplazar.
 Usaremos de ejemplo la `ak47.dff`. Si eres nuevo en esto, te recomiendo hacer el tuto con un `ak47.dff`, así evitaras confisiones.
 
 Esta contendra lo siguiente:
-```bash
+```config
 ak47.dff                # Carpeta irrelevante, solo contiene lo importante.
     ak47                # dummy importante, no borrar. Remplazar.
         ak47            # Malla/modelo.
@@ -59,6 +59,6 @@ Ya cuando tengas todo terminado, nombres adecuados, modificadores adecuados, mat
 En el caso del `ak47`, pos el dummy que se llame así, le damos click derecho, `exportar como DFF`. Y fin.
 
 # Conclusión
-Los nombres, los materiales, el modificador. Es lo que necesitas para poder exportar un `arma.dff`. El nombre del arma que elijas remplazar, este sera el nombre prefijo de los materiales, dummy: `nombre.0`, `nombre`. Solo se usara el modificador `EdgeSplit`, y no lo apliques.
+Los nombres, los materiales, y el modificador. Es lo que necesitas para poder exportar un `arma.dff`. El nombre del arma que elijas remplazar, este sera el nombre prefijo de los materiales, y dummy: `nombre.0`, `nombre`. Solo se usara el modificador `EdgeSplit`, y no lo apliques, solo añadelo, pero como el skin base ya lo debe tener, pos solo dejalo así.
 
-No esta de mas decir, que el `gta_sa`, no puede tener armas de mas, son limitadas, así que puedes crear `arma-nueva.dff` de armas nueva, pero pos no jalara. Solo con mods puede añadir estas armas.
+No esta de mas decir, que el `gta_sa`, no puede tener armas de mas, son limitadas, así que puedes crear `arma-nueva.dff`, pero pos no jalara. Solo con mods, se puede añadir armas adicionales.
