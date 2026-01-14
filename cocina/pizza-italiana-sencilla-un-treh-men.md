@@ -156,3 +156,5 @@ Solo recuerda que los ingredientes ya deben estar listos para comer, no metas in
 Una vez pongas el queso y los ingredientes, mete todo en el horno. Ya nomas fíjate que no se queme el queso, cuando este bien derretido el quesote, allí checa que este bien hecha la masa, y si esta bien hecha la masa, pos saca la pizza.
 
 ¡Ya esta lista!, cométela, y disfrútala con una bebida refrescante.
+
+![pizza-image](../resources/images/pizza-cocina-tuto.jpg)
