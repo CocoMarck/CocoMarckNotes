@@ -16,7 +16,7 @@ Esta estructura se probo en `gta sa`, pero cero que deberia funcionar bien para 
 - `optimization`: Mods relacionados con la optimización del juego.
 - `physics`: Mods relacionados con la fisica del juego.
 - `settings`: Solo mods relacionados con la configuración del juego.
-- `mechanics-of-objects`: Mecanicas a objetos del juego, ya sean vehiculos, armas, etc.
+- `object-mechanics`: Mecanicas a objetos del juego, ya sean vehiculos, armas, etc.
 
 ## Subdirectorios recomendados
 Estos directorios estaran dentro de un directorio maestro. Se espera que no se necesite nombrar ningun subdirectorio como directorio maestro.
