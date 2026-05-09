@@ -24,3 +24,11 @@ Ahora si el pull
 git pull origin main
 ```
 > `main`, hace referencia al nombre de tu rama.
+
+---
+## Si tienes cambios y files borrados renombrados, o movidos:
+Eso si, recuerda agregar tus cambios primero...
+```bash
+git pull --rebase origin package-manager-backup
+```
+> Esto aplica los commits del remoto primero y luego tus cambios encima.
