@@ -1,0 +1,17 @@
+# SQL base
+default-mysql-server
+default-mysql-server-core
+wget
+gnupg
+
+# PHP base + integración
+php8.4
+php8.4-cli
+php-mysql
+
+# Servidor web Apache y Nignx
+apache2
+libapache2-mod-php
+nginx
+
+# Verificar que jale todo con: `php --version; mysql --version; systemctl status apache2; systemctl status mysql`

@@ -1,0 +1,47 @@
+# Mostrar primero
+pm list packages | grep zte
+pm list packages | grep google
+
+#    Gameloft   #
+com.gameloft.android.GloftDHMP # Gameloft Dengerous hunter
+
+com.gameloft.android.GAND.GloftDBMP # Gameloft Puzzle Pets
+
+
+# Claro, servicio de comonicaciónes
+com.clarodrive.android # Claro Drive
+
+
+# Android Go
+com.celltick.lockscreen.go # Start Go
+
+
+# Google
+com.google.android.apps.mapslite # Google Maps Go
+
+com.google.android.apps.magazines # Google Noticias
+
+com.google.android.apps.tachyon # Google Duo
+
+com.google.android.apps.youtube.mango # Google Youtube Go
+
+com.google.android.apps.youtube.music # Youtube Music
+
+com.google.android.apps.searchlite # Google Buscador
+
+com.google.android.calendar # Google Calendario
+
+com.google.android.apps.assistant # Google Asistente
+
+com.google.android.apps.photosgo # Google Fotos Go
+
+com.android.chrome # Google Chrome
+
+com.google.android.apps.nbu.files # Google Files
+
+
+# Facebook
+com.facebook.lite # Facebook Lite
+com.facebook.orca # Facebook Mensajes
+
+echo 'Fin de desinstalar/desactivar aplicaciones'

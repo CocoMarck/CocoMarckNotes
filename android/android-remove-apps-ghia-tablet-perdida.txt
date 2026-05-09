@@ -1,0 +1,27 @@
+#Borrar#
+com.google.android.apps.mapslite # Maps Go
+com.google.android.apps.youtube.mango # Youtube Go
+com.google.android.apps.youtube.music # Youtube Music
+com.google.android.calendar # Google Tv
+com.google.android.apps.assistant # Google Asistente
+com.google.android.apps.searchlite # Buscador
+com.android.chrome # Chrome
+com.google.android.gm.lite # Gmail Go
+com.google.android.apps.photos # Fotos
+com.google.android.apps.nbu.files # Google Files
+
+#Borrar servicios#
+com.google.android.apps.wellbeing # Bienestar Digital
+com.android.providers.calendar # Calendario
+com.google.android.apps.navlite # Maps
+com.google.android.apps.speechservices # Texto a voz
+com.google.android.tts # Texto a voz
+com.adups.fota # Audus Malware
+
+#Borrar opcional#
+com.android.vending # Play Store
+com.google.android.apps.restore # Play Store Respaldo
+com.google.android.ims # Play Store
+com.google.android.gms.policy_sidecar_aps # Play Store
+com.google.android.gms # Play Store
+

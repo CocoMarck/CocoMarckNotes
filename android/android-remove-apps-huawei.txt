@@ -1,0 +1,37 @@
+#Borrar/Huawei
+com.huawei.android.totemweather
+com.huawei.android.thememanager
+com.huawei.hidisk
+com.huawei.hwid
+com.huawei.fastapp
+com.huawei.gamebox
+com.huawei.gameassistant
+com.huawei.hicloud
+com.huawei.hifolder
+com.huawei.himovie.overseas
+com.huawei.hwsearch
+com.huawei.hwdetectrepair
+com.huawei.hwread.dz
+com.huawei.maps.app
+com.huawei.music
+com.hicloud.android.clone
+com.huawei.android.findmyphone
+com.huawei.android.pushagent
+com.huawei.appmarket
+com.huawei.bd
+com.huawei.phoneservice
+com.huawei.ridemode
+com.huawei.screenrecorder
+com.huawei.welinknow
+com.huawei.securitymgr
+com.huawei.android.tips
+com.huawei.mycenter
+
+# Desactivar/Huawei
+com.huawei.browser
+com.touchtype.swiftkey
+
+# Borrar/Publicidad
+com.microsoft.office.officehubrow
+com.microsoft.bingintl
+com.microsoft.translator
