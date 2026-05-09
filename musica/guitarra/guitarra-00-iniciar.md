@@ -20,7 +20,7 @@
 ---
 
 ## Cuerdas, nombres y numeros
-La guitarra puede reproducir todas las notas y acordes que existen. Su limite es su tonalidad, y este limite esta definido por cantidad su de trastes.
+La guitarra puede reproducir todas las notas y acordes que existen. Su limite es su tonalidad, y este limite esta definido por la cantidad de sus trastes.
 
 Veremos las **notas de diapasón para guitarra**. Estas nos informaran que nota reproduce cada nota, en cada traste precionado.
 
