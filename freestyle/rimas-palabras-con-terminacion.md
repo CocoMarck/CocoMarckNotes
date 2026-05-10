@@ -12,23 +12,38 @@ Fecha de actualización: `2026-04-15`
 ## Sin ordenar
 - Coca
 - Cosa
+
 - Trunca
+- Peluca
+- Orca
+
 - Lumbre
 - Legumbre
+
 - Escudo
+
 - Esfumo
 - Fumo
+
 - Pelo
+- Pedo
+
 - Peso
 - Menso
 - Preso
 - Pienso
+- Presto
+- Presento
+- Represento
 
 - Modulo
+- Nulo
 
 - Método
+- Evento
 
 - Metrica: La métrica es el conjunto de regularidades formales y sistemáticas que caracteriza la poesíaa versificada y la prosa rítmica. El estudio métrico comprende tres partes: el verso, la estrofa, y el poema.
+- Explica
 
 - Paradigma
 - Esgrima
@@ -40,6 +55,7 @@ Fecha de actualización: `2026-04-15`
 - Cinta
 
 - Variable
+- Pelearte
 
 - Constante
 - Masacre
@@ -53,8 +69,11 @@ Fecha de actualización: `2026-04-15`
 - Condicional
 
 - Global
+- Corral
 
 - Objeto
+- Sujeto
+
 - Evento
 
 - Perplejo
@@ -182,6 +201,13 @@ Fecha de actualización: `2026-04-15`
 - Fonetica: Es el estudio de sonidos físicos del discurso humano. Es la rama lingüistica que estudia la producción y percepción de los sonidos de una lengua con respecto a sus manifestaciones físicas.
 - Etica
 
+### -ora
+- Computadora
+- Hora
+
+### -ola
+- Cola
+
 ---
 ## Terminación vocal E
 ### -ente
@@ -232,23 +258,15 @@ Fecha de actualización: `2026-04-15`
 - Microfono
 - Metronomo
 
-### -ido
+### -ido -imo -ino
 - Interrumpido
 - Torcido
-
-### -imo -ino
 - Fuimos
 - Cochino
 - Porcino
 - Tocino
 - Himno
-
-### -ora
-- Computadora
-- Hora
-
-### -ola
-- Cola
+- Chino
 
 ### -mo -no
 - Enfermo
