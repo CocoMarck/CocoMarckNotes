@@ -1,4 +1,12 @@
 # Crear pestaña personalizada.
+#### Enlaces utiles relacionados:
+- [TabControl](https://learn.microsoft.com/en-us/dotnet/desktop/winforms/controls/tabcontrol-control-overview-windows-forms)
+- [TabPage](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.tabpage)
+- [TreeView](https://learn.microsoft.com/en-us/dotnet/desktop/winforms/controls/treeview-control-windows-forms)
+- [TreeNode](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.treenode)
+- [Control.SuspendLayout](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.control.suspendlayout)
+- [Control.ResumeLayout](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.control.resumelayout)
+
 ## `./UserControls/ModelTree.Designer.cs`
 
 Primeramente agregamos la parte visual.  Esto lo hacemos al final de la clase `partial class ModelTree`.
@@ -151,3 +159,55 @@ En el `CodersLabTreView GetTree`, agregamos nuestro `else if` antes del `excepti
 ```csharp
 else if (view == ViewType.CustomTab) return cltvCustomTab; // Custom tab
 ```
+
+---
+
+## Añadirle nodos al arbolito del `CustomTab`
+Todo lo de aca, se hara en el `ModelTree.cs`.
+
+Primeramente agregamos las varialbes necesarias. Seran un objeto `TreeNode`, y un `string` que sera el nombre del nodo loco.
+```csharp
+private TreeNode _customNode1;
+private string _customNode1Text = "Nodo uno";
+```
+> En este caso le pondremos prefijo `custom`, por que pertenece al `CustomTab` Tree. Ponlo junto con las demas `private vars`.
+
+En la iniciación de componentes del `ModelTree`agregamos:
+```csharp
+_customNode1 = new TreeNode();
+_customNode1.Name = "customNode1";
+_customNode1.Text = _customNode1Text;
+```
+> Antes del results. Después de inicializar los demás nodos del árbol. El name es code name, ponle uno facil de leer pa la pc we, `snake_case, PascalCase, camelCase`, ya tu sabe.
+
+Creamos método `ClearCustomTab()`. Lo ponemos despues del método `public void ClearResults`
+```csharp
+// Custom Tab | Nodes
+public void ClearCustomTab()
+{
+    cltvCustomTab.SelectedNodes.Clear();
+    cltvCustomTab.Nodes.Clear();
+
+    _customNode1.Nodes.Clear();
+    _customNode1.Text = _customNode1Text;
+
+    cltvCustomTab.Nodes.Add(_customNode1);
+
+    _customNode1.Expand();
+}
+``` 
+> Casi casi que nomas hace clear del arbol. Puede hacer clear de mas cosas, pero por ahora nomas eso. Se parece al `ClearResults()`. Misma aura naah jajaj.
+
+Ahora en el code del método `public void Clear`, abajito, llamamos al método `ClearCustomTab`.
+```csharp
+public void Clear()
+{
+    bla bla bla....
+    // Custom Tab | Nodes
+    ClearCustomTab();
+}
+```
+
+---
+## Conclusiones
+Puro diseño, por ahora poca logica, lo mas logic que vimos es que `Name` para widget code name, y `Text`, para View.
