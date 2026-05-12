@@ -205,6 +205,10 @@ namespace UserControls
         private string _customSubNodeText = "Sub Node";
         private string _customSubSubNodeText = "Sub Sub Node";
 
+        // custom set nodes option
+        private const string CustomNodeSetOptionName = "CustomNodeSetOption";
+        private const string CustomNodeSetOptionText = "NodeSet";
+
 
         // Properties                                                                                                               
         public bool ScreenUpdating
@@ -342,6 +346,10 @@ namespace UserControls
         public event Action<string[]> FieldDataSelectEvent;
         public event Action RenderingOn;
         public event Action RenderingOff;
+
+        // custom node option
+        public event Action CustomCreateNodeSetSelectionEvent;
+        // custom node option
 
 
         // Callbacks                                                                                                                
@@ -921,6 +929,14 @@ namespace UserControls
                 //
                 if (selectedNode == tree.HitTest(e.Location).Node)
                 {
+                    // custom node option
+                    if (selectedNode.Name == "customSubNode")
+                    {
+                        CustomCreateNodeSetSelectionEvent?.Invoke();
+                        return;
+                    }
+                    // custom node option
+                    
                     if (selectedNode.Tag == null)
                     {
                         if (CanCreate(selectedNode)) tsmiCreate_Click(null, null);
@@ -1040,6 +1056,15 @@ namespace UserControls
                 //
                 TreeNode selectedNode = tree.SelectedNode;
                 //
+
+                // custom node option
+                if (selectedNode.Name == "customSubNode")
+                {
+                    CustomCreateNodeSetSelectionEvent?.Invoke();
+                    return;
+                }
+                // custom node option
+                
                 if (selectedNode.Tag == null)
                 {
                     if (CanCreate(selectedNode))
@@ -3325,6 +3350,12 @@ namespace UserControls
             //
             else if (node.TreeView == cltvResults && node.Name == _resultFieldOutputsName) return true;
             else if (node.TreeView == cltvResults && node.Name == _resultHistoryOutputsName) return true;
+            //
+
+            // custom node option
+            else if (node.TreeView == cltvCustomTab && node.Name == "customSubNode") return true;
+            // custom node option
+            
             //
             else return false;
         }
