@@ -306,11 +306,3 @@ Con estos cambios ya tienes un formulario custom funcional que:
 * puede escribir en Output Window;
 * puede agregar annotations;
 * puede hacer highlight en el viewport.
-
----
-
-# Nota importante
-
-El cambio marcado como `custom select form` en `FrmMain.cs` solo registra y prepara el formulario.
-
-No es la parte que agrega la opción al árbol ni el evento de apertura desde el `ModelTree`. Esa parte pertenece a otra lógica distinta.

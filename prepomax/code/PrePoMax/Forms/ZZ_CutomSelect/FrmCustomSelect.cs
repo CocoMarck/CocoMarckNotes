@@ -281,7 +281,7 @@ namespace PrePoMax.Forms
                 _coorNodesToDraw[0] = baseV.Coor;
                 _coorLinesToDraw = null;
                 //
-                _controller.Annotations.AddNodeAnnotation(nodeId);
+                //_controller.Annotations.AddNodeAnnotation(nodeId); // Dibuja una nota. No me intereza
             }
         }
         
