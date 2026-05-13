@@ -20,3 +20,13 @@ Para la selección de nodos, se utilizo el `FrmQuery.cs`. Pero pienso hacer otro
 [Documento sobre lo hecho](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-12-evento-en-node-de-tree.md)
 
 > Esta vez ChatGPT se confundio igual que yo. Pero ya entendi un poco mas sobre el `controller`.
+
+En el video se ve como sale en el output, los mensajes
+```
+Selection with `frmCustomSelect` and Query funcs
+Count of selected nodes: `1`
+```
+
+El contador, es un `dictionatry.Count`. Este almcena id de nodo (como key) y FENode como value. Por lo que esta listo para renderizar, y guardarse.
+
+> A primera vista parece que no avance, porque pase de usar Query Form a hacer el mio, pero es gran cambio. Ya lo que sige es almacenar data, y renderizar chido mis puntitos.
