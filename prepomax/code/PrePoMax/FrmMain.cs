@@ -116,9 +116,14 @@ namespace PrePoMax
         private FrmViewResultHistoryOutput _frmViewResultHistoryOutput;
         private FrmTransformation _frmTransformation;
 
+        // custom select form
+        private FrmCustomSelect _frmCustomSelect;
+
         // custom node option
+        /* DESCARTADO
         private Dictionary<int, FeNode> _customSelectedNodes = new Dictionary<int, FeNode>();
         private bool _customNodeSelectionMode = false;
+        */
         // custom node option
 
         //
@@ -534,6 +539,13 @@ namespace PrePoMax
                 //
                 _frmTransformation = new FrmTransformation(_controller);
                 AddFormToAllForms(_frmTransformation);
+
+                // custom select form
+                _frmCustomSelect = new FrmCustomSelect();
+                _frmCustomSelect.Form_WriteDataToOutput = WriteDataToOutput;
+                _frmCustomSelect.Form_RemoveAnnotations = tsbRemoveAnnotations_Click;
+                AddFormToAllForms(_frmCustomSelect);
+
                 // Deformation toolstrip
                 InitializeDeformationComboBoxes();
                 InitializeComplexComboBoxes();
@@ -7095,6 +7107,26 @@ namespace PrePoMax
                 ExceptionTools.Show(this, ex);
             }
         }
+
+        // custom select form
+        private void tsmiCustomSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ClearSelection();
+                //
+                CloseAllForms();
+                SetFormLocation(_frmCustomSelect);
+                _frmCustomSelect.PrepareForm(_controller);
+                _frmCustomSelect.Show();
+            }
+            catch (Exception ex)
+            {
+                //
+                ExceptionTools.Show(this, ex);
+            }
+        }
+
         //
         private void ShowColorBarSettings()
         {
@@ -8580,7 +8612,15 @@ namespace PrePoMax
             if (_frmQuery != null && _frmQuery.Visible) _frmQuery.PickedIds(ids);
             if (_frmTransformation != null && _frmTransformation.Visible) _frmTransformation.PickedIds(ids);
 
+            // custom select form
+            if (_frmCustomSelect != null && _frmCustomSelect.Visible)
+            {
+                Debug.Print("Jalando");
+                _frmCustomSelect.PickedIds(ids);
+            }
+
             // custom node option
+            /* DESCARTADO
             if (_customNodeSelectionMode)
             {
                 if (ids != null && ids.Length > 0)
@@ -8603,6 +8643,7 @@ namespace PrePoMax
 
                 //return;
             }
+            DESCARTADO */
             // custom node option
 
             //
@@ -11189,19 +11230,27 @@ namespace PrePoMax
             */
             try
             {
-                _customNodeSelectionMode = true;
+                // DESCARTADO: _customNodeSelectionMode = true;
                 
                 // El controller guarda datos.
-                //CloseAllForms();
+                /*DESCARTADO
+                CloseAllForms();
                 _controller.CurrentView = ViewGeometryModelResults.Model;
 
                 SetSelectItem(vtkSelectItem.Node);
                 SetSelectBy(vtkSelectBy.Default);
+                /*DECARTADO
 
-                //_controller.SetSelectByToDefault();
+                /*DESCARTADO
+                _controller.SetSelectByToDefault();
                 tsmiQuery_Click(null, null); // Usar directamente query
-                //tsmiCreateNodeSet_Click(null, null); // Usar directamente `tsmiQuery_Click`
+                tsmiCreateNodeSet_Click(null, null); // Usar directamente `tsmiQuery_Click`
+                DECARTADO*/
 
+                // custom select form
+                tsmiCustomSelect_Click(null, null);
+
+                /* DESCARTADO
                 // Guardar seleccion de nodos
                 SelectionChanged(_customSelectedNodes.Keys.ToArray());
                 _controller.HighlightSelection();
@@ -11210,12 +11259,13 @@ namespace PrePoMax
                 MessageBox.Show(
                     $"Selecciona nodos del modelo activo\nNodos: {_customSelectedNodes.Count}"
                 );
+                DESCARTADO*/
             }
             catch (Exception ex)
             {
                 ExceptionTools.Show(this, ex);
             }
-            //_customNodeSelectionMode = false;
+            //DESCARTADO: _customNodeSelectionMode = false;
         }
         // custom node option
         
