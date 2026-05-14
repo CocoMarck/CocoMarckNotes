@@ -34,6 +34,6 @@ El contador, es un `dictionatry.Count`. Este almcena id de nodo (como key) y FEN
 ---
 
 ## Comentario 3
-Ahora el formulario `FrmCustomSelect.cs`. Puede guardar y obtener datos en el `file.pmx`. Por lo que ya se guardan los nodos seleccionados. Rema guardado de datos; Todo se limito a usar el `Controller` de PrePoMax.
+Ahora el formulario `FrmCustomSelect.cs`. Puede guardar y obtener datos en el `file.pmx`. Por lo que ya se guardan los nodos seleccionados. Tema guardado de datos; Todo se limito a usar el `Controller` de PrePoMax.
 
 Documente como fue hecho: [Custom select nodes save in pmx](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-14-custom-select-nodes-save-in-pmx.md).
