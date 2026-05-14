@@ -26,13 +26,11 @@ namespace PrePoMax.Forms
         // Variables
         private int _numOfNodesToSelect;
         private double[][] _coorNodesToDraw;
-        private double[][] _coorLinesToDraw;
         private Controller _controller;
         
         // widget moment
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.GroupBox gbItem;
-        private UserControls.ListViewWithSelection lvQueries; // Esto ni se necesita pero lo pongo igual
         private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.Button btnSelectNodes;
 
@@ -40,13 +38,19 @@ namespace PrePoMax.Forms
         public Action<string> Form_WriteDataToOutput; // Para escribir datos en ventana de salida
         public Action<object, EventArgs> Form_RemoveAnnotations;
 
-        // Diccionario almacen de nodos
-        private Dictionary<int, FeNode> _selectedNodes = new Dictionary<int, FeNode>();
+        // Para guardado en PMX file
+        private FeNodeSet _customNodeSet;
 
         // Constructores
         public FrmCustomSelect()
         {
             //InitializeComponent();
+            // |
+            // V
+
+            // PMX FeNodeSet
+            _customNodeSet = new FeNodeSet("CustomSelection", null);
+
             _numOfNodesToSelect = 1; // Es implicito, es la cantidad de nodos a seleccionar. De uno por uno es lo acertado. Es posible que sea mejor eliminar esta logic, porque igual solo se necesitara seleccionar nodos, a lo mucho nomas bordes. Edges.
 
             this.btnClose = new System.Windows.Forms.Button();
@@ -72,7 +76,7 @@ namespace PrePoMax.Forms
                 )
             );
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.Location = new System.Drawing.Point(26, 256-25);
+            this.btnClose.Location = new System.Drawing.Point(26, 256-26);
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
 
@@ -88,7 +92,9 @@ namespace PrePoMax.Forms
                 )
             );
             this.btnSelectNodes.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectNodes.Location = new System.Drawing.Point(26, 26);
             this.btnSelectNodes.Click += new System.EventHandler(this.btnSelectNodes_Click);
+
 
             /*
             FrmCustomSelect
@@ -111,21 +117,23 @@ namespace PrePoMax.Forms
         }
 
         // Eventos principales. Creo que si o si metodos de interface `IFormHighlight`
-        /* Esto no se necesita
-        private void lvQueries_MouseDown(object sender, MouseEventArgs e)
-        {
-            lvQueries.SelectedItems.Clear();
-        }
-
-        private void lvQueries_MouseUp(object sender, MouseEventArgs e) 
-        {
-        }
-        */
         public void PrepareForm(Controller controller)
         {
             // Preparar controlador para formulario. Con esto seguro guardo cosas en el `pmx`.
             _controller = controller;
             _controller.SetSelectByToOff();
+
+            // PMX | Intentar recuperar NodeSet guardado
+            if (_controller.Model.Mesh.NodeSets.ContainsKey("CustomSelection"))
+            {
+                _customNodeSet =
+                    _controller.Model.Mesh.NodeSets["CustomSelection"];
+
+                DrawDataOfSelectedNodes();
+                Highlight();
+
+                Debug.WriteLine("CustomSelection cargado desde PMX");
+            }
         }
         private void FrmCustomSelect_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -160,6 +168,7 @@ namespace PrePoMax.Forms
             _controller.Annotations.RemoveCurrentMeasureAnnotation();
         }
 
+        // Eventos de widgets
         private void btnClose_Click(object sender, EventArgs e)
         {
             // Cerrar la ventana. Bueno en realidad solo la oculta.
@@ -187,24 +196,6 @@ namespace PrePoMax.Forms
                 Debug.Print($"Identificadores: {ids.Length}");
                 if (ids == null || ids.Length == 0) return;
                 //
-                /*
-                if (_controller.SelectItem == vtkSelectItem.Element && ids.Length == 1)
-                {
-                    // NO SE NECESITA SOLO NODOS. Seleccionar un solo elemento. 
-                    OneElementPicked(ids[0]);
-                }
-                else if (_controller.SelectItem == vtkSelectItem.GeometrySurface)
-                {
-                    // NO SE NECESITA SOLO NODOS. Seleccionar superficie, asumo que cara.
-                    SelectionNodeMouse selectionNodeMouse = _controller.Selection.Nodes[0] as SelectionNodeMouse;
-                    if (selectionNodeMouse != null)
-                    {
-                        _controller.Selection.Clear();
-                        ids = _controller.GetIdsFromSelectionNodeMouse(selectionNodeMouse);
-                        //OneSurfacePicked
-                    }
-                }
-                */
                 if (ids.Length == _numOfNodesToSelect)
                 {
                     Debug.Print("Paso");
@@ -212,9 +203,11 @@ namespace PrePoMax.Forms
                     if (ids.Length == 1)
                     {
                         Debug.Print("Es un solo nodo");
-                        FeNode node = _controller.Model.Mesh.Nodes[ids[0]];
-                        _selectedNodes.Add(ids[0], node); // Este puede tronar, porque añado a lo loco.
-                        OneNodePicked(ids[0]);
+                        //FeNode node = _controller.Model.Mesh.Nodes[ids[0]];
+
+                        // PMX FeNodeSet
+                        SelectionChanged(ids);
+                        DrawDataOfSelectedNodes();
                     }
                     //
                     _controller.ClearSelectionHistoryAndCallSelectionChanged();
@@ -225,70 +218,26 @@ namespace PrePoMax.Forms
             catch { }
         }
 
-        public void OneNodePicked(int nodeId)
+        // PMX 
+        public void DrawDataOfSelectedNodes()
         {
-            if (Form_WriteDataToOutput != null)
+            if (_customNodeSet.Labels == null || _customNodeSet.Labels.Length == 0)
+                return;
+
+            _coorNodesToDraw = new double[_customNodeSet.Labels.Length][];
+
+            for (int i = 0; i < _customNodeSet.Labels.Length; i++)
             {
-                string data;
-                string lenUnit = _controller.GetLengthUnit();
-                string lenUnitInBrackets = string.Format("[{0}]", lenUnit);
-                _coorNodesToDraw = new double[_numOfNodesToSelect][];
-                //
-                Vec3D baseV = new Vec3D(_controller.GetNode(nodeId).Coor);
-                // Item name
-                string itemName = "Node";
-                if (_controller.CurrentView == ViewGeometryModelResults.Geometry) itemName = "Vertex";
-                //
-                Form_WriteDataToOutput("");
-                data = string.Format("{0,16}{1,8}{2,16}{3,16}", itemName.PadRight(16), "[/]", "id:", nodeId);
-                Form_WriteDataToOutput(data);
-                //
-                /*EVITADO. esto por ahora no me importa
-                if (_controller.CurrentView == ViewGeometryModelResults.Results) // Tiene que estar en results esto no me sirve.
-                {
-                    float fieldValue = _controller.GetNodalValue(nodeId);
-                    string fieldUnit = "[" + _controller.GetCurrentResultsUnitAbbreviation() + "]";
-                    //
-                    Vec3D trueScaledV = new Vec3D( _controller.GetScaledNode(1, nodeId).Coor );
-                    Vec3D disp = trueScaledV - baseV;
-                    //
-                    data = string.Format(
-                        "{0,16}{1,8}{2,16}{3,16:E}, {4,16:E}, {5,16:E}", 
-                        "Deformed".PadRight(16), lenUnitInBrackets, 
-                        "x, y, z:", trueScaledV.X, trueScaledV.Y, trueScaledV.Z
-                    );
-                    Form_WriteDataToOutput(data);
-                    data = string.Format(
-                        "{0,16}{1,8}{2,16}{3,16:E}, {4,16:E}, {5,16:E}",
-                        "Displacement".PadRight(16), lenUnitInBrackets,
-                        "x, y, z:", disp.X, disp.Y, disp.Z
-                    );
-                    Form_WriteDataToOutput(data);
-                    data = string.Format(
-                        "{0,16}{1,8}{2,16}{3,16:E}", "Field value".PadRight(16), fieldUnit, ":", fieldValue
-                    );
-                    Form_WriteDataToOutput(data);
-                    //
-                    float scale = _controller.GetScale();
-                    baseV = new Vec3D(_controller.GetScaledNode(scale, nodeId).Coor);
-                }
-                */
-                //
-                Form_WriteDataToOutput("Selection with `frmCustomSelect` and Query funcs");
-                Form_WriteDataToOutput($"Count of selected nodes: {_selectedNodes.Count}");
-                Form_WriteDataToOutput("");
-                //
-                _coorNodesToDraw[0] = baseV.Coor;
-                _coorLinesToDraw = null;
-                //
-                //_controller.Annotations.AddNodeAnnotation(nodeId); // Dibuja una nota. No me intereza
+                int nodeId = _customNodeSet.Labels[i];
+
+                FeNode node = _controller.Model.Mesh.Nodes[nodeId];
+
+                _coorNodesToDraw[i] = node.Coor;
             }
-        }
-        
-        public void OneElementPicked(int elementId) 
-        {
-            string itemName = "Element id:";
-            if (_controller.CurrentView == ViewGeometryModelResults.Geometry) itemName = "Facet id:";
+
+            // Message
+            Form_WriteDataToOutput("Selection with `frmCustomSelect`");
+            Form_WriteDataToOutput($"Count of selected nodes: {_customNodeSet.Labels.Length}");
         }
 
         // Render
@@ -296,21 +245,34 @@ namespace PrePoMax.Forms
         {
             if (_coorNodesToDraw != null)
             {
-                if (_coorNodesToDraw.GetLength(0) == 1)
-                {
-                    _controller.HighlightNodes(_coorNodesToDraw);
-                }
-                else if (_coorNodesToDraw.GetLength(0) == 2)
-                {
-                    _controller.HighlightNodes(_coorNodesToDraw);
-                    _controller.HighlightLineWithArrow(_coorNodesToDraw[0], _coorNodesToDraw[1], true, true, false, 1);
-                }
-                else if (_coorNodesToDraw.GetLength(0) > 2)
-                {
-                    _controller.HighlightNodes(_coorNodesToDraw);
-                    _controller.HighlightConnectedLines(_coorLinesToDraw);
-                }
+                _controller.HighlightNodes(_coorNodesToDraw);
             }
+        }
+
+        // PMX FeNodeSet
+        public void SelectionChanged(int[] ids)
+        {
+            // Ids unicos
+            HashSet<int> uniqueIds;
+
+            if (_customNodeSet.Labels != null)
+            {
+                uniqueIds = new HashSet<int>(_customNodeSet.Labels);
+            }
+            else
+            {
+                uniqueIds = new HashSet<int>();
+            }
+
+            foreach (int id in ids)
+            {
+                uniqueIds.Add(id);
+            }
+
+            // Obtener data
+            _customNodeSet.Labels = uniqueIds.ToArray();
+            //_customNodeSet.CreationData = _controller.Selection.DeepClone(); // Error
+            _controller.GetNodesCenterOfGravity(_customNodeSet);
         }
 
     }
