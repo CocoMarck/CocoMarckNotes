@@ -36,3 +36,13 @@ Abrimos la sulución `PrePoMax\PrePoMax.sln`.
 
 ### Retarget Solution
 Finalmente un `Retarget Solution` a todo el proyecto, desde `Solution Explorer`, y darle Check a todas las opciones, y aplicar.
+
+---
+## Nota
+**Mejor clonar con Git que descargar ZIP**. Es mejor clonar el repositorio con `git clone` en lugar de descargar el ZIP del código fuente.
+
+**¿Por qué?**
+
+Cuando se descarga un .zip desde internet y se descomprime en Windows, el sistema operativo puede marcar muchos archivos con el sistema de seguridad llamado: `Mark of the Web (MOTW)`.
+
+Esto hace que Windows considere los archivos como: `"archivos provenientes de internet"` 
