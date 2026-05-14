@@ -30,6 +30,8 @@ namespace PrePoMax.Forms
         
         // widget moment
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.GroupBox gbItem;
+        private System.Windows.Forms.ColumnHeader colName;
         private System.Windows.Forms.Button btnSelectNodes;
 
         // Callbacks
@@ -53,6 +55,12 @@ namespace PrePoMax.Forms
 
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSelectNodes = new System.Windows.Forms.Button();
+            
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+
+            this.gbItem = new System.Windows.Forms.GroupBox(); // Items locos
+            this.gbItem.SuspendLayout();
+            this.SuspendLayout();
 
             /*
             btnClose
@@ -68,7 +76,7 @@ namespace PrePoMax.Forms
                 )
             );
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.Location = new System.Drawing.Point(26, 256-26);
+            this.btnClose.Location = new System.Drawing.Point(26, 256-25);
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
 
@@ -84,9 +92,7 @@ namespace PrePoMax.Forms
                 )
             );
             this.btnSelectNodes.Size = new System.Drawing.Size(75, 23);
-            this.btnSelectNodes.Location = new System.Drawing.Point(26, 26);
             this.btnSelectNodes.Click += new System.EventHandler(this.btnSelectNodes_Click);
-
 
             /*
             FrmCustomSelect
@@ -118,10 +124,9 @@ namespace PrePoMax.Forms
             // PMX | Intentar recuperar NodeSet guardado
             if (_controller.Model.Mesh.NodeSets.ContainsKey("CustomSelection"))
             {
-                _customNodeSet =
-                    _controller.Model.Mesh.NodeSets["CustomSelection"];
+                _customNodeSet = _controller.Model.Mesh.NodeSets["CustomSelection"];
 
-                SetDrawDataOfSelectedNodes();
+                DrawDataOfSelectedNodes();
                 Highlight();
 
                 Debug.WriteLine("CustomSelection cargado desde PMX");
@@ -160,7 +165,6 @@ namespace PrePoMax.Forms
             _controller.Annotations.RemoveCurrentMeasureAnnotation();
         }
 
-        // Eventos de widgets
         private void btnClose_Click(object sender, EventArgs e)
         {
             // Cerrar la ventana. Bueno en realidad solo la oculta.
@@ -169,6 +173,7 @@ namespace PrePoMax.Forms
 
         private void btnSelectNodes_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show("Mensaje en lugar de seleccionar nodos");
             _controller.SelectBy = vtkSelectBy.Node;
             _controller.Selection.SelectItem = vtkSelectItem.Node;
 
@@ -178,25 +183,27 @@ namespace PrePoMax.Forms
         }
 
         // Eventos relacionados con seleccion de nodos
-        /*
-        Necesario para obtener nodos, y trabajar con ellos.
-        - Ids, son ids de nodos. Estos se obtienen desde `FrmMain.cs`.
-        */
         public void PickedIds(int[] ids)
         {
             try
             {
                 RemoveMeasureAnnotation(); // Limpiar anotaciones
                 //
+                Debug.Print($"Identificadores: {ids.Length}");
                 if (ids == null || ids.Length == 0) return;
                 //
                 if (ids.Length == _numOfNodesToSelect)
                 {
-                    if (ids.Length == 1) // Es solo un nodo
+                    Debug.Print("Paso");
+                    // One node
+                    if (ids.Length == 1)
                     {
+                        Debug.Print("Es un solo nodo");
+                        //FeNode node = _controller.Model.Mesh.Nodes[ids[0]];
+
                         // PMX FeNodeSet
                         SelectionChanged(ids);
-                        SetDrawDataOfSelectedNodes();
+                        DrawDataOfSelectedNodes();
                     }
                     //
                     _controller.ClearSelectionHistoryAndCallSelectionChanged();
@@ -207,8 +214,8 @@ namespace PrePoMax.Forms
             catch { }
         }
 
-        // Render | Establecer coordenadas de nodos a dibujar | PMX 
-        public void SetDrawDataOfSelectedNodes()
+        // PMX 
+        public void DrawDataOfSelectedNodes()
         {
             if (_customNodeSet.Labels == null || _customNodeSet.Labels.Length == 0)
                 return;
@@ -229,7 +236,7 @@ namespace PrePoMax.Forms
             Form_WriteDataToOutput($"Count of selected nodes: {_customNodeSet.Labels.Length}");
         }
 
-        // Renderizar las coordenadas de los nodos seleccionados
+        // Render
         public void Highlight()
         {
             if (_coorNodesToDraw != null)
@@ -238,7 +245,7 @@ namespace PrePoMax.Forms
             }
         }
 
-        // Agregar los nodos obtenidos | PMX FeNodeSet
+        // PMX FeNodeSet
         public void SelectionChanged(int[] ids)
         {
             // Ids unicos
@@ -260,7 +267,7 @@ namespace PrePoMax.Forms
 
             // Obtener data
             _customNodeSet.Labels = uniqueIds.ToArray();
-            //_customNodeSet.CreationData = _controller.Selection.DeepClone(); // Error
+            _customNodeSet.CreationData = _controller.Selection.DeepClone();
             _controller.GetNodesCenterOfGravity(_customNodeSet);
 
             // Agregar al modelo si aún no existe

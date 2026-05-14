@@ -201,7 +201,7 @@ public void Highlight()
 ---
 
  ## `SlectedChanged`
-Agregar los nodos obtenidos.
+Agregar los nodos obtenidos. Y los mete serializados en en controller, listos para guardar en el PMX.
 ```csharp
 public void SelectionChanged(int[] ids)
 {
@@ -225,6 +225,20 @@ public void SelectionChanged(int[] ids)
     // Obtener data
     _customNodeSet.Labels = uniqueIds.ToArray();
     _controller.GetNodesCenterOfGravity(_customNodeSet);
+
+    // Agregar al modelo si aún no existe
+    if (!_controller.Model.Mesh.NodeSets.ContainsKey(_customNodeSet.Name))
+    {
+        _controller.Model.Mesh.NodeSets.Add(
+            _customNodeSet.Name,
+            _customNodeSet
+        );
+        Debug.WriteLine(_controller.Model.Mesh.NodeSets.Count);
+        foreach (var item in _controller.Model.Mesh.NodeSets)
+        {
+            Debug.WriteLine(item.Key);
+        }
+    }
 }
 ```
 

@@ -10,7 +10,7 @@ Para la selección de nodos, se utilizo el `FrmQuery.cs`. Pero pienso hacer otro
 > ChatGPT, me ayudo a obtener la información.
 
 ---
-## Comenario 2
+## Comentario 2
 - Cree un formulario custom de selección de nodos. Basado en FrmQuery (pero independiente de este)
     `PrePoMax/FrmCustomSelect.cs`
 - Integrado al Controller.
@@ -30,3 +30,10 @@ Count of selected nodes: `1`
 El contador, es un `dictionatry.Count`. Este almcena id de nodo (como key) y FENode como value. Por lo que esta listo para renderizar, y guardarse.
 
 > A primera vista parece que no avance, porque pase de usar Query Form a hacer el mio, pero es gran cambio. Ya lo que sige es almacenar data, y renderizar chido mis puntitos.
+
+---
+
+## Comentario 3
+Ahora el formulario `FrmCustomSelect.cs`. Puede guardar y obtener datos en el `file.pmx`. Por lo que ya se guardan los nodos seleccionados. Rema guardado de datos; Todo se limito a usar el `Controller` de PrePoMax.
+
+Documente como fue hecho: [Custom select nodes save in pmx](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-14-custom-select-nodes-save-in-pmx.md).
