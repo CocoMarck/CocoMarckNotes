@@ -119,12 +119,8 @@ namespace PrePoMax
         // custom select form
         private FrmCustomSelect _frmCustomSelect;
 
-        // custom node option
-        /* DESCARTADO
-        private Dictionary<int, FeNode> _customSelectedNodes = new Dictionary<int, FeNode>();
-        private bool _customNodeSelectionMode = false;
-        */
-        // custom node option
+        // Surface point picker
+        private FrmSurfacePointPicker _frmSurfacePointPicker;
 
         //
         #endregion  ################################################################################################################
@@ -328,6 +324,10 @@ namespace PrePoMax
                 // custom node option
                 _modelTree.CustomCreateNodeSetSelectionEvent += CustomCreateNodeSetSelection;
                 // custom node option
+
+                // Surface point picker
+                _modelTree.SurfacePointPickerSelectionEvent += SurfacePointPickerSelection;
+                // Surface point picker
 
                 // Strip menus
                 tsFile.Location = new Point(0, 0);
@@ -545,6 +545,12 @@ namespace PrePoMax
                 _frmCustomSelect.Form_WriteDataToOutput = WriteDataToOutput;
                 _frmCustomSelect.Form_RemoveAnnotations = tsbRemoveAnnotations_Click;
                 AddFormToAllForms(_frmCustomSelect);
+
+                // Surface point picker
+                _frmSurfacePointPicker = new FrmSurfacePointPicker();
+                _frmSurfacePointPicker.Form_WriteDataToOutput = WriteDataToOutput;
+                _frmSurfacePointPicker.Form_RemoveAnnotations = tsbRemoveAnnotations_Click;
+                AddFormToAllForms(_frmSurfacePointPicker);
 
                 // Deformation toolstrip
                 InitializeDeformationComboBoxes();
@@ -7127,6 +7133,25 @@ namespace PrePoMax
             }
         }
 
+        // Surface point picker
+        private void tsmiSurfacePointPicker_Click(object sender, EventArgs e)
+        {
+            try 
+            {
+                ClearSelection();
+                //
+                CloseAllForms();
+                SetFormLocation(_frmSurfacePointPicker);
+                _frmSurfacePointPicker.PrepareForm(_controller);
+                _frmSurfacePointPicker.Show();
+            }
+            catch (Exception ex)
+            {
+                //
+                ExceptionTools.Show(this, ex);
+            }
+        }
+
         //
         private void ShowColorBarSettings()
         {
@@ -8615,36 +8640,14 @@ namespace PrePoMax
             // custom select form
             if (_frmCustomSelect != null && _frmCustomSelect.Visible)
             {
-                Debug.Print("Jalando");
                 _frmCustomSelect.PickedIds(ids);
             }
 
-            // custom node option
-            /* DESCARTADO
-            if (_customNodeSelectionMode)
+            // Surface point picker
+            if (_frmSurfacePointPicker != null && _frmSurfacePointPicker.Visible)
             {
-                if (ids != null && ids.Length > 0)
-                {
-                    int nodeId = ids[0];
-
-                    FeNode node = _controller.Model.Mesh.Nodes[nodeId];
-
-                    _customSelectedNodes.Add(nodeId, node);
-
-                    string message =
-                        $"Node ID: {nodeId}" + Environment.NewLine +
-                        $"X: {node.X}" + Environment.NewLine +
-                        $"Y: {node.Y}" + Environment.NewLine +
-                        $"Z: {node.Z}" + Environment.NewLine +
-                        $"Nodos: {_customSelectedNodes.Count}";
-
-                    MessageBox.Show(message);
-                }
-
-                //return;
+                _frmSurfacePointPicker.PickedIds(ids);
             }
-            DESCARTADO */
-            // custom node option
 
             //
             SelectionChanged(ids);
@@ -11225,50 +11228,33 @@ namespace PrePoMax
         private void CustomCreateNodeSetSelection()
         {   
             /*
-            MessageBox.Show("Selecciona nodos en el modelo");
-            _controller.SetSelectItemToNode();
             */
             try
             {
-                // DESCARTADO: _customNodeSelectionMode = true;
-                
-                // El controller guarda datos.
-                /*DESCARTADO
-                CloseAllForms();
-                _controller.CurrentView = ViewGeometryModelResults.Model;
-
-                SetSelectItem(vtkSelectItem.Node);
-                SetSelectBy(vtkSelectBy.Default);
-                /*DECARTADO
-
-                /*DESCARTADO
-                _controller.SetSelectByToDefault();
-                tsmiQuery_Click(null, null); // Usar directamente query
-                tsmiCreateNodeSet_Click(null, null); // Usar directamente `tsmiQuery_Click`
-                DECARTADO*/
-
                 // custom select form
                 tsmiCustomSelect_Click(null, null);
-
-                /* DESCARTADO
-                // Guardar seleccion de nodos
-                SelectionChanged(_customSelectedNodes.Keys.ToArray());
-                _controller.HighlightSelection();
-
-                // Mensaje
-                MessageBox.Show(
-                    $"Selecciona nodos del modelo activo\nNodos: {_customSelectedNodes.Count}"
-                );
-                DESCARTADO*/
             }
             catch (Exception ex)
             {
                 ExceptionTools.Show(this, ex);
             }
-            //DESCARTADO: _customNodeSelectionMode = false;
         }
         // custom node option
-        
+
+        // Surface point picker
+        private void SurfacePointPickerSelection()
+        {
+            try
+            {
+                tsmiSurfacePointPicker_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                ExceptionTools.Show(this, ex);
+            }
+        }
+        // Surface point picker
+
         internal void tsmiAdvisor_Click(object sender, EventArgs e)
         {
             if (!_controller.ModelInitialized) return;

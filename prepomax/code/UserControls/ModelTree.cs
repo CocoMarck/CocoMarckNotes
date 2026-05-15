@@ -205,10 +205,6 @@ namespace UserControls
         private string _customSubNodeText = "Sub Node";
         private string _customSubSubNodeText = "Sub Sub Node";
 
-        // custom set nodes option
-        private const string CustomNodeSetOptionName = "CustomNodeSetOption";
-        private const string CustomNodeSetOptionText = "NodeSet";
-
 
         // Properties                                                                                                               
         public bool ScreenUpdating
@@ -350,6 +346,10 @@ namespace UserControls
         // custom node option
         public event Action CustomCreateNodeSetSelectionEvent;
         // custom node option
+
+        // Surface point picker
+        public event Action SurfacePointPickerSelectionEvent;
+        // Surface point picker
 
 
         // Callbacks                                                                                                                
@@ -933,9 +933,19 @@ namespace UserControls
                     if (selectedNode.Name == "customSubNode")
                     {
                         CustomCreateNodeSetSelectionEvent?.Invoke();
+                        _doubleClick = false;
                         return;
                     }
                     // custom node option
+
+                    // Surface point picker
+                    if (selectedNode.Name == "customNode1")
+                    {
+                        SurfacePointPickerSelectionEvent?.Invoke();
+                        _doubleClick = false;
+                        return;
+                    }
+                    // Syrface point picker
                     
                     if (selectedNode.Tag == null)
                     {
@@ -1064,7 +1074,15 @@ namespace UserControls
                     return;
                 }
                 // custom node option
-                
+
+                // Surface point picker
+                if (selectedNode.Name == "customNode2")
+                {
+                    SurfacePointPickerSelectionEvent?.Invoke();
+                    return;
+                }
+                // Surface point picker
+
                 if (selectedNode.Tag == null)
                 {
                     if (CanCreate(selectedNode))
@@ -3355,7 +3373,10 @@ namespace UserControls
             // custom node option
             else if (node.TreeView == cltvCustomTab && node.Name == "customSubNode") return true;
             // custom node option
-            
+
+            // Surface point picker
+            else if (node.TreeView == cltvCustomTab && node.Name == "customNode2") return true;
+
             //
             else return false;
         }

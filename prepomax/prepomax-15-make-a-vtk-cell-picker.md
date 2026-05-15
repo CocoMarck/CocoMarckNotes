@@ -1,5 +1,5 @@
 # Crear un Cell Picker con `vtkControl.cs`. Usado en PrePoMax.
-Para seleccionar un punto cualquiere en una superficie. No necesitamos que sea nodo ni vértice. Lo típìco es usar un **`CellPicker` de superficie**.
+Para seleccionar un punto en cualquier superficie. No necesitamos que sea nodo ni vértice. Lo típìco es usar un **`CellPicker` de superficie**.
 
 En los modulos donde buscaremos el uso de esto seran
 - `vtkControl.cs`: Eventos con mouse.
@@ -96,40 +96,52 @@ private vtkPointPicker _pointPicker;	vtkControl\vtkControl.cs	113	32
 
 ## Código de ejemplo, en `vtkControl.cs`
 ```csharp
-// Custom Pick Cell Moment
-public bool TryPickSurfaceCell( 
-    int mouseX, int mouseY, out double[] point, out int globalCellId, out vtkActor pickedActor, out vtkCell pickedCell, out vtkCellLocator pickedCellLocator
-) 
-{
-    point = null;
-    globalCellId = -1;
-    pickedActor = null;
-    pickedCell = null;
-    pickedCellLocator = null;
+        // Surface point picker
+        public bool TryPickSurfaceCell( 
+            out double[] point, out int globalCellId, out vtkActor pickedActor, out vtkCell pickedCell, out vtkCellLocator pickedCellLocator
+        ) 
+        {
+            point = null;
+            globalCellId = -1;
+            pickedActor = null;
+            pickedCell = null;
+            pickedCellLocator = null;
 
-    // Valider estado mínimo de viewport y evitar picking sobre widgets.
-    if (_renderer == null) return false;
-    else if (_propPicker == null) return false;
-    else if (_style != null && _style.IsPositionOverWidget(mouseX, mouseY) ) return false;
+            // Valider estado mínimo de viewport y evitar picking sobre widgets.
+            if (_renderer == null) return false;
+            else if (_propPicker == null) return false;
+            else if (_style != null ) return false;
 
-    // Obtener actor y punto 3D aproximado sobre la superficie seleccionada. Desde la pos 2D del mouse.
-    point = GetPickPoint(out pickedActor, mouseX, mouseY);
+            // Obtener actor y punto 3D aproximado sobre la superficie seleccionada. Desde la pos 2D del mouse.
+            int[] pos = _style.GetInteractor().GetEventPosition();
+            point = GetPickPoint(out pickedActor, pos[0], pos[1]);
 
-    // Validar si no hay punto o actor, no se seleccionó una superficie válida.
-    if (point == null) return false;
-    else if (pickedActor == null) return false;
+            // Validar si no hay punto o actor, no se seleccionó una superficie válida.
+            if (point == null) return false;
+            else if (pickedActor == null) return false;
 
-    // Encontar la celda real más cercana. Se obtiene la FEM real más cercana el punto seleccionado.
-    globalCellId = GetGlobalCellIdClosestTo3DPoint(
-        ref point, out pickedCell, out pickedCellLocator
-    );
+            // Encontar la celda real más cercana. Se obtiene la FEM real más cercana el punto seleccionado.
+            globalCellId = GetGlobalCellIdClosestTo3DPoint(
+                ref point, out pickedCell, out pickedCellLocator
+            );
 
-    // Validar que el picking realmete encontró una celda válida.
-    if (globalCellId < 0) return false;
-    else if (pickedCell == null) return false;
-    else if (pickedCellLocator == null) return false;
+            // Validar que el picking realmete encontró una celda válida.
+            if (globalCellId < 0) return false;
+            else if (pickedCell == null) return false;
+            else if (pickedCellLocator == null) return false;
 
-    return true;
-}
-// Custom Pick Cell Moment
+            return true;
+        }
+        // Surface point picker
 ```
+> Intentar obtener puntos.
+
+**`vtkInteractorStyleControl.cs` es una capa de interacción VTK pura.** `vtkControl.cs` lo tiene de atributo como `_style`.
+
+### Regla simple
+Si el método necesita: `renderer, actor, locator, FEM mapping. Pertenece a vtkControl.`
+
+Si solo necesita: `mouse button, keyboard, camera movement.` Pertenece a `vtkInteractorStyleControl`.
+
+### En el `public void vtkSelectBy SelectBy`
+Tengo que hacer un nuevo case para el SalectBy. y el SelectItem.

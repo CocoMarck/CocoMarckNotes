@@ -37,3 +37,12 @@ El contador, es un `dictionatry.Count`. Este almcena id de nodo (como key) y FEN
 Ahora el formulario `FrmCustomSelect.cs`. Puede guardar y obtener datos en el `file.pmx`. Por lo que ya se guardan los nodos seleccionados. Tema guardado de datos; Todo se limito a usar el `Controller` de PrePoMax.
 
 Documente como fue hecho: [Custom select nodes save in pmx](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-14-custom-select-nodes-save-in-pmx.md).
+
+## Comentario 4
+Cree formulario `FrmSelectPointPicker`.
+
+Para seleccionar un punto en cualquier superficie. No necesitamos que sea nodo ni vértice. Lo típìco es usar un **`CellPicker` de superficie**.
+
+No logre implementarlo pero ya se que lo que necesito es `vtkCellPicker`
+
+[Documento]
