@@ -93,3 +93,43 @@ private vtkPointPicker _pointPicker;	vtkControl\vtkControl.cs	113	32
 **En realidad parece que los atributos privados de `vtkControl` no se usan fuera de el.**
 
 ---
+
+## Código de ejemplo, en `vtkControl.cs`
+```csharp
+// Custom Pick Cell Moment
+public bool TryPickSurfaceCell( 
+    int mouseX, int mouseY, out double[] point, out int globalCellId, out vtkActor pickedActor, out vtkCell pickedCell, out vtkCellLocator pickedCellLocator
+) 
+{
+    point = null;
+    globalCellId = -1;
+    pickedActor = null;
+    pickedCell = null;
+    pickedCellLocator = null;
+
+    // Valider estado mínimo de viewport y evitar picking sobre widgets.
+    if (_renderer == null) return false;
+    else if (_propPicker == null) return false;
+    else if (_style != null && _style.IsPositionOverWidget(mouseX, mouseY) ) return false;
+
+    // Obtener actor y punto 3D aproximado sobre la superficie seleccionada. Desde la pos 2D del mouse.
+    point = GetPickPoint(out pickedActor, mouseX, mouseY);
+
+    // Validar si no hay punto o actor, no se seleccionó una superficie válida.
+    if (point == null) return false;
+    else if (pickedActor == null) return false;
+
+    // Encontar la celda real más cercana. Se obtiene la FEM real más cercana el punto seleccionado.
+    globalCellId = GetGlobalCellIdClosestTo3DPoint(
+        ref point, out pickedCell, out pickedCellLocator
+    );
+
+    // Validar que el picking realmete encontró una celda válida.
+    if (globalCellId < 0) return false;
+    else if (pickedCell == null) return false;
+    else if (pickedCellLocator == null) return false;
+
+    return true;
+}
+// Custom Pick Cell Moment
+```
