@@ -45,4 +45,5 @@ Para seleccionar un punto en cualquier superficie. No necesitamos que sea nodo n
 
 No logre implementarlo pero ya se que lo que necesito es `vtkCellPicker`
 
-[Documento]
+- [Documento](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-15-make-a-vtk-cell-picker.md)
+- [FrmSelectPointPicker](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/code/PrePoMax/Forms/ZZ_FrmSurfacePointPicker/FrmSurfacePointPicker.cs)
