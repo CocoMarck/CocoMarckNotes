@@ -29,6 +29,14 @@ git pull origin main
 ## Si tienes cambios y files borrados renombrados, o movidos:
 Eso si, recuerda agregar tus cambios primero...
 ```bash
-git pull --rebase origin package-manager-backup
+git pull --rebase origin rama
 ```
 > Esto aplica los commits del remoto primero y luego tus cambios encima.
+
+---
+## Si tienes modificaciones pero no quieres mantener cambios
+```bash
+git checkout -- file-to-ignore.xd
+git pull origin main
+```
+> Ignoramos cambios de file, y hacemos pull.
