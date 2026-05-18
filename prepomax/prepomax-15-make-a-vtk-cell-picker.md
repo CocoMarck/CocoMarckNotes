@@ -339,7 +339,20 @@ private void btnPickPoints_Click(object sender, EventArgs e)
 ```
 
 ## Notas
-- `2026-05-18`: Ok, no esta entrando a `else if (_selectBy == vtkSelectBy.SurfacePoint)` en `PickByArea`. Jajaj... Lo logramos (yo y ChatGPT) we. Yo con el context, y tu con la logic pesada. Bien hecho. Fue algo confuso de hacer, culpa de que no se usar kernels, eso es otro pedo. Descarte código, pero ese no importa.
+- `2026-05-18`: 
+    - Ok, no esta entrando a `else if (_selectBy == vtkSelectBy.SurfacePoint)` en `PickByArea`. 
+    
+    - Jajaj... Lo logramos (yo y ChatGPT) we. Yo con el context, y tu con la logic pesada. Bien hecho. Fue algo confuso de hacer, culpa de que no se usar kernels, eso es otro pedo. Descarte código, pero ese no importa. 
+    
+    - Al final si tube que crear eums, funcs, y etc. Pero lo bueno es que `vtkCellPicker` es buen wrapper y de una jala.
+
+    - Bueno, si quiero usar `RenderSurfacePoint`, todo se resume a ajustarlo, y serializar datos de coords de seleccion, porque dudo que PrePoMax tenga algo listo para guardar eso al `pmx`, de guardado de `xyz` no ids.
+
+    - Existe la función `PickByCell`. Verla para obtener mucha data de como implementar cualquier cosa con relacion a este tema.
+
+    - `Style_PointPickedOnMouseMoveEvt` y `style_PointPickedOnLeftUpEvt`: Son para el estilo de seleccion de puntos, ya sea moviendo el mouse o cuando el click izquierdo se levanta. Se maneja en case, y else if respectivamente, no se muy bien porque uno maneja case y el otro ifs, pero bueno, jala.
+
+    - En busceda recursiva de `PickByCell`, esa func esta ready, pero se usa indiractamente, en `Style_PointPickedOunMouseEvt`, para algo relacionado al `query` tool. `vtkControl.cs line 486`. Conclusión, los metodos de este doc si son necesarios.
 
 ### Output
 `2026-05-18`
