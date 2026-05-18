@@ -233,7 +233,7 @@ Le agregamos un enum al `vtkSelectItem`. Seguimos la equivalencia secuencial.
 - `SurfacePoint = 11;`
 > El ultimo enum, era el 10.
 
-Aregamos el mismo enum en el `vtkSelectBy.cs`.
+Agreamos el mismo enum en el `vtkSelectBy.cs`. Pero aca, es sin valor. Solo; `SurfacePoint`.
 
 En el `vtkControl.cs`, en el `public vtkSelectBy SelectBy`, le agregamos un nuevo case.
 ```csharp
@@ -246,80 +246,70 @@ En `vtkController.cs` Le agregamos esta var: `private double[] _lastSurfacePoint
 
 Y estas funcs.
 ```csharp
-        public double[] LastSurfacePoint
-        {
-            get { return _lastSurfacePoint; }
-        }
-        private void RenderSurfacePoint(double[] point)
-        {
-            if (point == null) return;
+public double[] LastSurfacePoint
+{
+    get { return _lastSurfacePoint; }
+}
+private void RenderSurfacePoint(double[] point)
+{
+    if (point == null) return;
 
-            vtkSphereSource sphere =
-                vtkSphereSource.New();
+    vtkSphereSource sphere = vtkSphereSource.New();
 
-            sphere.SetCenter(
-                point[0],
-                point[1],
-                point[2]
-            );
+    sphere.SetCenter( point[0], point[1], point[2] );
 
-            sphere.SetRadius(1);
+    sphere.SetRadius(1);
 
-            vtkPolyDataMapper mapper =
-                vtkPolyDataMapper.New();
+    vtkPolyDataMapper mapper = vtkPolyDataMapper.New();
 
-            mapper.SetInputConnection(
-                sphere.GetOutputPort()
-            );
+    mapper.SetInputConnection( sphere.GetOutputPort() );
 
-            vtkActor actor =
-                vtkActor.New();
+    vtkActor actor = vtkActor.New();
 
-            actor.SetMapper(mapper);
+    actor.SetMapper(mapper);
 
-            actor.GetProperty()
-                 .SetColor(1, 0, 0);
+    actor.GetProperty().SetColor(1, 0, 0);
 
-            _renderer.AddActor(actor);
+    _renderer.AddActor(actor);
 
-            RenderScene();
-        }
+    RenderScene();
+}
 ```
+> Tema lo que se muestra, creamos una esfera roja, y la mostramos en la pos indicada. Bueno y el lastSurfacePoint, pos un simple get a private var.
 
 Creamos `PickBySurfacePoint`, usara todo para el render y select de puntos.
 ```csharp
-        private void PickBySurfacePoint(
-            out vtkActor pickedActor, int x, int y
-        )
-        {
-            Debug.WriteLine("select by Surface. Try to do all things.");
+private void PickBySurfacePoint(
+    out vtkActor pickedActor, int x, int y
+)
+{
+    Debug.WriteLine("select by Surface. Try to do all things.");
             
-            pickedActor = null;
+    pickedActor = null;
 
-            vtkCellPicker picker = vtkCellPicker.New();
-            Debug.WriteLine("Damn, vtkCellPicker, already");
+    vtkCellPicker picker = vtkCellPicker.New();
+    Debug.WriteLine("Damn, vtkCellPicker, already");
 
-            picker.SetTolerance(0.0005);
+    picker.SetTolerance(0.0005);
 
-            int picked = picker.Pick(x, y, 0, _renderer);
+    int picked = picker.Pick(x, y, 0, _renderer);
 
-            if (picked != 1) return;
+    if (picked != 1) return;
 
-            pickedActor =
-                picker.GetActor();
+    pickedActor = picker.GetActor();
 
-            if (pickedActor == null) return;
+    if (pickedActor == null) return;
 
-            double[] point = picker.GetPickPosition();
+    double[] point = picker.GetPickPosition();
 
-            _lastSurfacePoint = point;
+    _lastSurfacePoint = point;
 
-            Debug.WriteLine(
-                $"Surface Point: {point[0]}, {point[1]}, {point[2]}"
-            );
+    Debug.WriteLine(
+        $"Surface Point: {point[0]}, {point[1]}, {point[2]}"
+    );
 
-            RenderSurfacePoint(point);
-        }
+    RenderSurfacePoint(point);
+}
 ```
 
 En `private void Style_PointPickedOnMouseMoveEvt`. Indicamos el case moment. Junto a los demas case.
@@ -331,10 +321,10 @@ case vtkSelectBy.SurfacePoint:
 
 En el `PrePoMax/Controller.cs`, en la funcion `GetIdsFromSelectionNodeMouse(SelectionNodeMouse selectionNodeMouse)`, ponemos este `else if`:
 ```csharp
-                else if (_selection.SelectItem == vtkSelectItem.SurfacePoint)
-                {
-                    ids = new int[0];
-                }
+else if (_selection.SelectItem == vtkSelectItem.SurfacePoint)
+{
+    ids = new int[0];
+}
 ```
 > Asi evitamos crash loco, pero puede que no se necesite. Es que esta func busca retornar ids siempre.
 
