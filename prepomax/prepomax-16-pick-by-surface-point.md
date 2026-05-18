@@ -137,6 +137,14 @@ namespace CaeMesh
 
 Para el renderizado, seguramente tendre que crear `HighlightCoordPoints`. Metodo que pedira `CoordPointSet`.
 
+### `FeModel`.
+Probablemente se tendra que agregar al `FeModel`. El `Controller.cs` lo agrega.
+```csharp
+protected FeModel _model;
+```
+
+Este esta en `CaeModel/FeModel.cs`.
+
 ---
 ## Renderzado
 Actualmente `RenderSurfacePoint`, jala, pero deja rastros, mas debug que nada, pero sirve para probar. Este vive en `vtkControl.cs`.
