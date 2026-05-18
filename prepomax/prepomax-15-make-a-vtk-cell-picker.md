@@ -143,5 +143,199 @@ Si el método necesita: `renderer, actor, locator, FEM mapping. Pertenece a vtkC
 
 Si solo necesita: `mouse button, keyboard, camera movement.` Pertenece a `vtkInteractorStyleControl`.
 
-### En el `public void vtkSelectBy SelectBy`
-Tengo que hacer un nuevo case para el SalectBy. y el SelectItem.
+### En el `public vtkSelectBy SelectBy`
+Tengo que hacer un nuevo case para el `SalectBy`. y el `SelectItem`.
+
+### `vtkSelectBy` `vtkSelectItem`
+`vtkSelectBy` tiene MUCHO que ver. MUCHÍSIMO.
+
+Porque literalmente controla TODO el pipeline de selección:
+- renderer mode
+- picking
+- actor filtering
+- ids
+- geometry
+- surfaces
+- edge logic
+- frustum selection
+- angle selection
+
+NO necesitas hacer: `vtkSelectBy.Cell`. Porque YA EXISTE: `vtkSelectBy.Surface`. 
+
+Y también:
+- `GeometrySurface`
+- `SurfaceAngle`
+
+`vtkSelectItem` probablemente importa MÁS que `vtkSelectBy`.
+
+### Diferencia REAL
+- `vtkSelectBy`: controla cómo seleccionas.
+    Ejemplos:
+    - Node
+    - Surface
+    - Part
+    - EdgeAngle
+    - GeometrySurface
+
+    Es más:
+    - viewport mode
+    - picking mode
+    - routing
+- `vtkSelectItem`: qué entidad lógica estás manipulando
+    Y eso afecta TODO:
+    - ids
+    - conversiones
+    - highlighting
+    - annotations
+    - sets
+    - geometry mapping
+    - visibility queries
+
+### `GetVisibleFaceIds()`
+`Surface = Face IDs`. Cuando hago `vtkSelectItem.Surface`. Internamente PrePoMax trabajo con: face ids. El problema es que, el sistema de selección de PrePoMax es ID-Based.
+- node ids
+- element ids
+- face ids
+- geometry ids
+- part ids
+
+No son coordenadas libres.
+
+Lo mejor es hacer un enum nuevo, que prabablemente sera llamado: `vtkSelectItem.SurfacePoint;`. Un `SelectItem` No un `SelectBy`.
+
+De hecho:
+```csharp
+_controller.SelectBy = vtkSelectBy.Surface;
+_controller.Selection.SelectItem = vtkSelectItem.SurfacePoint;
+```
+> No existe `SurfacePoint`, la misión seria crearlo.
+
+Porque `SelectBy.Surface`, ya da:
+- Surface picking mode
+- Renderer bahavior
+- Filters
+
+Y el conceptual `SeletItem.SurfacePoint`, te dice:
+- Que devolver
+- Que guardar
+- Como interpretar la selección
+
+Esto `if (_selection.SelectItem == vtkSelectItem.Surface)`, esta por todos lados. Y significa `SelectItem`, tipo de identidad lógica.
+
+---
+
+## Agreagar `SurfacePoint`
+Los enums de los `SelectBy` y `SelectItem`. Estan en: `CaeGlobals/Selection/Enums`, `vtkSelectItem.cs`, `vtkSelectBy.cs`
+
+Le agregamos un enum al `vtkSelectItem`. Seguimos la equivalencia secuencial.
+- `SurfacePoint = 11;`
+> El ultimo enum, era el 10.
+
+Aregamos el mismo enum en el `vtkSelectBy.cs`.
+
+En el `vtkControl.cs`, en el `public vtkSelectBy SelectBy`, le agregamos un nuevo case.
+```csharp
+case vtkSelectBy.SurfacePoint:
+    _style.SelectionBoxEnabled = false;
+    break;
+```
+
+Pare el `PickByArea` else if, tendremos, que crear estas funciones para get, y render ifo of points. Esto es en `vtkController.cs`
+
+Le agregamos esta var: `private double[] _lastSurfacePoint;`
+
+```csharp
+        public double[] LastSurfacePoint
+        {
+            get { return _lastSurfacePoint; }
+        }
+        private void RenderSurfacePoint(double[] point)
+        {
+            if (point == null) return;
+
+            vtkSphereSource sphere =
+                vtkSphereSource.New();
+
+            sphere.SetCenter(
+                point[0],
+                point[1],
+                point[2]
+            );
+
+            sphere.SetRadius(1);
+
+            vtkPolyDataMapper mapper =
+                vtkPolyDataMapper.New();
+
+            mapper.SetInputConnection(
+                sphere.GetOutputPort()
+            );
+
+            vtkActor actor =
+                vtkActor.New();
+
+            actor.SetMapper(mapper);
+
+            actor.GetProperty()
+                 .SetColor(1, 0, 0);
+
+            _renderer.AddActor(actor);
+
+            RenderScene();
+        }
+```
+
+Creamos `PickBySurfacePoint`, usara todo para el render y select de puntos.
+```csharp
+        private void PickBySurfacePoint(
+            out vtkActor pickedActor, int x, int y
+        )
+        {
+            Debug.WriteLine("select by Surface. Try to do all things.");
+            
+            pickedActor = null;
+
+            vtkCellPicker picker = vtkCellPicker.New();
+            Debug.WriteLine("Damn, vtkCellPicker, already");
+
+            picker.SetTolerance(0.0005);
+
+            int picked = picker.Pick(x, y, 0, _renderer);
+
+            if (picked != 1) return;
+
+            pickedActor =
+                picker.GetActor();
+
+            if (pickedActor == null) return;
+
+            double[] point = picker.GetPickPosition();
+
+            _lastSurfacePoint = point;
+
+            Debug.WriteLine(
+                $"Surface Point: {point[0]}, {point[1]}, {point[2]}"
+            );
+
+            RenderSurfacePoint(point);
+        }
+```
+
+En el `PrePoMax/Controller.cs`, en la funcion `GetIdsFromSelectionNodeMouse(SelectionNodeMouse selectionNodeMouse)`, ponemos este `else if`:
+```csharp
+                else if (_selection.SelectItem == vtkSelectItem.SurfacePoint)
+                {
+                    ids = new int[0];
+                }
+```
+> Asi evitamos crash loco, pero puede que no se necesite. Es que esta func busca retornar ids siempre.
+
+## Notas
+- `2026-05-18`: Ok, no esta entando a `else if (_selectBy == vtkSelectBy.SurfacePoint)` en `PickByArea`. Jajaj... Lo logramos (yo y ChatGPT) we. Yo con el context, y tu con la logic pesada. Bien hecho. Fue algo confuso de hacer, culpa de que no se usar kernels, eso es otro pedo. Descarte código, pero ese no importa.
+
+### Output
+`2026-05-18`
+No cleen de except, pero PrePo los cacha bien, y lo chido es que ya todo jala, ahorita te pasa documento. Por hoy termine. A canijo, mucho search, pero otra vez, ya todo esta listo pa usar, solo era conectar todo chido.
+```
+Damn, vtkCellPicker, already Surface Point: 37.6682241162341, 39.498119354248, 163.743460375583 select by Surface. Try to do all things. Damn, vtkCellPicker, already Surface Point: 31.6948939100548, 39.498119354248, 172.991437289065 Exception thrown: 'System.NotSupportedException' in PrePoMax.exe select by Surface. Try to do all things. Damn, vtkCellPicker, already Surface Point: 24.2239749698585, 39.498119354248, 170.813487003052 Exception thrown: 'System.NotSupportedException' in PrePoMax.exe The thread 6812 has exited with code 0 (0x0). The thread 5212 has exited with code 0 (0x0). Exception thrown: 'System.NotSupportedException' in PrePoMax.exe select by Surface. Try to do all things. Damn, vtkCellPicker, already Surface Point: 31.1014512059847, 39.498119354248, 141.108894530986 Exception thrown: 'System.NotSupportedException' in PrePoMax.exe select by Surface. Try to do all things. Damn, vtkCellPicker, already Surface Point: 17.0836779620181, 39.498119354248, 143.606998217554 select by Surface. Try to do all things. Damn, vtkCellPicker, already Surface Point: 18.4709028760595, 39.498119354248, 112.97172889054 select by Surface. Try to do all things.
+```
