@@ -223,8 +223,10 @@ Y el conceptual `SeletItem.SurfacePoint`, te dice:
 Esto `if (_selection.SelectItem == vtkSelectItem.Surface)`, esta por todos lados. Y significa `SelectItem`, tipo de identidad lógica.
 
 ---
+# SOLUCION REAL FINAL
+Esta es la solucion real final, lo demas fue puro buscar, prueba y error. Si se quiere entender como implementar `CellPicker`, entender esto de aca es clave.
 
-## Agreagar `SurfacePoint`
+## Agregar `SurfacePoint`
 Los enums de los `SelectBy` y `SelectItem`. Estan en: `CaeGlobals/Selection/Enums`, `vtkSelectItem.cs`, `vtkSelectBy.cs`
 
 Le agregamos un enum al `vtkSelectItem`. Seguimos la equivalencia secuencial.
@@ -240,10 +242,9 @@ case vtkSelectBy.SurfacePoint:
     break;
 ```
 
-Pare el `PickByArea` else if, tendremos, que crear estas funciones para get, y render ifo of points. Esto es en `vtkController.cs`
+En `vtkController.cs` Le agregamos esta var: `private double[] _lastSurfacePoint;`
 
-Le agregamos esta var: `private double[] _lastSurfacePoint;`
-
+Y estas funcs.
 ```csharp
         public double[] LastSurfacePoint
         {
@@ -319,6 +320,13 @@ Creamos `PickBySurfacePoint`, usara todo para el render y select de puntos.
 
             RenderSurfacePoint(point);
         }
+```
+
+En `private void Style_PointPickedOnMouseMoveEvt`. Indicamos el case moment. Junto a los demas case.
+```csharp
+case vtkSelectBy.SurfacePoint:
+    PickBySurfacePoint(out pickedActor, x1, y1);
+    break;
 ```
 
 En el `PrePoMax/Controller.cs`, en la funcion `GetIdsFromSelectionNodeMouse(SelectionNodeMouse selectionNodeMouse)`, ponemos este `else if`:
