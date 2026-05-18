@@ -43,7 +43,12 @@ Cree formulario `FrmSelectPointPicker`.
 
 Para seleccionar un punto en cualquier superficie. No necesitamos que sea nodo ni vértice. Lo típìco es usar un **`CellPicker` de superficie**.
 
-No logre implementarlo pero ya se que lo que necesito es `vtkCellPicker`
+No logre implementarlo, pero ya se que lo que necesito es `vtkCellPicker`
 
 - [Documento](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-15-make-a-vtk-cell-picker.md)
 - [FrmSelectPointPicker](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/code/PrePoMax/Forms/ZZ_FrmSurfacePointPicker/FrmSurfacePointPicker.cs)
+
+## Comentario 5
+Implementacion de `vtkCellPicker`, en prepomax. Documente como lo hice. Aun no guardo data en el `pmx`. Pero estoy en ello.
+- [Usar vtk cell picker](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-15-make-a-vtk-cell-picker.md)
+- [Intentar guardar data de los puntos seleccionados](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-16-pick-by-surface-point.md)
