@@ -338,12 +338,33 @@ En el `PrePoMax/Controller.cs`, en la funcion `GetIdsFromSelectionNodeMouse(Sele
 ```
 > Asi evitamos crash loco, pero puede que no se necesite. Es que esta func busca retornar ids siempre.
 
+### Ejemplo de uso
+En PrePoMax Style, como debe ser. Este ejemplo es de un `FrmSurfacePointPicker.cs`. Y funciona de una. Por ahora solo se limita a esto (sin guardado de datos en pmx), pero es un gran avance.
+```csharp
+private void btnPickPoints_Click(object sender, EventArgs e)
+{
+    _controller.SelectBy = vtkSelectBy.SurfacePoint;
+    _controller.Selection.SelectItem = vtkSelectItem.SurfacePoint;
+}
+```
+
 ## Notas
-- `2026-05-18`: Ok, no esta entando a `else if (_selectBy == vtkSelectBy.SurfacePoint)` en `PickByArea`. Jajaj... Lo logramos (yo y ChatGPT) we. Yo con el context, y tu con la logic pesada. Bien hecho. Fue algo confuso de hacer, culpa de que no se usar kernels, eso es otro pedo. Descarte código, pero ese no importa.
+- `2026-05-18`: Ok, no esta entrando a `else if (_selectBy == vtkSelectBy.SurfacePoint)` en `PickByArea`. Jajaj... Lo logramos (yo y ChatGPT) we. Yo con el context, y tu con la logic pesada. Bien hecho. Fue algo confuso de hacer, culpa de que no se usar kernels, eso es otro pedo. Descarte código, pero ese no importa.
 
 ### Output
 `2026-05-18`
 No cleen de except, pero PrePo los cacha bien, y lo chido es que ya todo jala, ahorita te pasa documento. Por hoy termine. A canijo, mucho search, pero otra vez, ya todo esta listo pa usar, solo era conectar todo chido.
 ```
-Damn, vtkCellPicker, already Surface Point: 37.6682241162341, 39.498119354248, 163.743460375583 select by Surface. Try to do all things. Damn, vtkCellPicker, already Surface Point: 31.6948939100548, 39.498119354248, 172.991437289065 Exception thrown: 'System.NotSupportedException' in PrePoMax.exe select by Surface. Try to do all things. Damn, vtkCellPicker, already Surface Point: 24.2239749698585, 39.498119354248, 170.813487003052 Exception thrown: 'System.NotSupportedException' in PrePoMax.exe The thread 6812 has exited with code 0 (0x0). The thread 5212 has exited with code 0 (0x0). Exception thrown: 'System.NotSupportedException' in PrePoMax.exe select by Surface. Try to do all things. Damn, vtkCellPicker, already Surface Point: 31.1014512059847, 39.498119354248, 141.108894530986 Exception thrown: 'System.NotSupportedException' in PrePoMax.exe select by Surface. Try to do all things. Damn, vtkCellPicker, already Surface Point: 17.0836779620181, 39.498119354248, 143.606998217554 select by Surface. Try to do all things. Damn, vtkCellPicker, already Surface Point: 18.4709028760595, 39.498119354248, 112.97172889054 select by Surface. Try to do all things.
+Damn, vtkCellPicker, already 
+Surface Point: 37.6682241162341, 39.498119354248, 163.743460375583
+select by Surface. Try to do all things.
+Damn, vtkCellPicker, already
+Surface Point: 31.6948939100548, 39.498119354248, 172.991437289065 
+Exception thrown: 'System.NotSupportedException' in PrePoMax.exe select by Surface.
+Try to do all things. Damn, vtkCellPicker, already
+Surface Point: 24.2239749698585, 39.498119354248, 170.813487003052
+Exception thrown: 'System.NotSupportedException' in PrePoMax.exe The thread 6812 has exited with code 0 (0x0). The thread 5212 has exited with code 0 (0x0). Exception thrown: 'System.NotSupportedException' in PrePoMax.exe
+select by Surface. Try to do all things.
+Damn, vtkCellPicker, already 
+Surface Point: 31.1014512059847, 39.498119354248, 141.
 ```

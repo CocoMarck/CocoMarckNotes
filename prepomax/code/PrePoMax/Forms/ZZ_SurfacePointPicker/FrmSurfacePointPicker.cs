@@ -138,8 +138,8 @@ namespace PrePoMax.Forms
 
         private void btnPickPoints_Click(object sender, EventArgs e)
         {
-            _controller.SelectBy = vtkSelectBy.Node;
-            _controller.Selection.SelectItem = vtkSelectItem.Node;
+            _controller.SelectBy = vtkSelectBy.SurfacePoint;
+            _controller.Selection.SelectItem = vtkSelectItem.SurfacePoint;
         }
 
         // Render
