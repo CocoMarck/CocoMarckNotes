@@ -38,6 +38,8 @@ Ahora el formulario `FrmCustomSelect.cs`. Puede guardar y obtener datos en el `f
 
 Documente como fue hecho: [Custom select nodes save in pmx](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-14-custom-select-nodes-save-in-pmx.md).
 
+---
+
 ## Comentario 4
 Cree formulario `FrmSelectPointPicker`.
 
@@ -48,7 +50,17 @@ No logre implementarlo, pero ya se que lo que necesito es `vtkCellPicker`
 - [Documento](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-15-make-a-vtk-cell-picker.md)
 - [FrmSelectPointPicker](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/code/PrePoMax/Forms/ZZ_FrmSurfacePointPicker/FrmSurfacePointPicker.cs)
 
+---
+
 ## Comentario 5
 Implementacion de `vtkCellPicker`, en prepomax. Documente como lo hice. Aun no guardo data en el `pmx`. Pero estoy en ello.
 - [Usar vtk cell picker](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-15-make-a-vtk-cell-picker.md)
 - [Intentar guardar data de los puntos seleccionados](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-16-pick-by-surface-point.md)
+
+
+---
+
+## Comentario 6
+Guardado de datos; De puntos seleccionados con `vtkCellPicker`. Se crearon las entidades serializadas `CoordPoint`, y `CoordPointSet`. Se implementaron en el `FeMesh -> FeModel -> Controller`, y el controller se encarga coordinar el guardado. El formulario `FrmPickSurfacePoints`, usa lo necesario para obtener data, guardar data, y dibujar.
+
+- [Documento](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-16-pick-by-surface-point.md)

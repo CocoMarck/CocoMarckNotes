@@ -1,11 +1,11 @@
 # `PickBySurfacePoint`
-Este es un método en `vtkControl.cs`. Sirve para seleccionar un punto, utilizando `vtkCellPicker`, y se renderiza con `RenderSurfacePoint`, pero mejor con ya existente `HighLightNodes`. Ya que aunque su nombre diga noda, renderiza en cualquier `xyz`.
+Este es un método en `vtkControl.cs`. Sirve para seleccionar un punto, utilizando `vtkCellPicker`, y se renderiza con `RenderSurfacePoint`, pero mejor con el ya existente `HighLightNodes`. Ya que aunque su nombre diga nodes, renderiza en cualquier `xyz`.
 
 El punto es que se determinara como funcionara la seleccion de puntos y guardado de estos, en `PickBySurfacePoint`. Y el renderizado deberia ser mas fácil.
 
 Los puntos que se seleccionen se guardaran y obtendran del `pmx`. Ya despues se renderiza.
 
-Este documento tiene el contexto del anteior documento. El `15-make-a-vtk-cell-picker`. En realidad todos los documentos deberian trabajar sobre el contexto anterior. Por lo que si ves cosas que se ven bien raras, es porque te falta contexto.
+Este documento tiene el contexto del anterior documento. El `15-make-a-vtk-cell-picker`. En realidad todos los documentos deberian trabajar sobre el contexto del anterior. Por lo que si ves cosas que se ven bien raras, es porque te falta contexto.
 
 ---
 
