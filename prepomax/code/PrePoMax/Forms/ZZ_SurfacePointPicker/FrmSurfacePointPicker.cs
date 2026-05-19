@@ -32,14 +32,14 @@ namespace PrePoMax.Forms
         public Action<string> Form_WriteDataToOutput;
         public Action<object, EventArgs> Form_RemoveAnnotations;
 
-        // Surface points
-        private List<double[]> _surfacePoints;
+        // Para guardado en PMX File
+        private CoordPointSet _coordPointSet;
 
         // Constructors
         public FrmSurfacePointPicker()
         {
             // InitializeComponet();
-            _surfacePoints = new List<double[]>();
+            _coordPointSet = new CoordPointSet("SurfacePoints");
 
             this.btnClose = new System.Windows.Forms.Button();
             this.btnPickPoints = new System.Windows.Forms.Button();
@@ -125,9 +125,21 @@ namespace PrePoMax.Forms
             }
         }
 
+        // EstaFunc ya no se usaria Esta descartada, esta aca por trolling
+        /*
         public void PickedIds(int[] ids)
         {
-            MessageBox.Show($"{ids}");
+            
+            Debug.WriteLine($"FrmSurfacePointPicker. Entrando a picked ids.");
+
+            foreach (int id in ids)
+                MessageBox.Show($"{id}");
+        }
+        */
+
+        public void PickedCoords(List<double[]> coords)
+        {
+            // Supongo que esta algun dia se usara. Pero por ahora no hace falta `2026-05-19`.
         }
 
         // Widgets
@@ -144,12 +156,13 @@ namespace PrePoMax.Forms
 
         // Render
         // Mostrar puntos
-        public void Hightlight()
+        public void Highlight()
         {
-            if (_surfacePoints == null) return;
-            if (_surfacePoints.Count <= 0) return;
+            if (_coordPointSet == null) return;
+            if (_coordPointSet.Points.Count <= 0) return;
 
-            double[][] points = _surfacePoints.ToArray();
+            double[][] points = _coordPointSet.Points.
+                Select(p => p.Coor).ToArray();
 
             _controller.HighlightNodes(points);
         }
@@ -158,11 +171,11 @@ namespace PrePoMax.Forms
         {
             if (point == null) return;
 
-            _surfacePoints.Add(point);
+            _coordPointSet.AddPoint(point[0], point[1], point[2]);
 
             Form_WriteDataToOutput($"Surface point: {point[0]}, {point[1]}, {point[2]}");
 
-            Hightlight();
+            Highlight();
         }
     }
 }

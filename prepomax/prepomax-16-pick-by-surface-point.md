@@ -1,9 +1,9 @@
 # `PickBySurfacePoint`
-Método en `vtkControl.cs`. Sirve para renderizar un punto, utilizando `vtkCellPicker`, y se renderiza con `RenderSurfacePoint`.
+Este es un método en `vtkControl.cs`. Sirve para seleccionar un punto, utilizando `vtkCellPicker`, y se renderiza con `RenderSurfacePoint`, pero mejor con ya existente `HighLightNodes`. Ya que aunque su nombre diga noda, renderiza en cualquier `xyz`.
 
-El punto es que se terminara como funcionara la seleccion de puntos y guardado de estos, en `PickBySurfacePoint`. Y el renderizado deberia ser mas fácil, sucedera en `RenderSurfacePoint`, teoricamente deberia ser sencillo de hacer.
+El punto es que se determinara como funcionara la seleccion de puntos y guardado de estos, en `PickBySurfacePoint`. Y el renderizado deberia ser mas fácil.
 
-Los puntos que se seleccionen se guardaran y obtendran del `pmx`. Ya despues se renderiza. Creo que el guardado y la obtencion de esto, pasara al form, parece que asi es el flujo del PrePoMax.
+Los puntos que se seleccionen se guardaran y obtendran del `pmx`. Ya despues se renderiza.
 
 Este documento tiene el contexto del anteior documento. El `15-make-a-vtk-cell-picker`. En realidad todos los documentos deberian trabajar sobre el contexto anterior. Por lo que si ves cosas que se ven bien raras, es porque te falta contexto.
 
@@ -497,4 +497,48 @@ namespace PrePoMax.Forms
         }
     }
 }
-``` 
+```
+
+---
+
+## `FeMesh.cs` Guardado de coords. Usando las entidades serializadas antes creadas.
+- [Controller raw](https://gitlab.com/MatejB/PrePoMax/-/raw/master/PrePoMax/Controller.cs?ref_type=heads). Tiene a `public FeModel Model`.
+- [FeModel raw](https://gitlab.com/MatejB/PrePoMax/-/raw/master/CaeModel/FeModel.cs?ref_type=heads). Tiene a `public FeMesh Mesh`.
+- [FeMesh raw](https://gitlab.com/MatejB/PrePoMax/-/raw/master/CaeMesh/FeMesh.cs?ref_type=heads). Tiene a:
+    ```csharp
+    public OrderedDictionary<string, FeNodeSet> NodeSets
+    {
+        get { return _nodeSets; }
+    }
+    ``` 
+
+    Entonces, deberia empezar poniendo en `FeMesh`, mi `CoordPointSet`
+
+    Tambien desde aca se guarda el conteo de selecciones.
+    ```
+    private int _maxNodeId;     //ISerializable
+    private int _maxElementId;  //ISerializable
+    ```
+
+### FeMesh
+Primero agregamos las vars necesarias.
+```csharp
+private OrderedDictionary<string, CoordPointSet> _coordPointSets;
+private int _maxPointId;
+```
+
+Lo agregamos a las propiedades:
+```csharp
+// Poperties
+...
+public OrderedDictionary<string, CoordPointSet> CoordPointSets
+{
+    get { return _coordPointSets; }
+}
+...
+public int MaxPointId
+{
+    get { return _maxPointId; }
+}
+```
+De preferencia ordenado, y antes del `public BoundingBox BoundingBox`.

@@ -13211,6 +13211,31 @@ namespace PrePoMax
             _selection.SelectItem = selectItem;
             AddSelectionNode(selectionNode, highlight, false);
         }
+
+        // SelectCoordPoint
+        public void SelectCoordPoint(
+            double[] pickedPoint, string[] pickedPartNames
+        )
+        {
+            Debug.WriteLine( $"Controller. SelectCoordPoint. Entro: {pickedPoint}" );
+            try
+            {
+                _form.ActivateUserPick();
+
+                if (pickedPoint == null)
+                    return;
+
+                foreach (double coord in pickedPoint)
+                    Debug.Write($"`{coord}` ");
+            }
+            catch { }
+            finally
+            {
+                _form.DeactivateUserPick();
+            }
+        }
+        // SelectCoordPoint
+
         // The function called from vtk_control
         public void SelectPointOrArea(double[] pickedPoint, double[] selectionDirection,
                                       double[][] planeParameters, bool completelyInside,
@@ -19647,6 +19672,14 @@ namespace PrePoMax
             count += DrawNodeSet("Highlight", nodeSetName, color, layer, true, nodeSize, useSecondaryHighlightColor);
             return count;
         }
+
+        // CoordPointSet
+        public void HighlightCoordPoints(string pointCoor, bool useSecondaryHighlightColor = false)
+        {
+            // Code
+            // Realmente no lo necesito HighlightNodes, hace la chamba.
+        }
+
         public void HighlightElement(int elementId)
         {
             DrawElements("Highlight", new int[] { elementId }, Color.Red, vtkRendererLayer.Selection);

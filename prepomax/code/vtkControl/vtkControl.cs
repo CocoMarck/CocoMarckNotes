@@ -133,9 +133,6 @@ namespace vtkControl
         private bool _captionActorAddedToSelection;
         private bool _captionActorAddedToOverlay;
 
-        // vtkSelectItem.SurfacePoint
-        private double[] _lastSurfacePoint;
-
 
         // Properties                                                                                                               
         public bool RenderingOn
@@ -522,9 +519,9 @@ namespace vtkControl
                             PickByActor(out pickedActor, x1, y1, false);
                             break;
 
-                        // vtkSelectItem.SurfacePoint
+                        // vtkSelectItem.SurfacePoint. Seleccion caundo el mouse se mueve.
                         case vtkSelectBy.SurfacePoint:
-                            PickBySurfacePoint(out pickedActor, x1, y1);
+                            //PickBySurfacePoint(out pickedActor, x1, y1);
                             break;
 
                         default:
@@ -546,12 +543,12 @@ namespace vtkControl
             out vtkActor pickedActor, int x, int y
         )
         {
-            Debug.WriteLine("select by Surface. Try to do all things.");
+            Debug.WriteLine("PickBySurfacePoint. Select by Surface. Try to pick.");
             
             pickedActor = null;
 
             vtkCellPicker picker = vtkCellPicker.New();
-            Debug.WriteLine("Damn, vtkCellPicker, already");
+            Debug.WriteLine("PickBySurfacePoint. Damn, vtkCellPicker, already");
 
             picker.SetTolerance(0.0005);
 
@@ -559,20 +556,15 @@ namespace vtkControl
 
             if (picked != 1) return;
 
-            pickedActor =
-                picker.GetActor();
+            pickedActor = picker.GetActor();
 
             if (pickedActor == null) return;
 
-            double[] point = picker.GetPickPosition();
-
-            _lastSurfacePoint = point;
-
-            Debug.WriteLine(
-                $"Surface Point: {point[0]}, {point[1]}, {point[2]}"
-            );
-
-            RenderSurfacePoint(point);
+            //double[] point = picker.GetPickPosition();
+            //Debug.WriteLine(
+            //    $"Surface Point: {point[0]}, {point[1]}, {point[2]}"
+            //);
+            //RenderSurfacePoint(point); // <-- Debug moment, no debe renderizar
         }
 
 
@@ -603,6 +595,30 @@ namespace vtkControl
                 //
                 Controller_ActorsPicked?.Invoke(mea, ModifierKeys, pickedActorNames.ToArray());
             }
+
+            // vtkSelectBy.SurfacePoint
+            else if (_selectBy == vtkSelectBy.SurfacePoint)
+            {
+                vtkActor pickedActor;
+                PickBySurfacePoint(out pickedActor, mea.Location.X, mea.Location.Y);
+
+                // Info for using events GG. Good and happy game.
+                vtkSelectOperation selectOperation;
+                if (Control.ModifierKeys == (Keys.Shift | Keys.Control)) selectOperation = vtkSelectOperation.Intersect;
+                else if (Control.ModifierKeys == Keys.Shift) selectOperation = vtkSelectOperation.Add;
+                else if (Control.ModifierKeys == Keys.Control) selectOperation = vtkSelectOperation.Subtract;
+                else selectOperation = vtkSelectOperation.None;
+                bool completelyInside = mea.Location.X > x2;
+                double[] pickedPoint = GetPickPoint(out pickedActor, mea.Location.X, mea.Location.Y);
+                double[] direction = _renderer.GetActiveCamera().GetDirectionOfProjection();
+                if (pickedActor == null) pickedActorNames = new string[0];
+                else pickedActorNames = new string[] { GetActorName(pickedActor) };
+                
+                // This is the action, the very good mouse event
+                OnMouseLeftButtonUpSelection?.Invoke(pickedPoint, direction, null, completelyInside,
+                                                         selectOperation, pickedActorNames);
+            }
+
             else
             {
                 vtkSelectOperation selectOperation;
@@ -1383,10 +1399,6 @@ namespace vtkControl
         }
 
         // vtkSelectItem.SurfacePoint
-        public double[] LastSurfacePoint
-        {
-            get { return _lastSurfacePoint; }
-        }
         private void RenderSurfacePoint(double[] point)
         {
             if (point == null) return;
