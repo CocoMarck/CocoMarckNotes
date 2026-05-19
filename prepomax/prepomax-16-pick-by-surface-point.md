@@ -18,6 +18,8 @@ Context [FeGroup](https://gitlab.com/MatejB/PrePoMax/-/raw/master/CaeMesh/FeGrou
 
 Se crearon los siguientes modulos, estos estan supuestamente listos para el PMX.
 
+La serializacion de datos podria dar crash en old prepomax, pero siendo nueva tipo de data, es posible que no se tenga ese problema.
+
 Almacena coordenadas, no fijas a nadota. `CaeMesh/CoordPoint.cs`
 ```csharp
 using System;
@@ -521,6 +523,36 @@ namespace PrePoMax.Forms
     ```
 
 ### FeMesh
+
+**Referencia de uso**. Guardar
+```csharp
+// Preparar para el pmx.
+_customNodeSet.Labels = uniqueIds.ToArray();
+_controller.GetNodesCenterOfGravity(_customNodeSet);
+
+// Agregar al modelo si aún no existe
+if (!_controller.Model.Mesh.NodeSets.ContainsKey(_customNodeSet.Name))
+{
+    _controller.Model.Mesh.NodeSets.Add(
+        _customNodeSet.Name, _customNodeSet
+    );
+}           
+```
+
+**Referencia de uso**. Obtener
+```csharp
+// PMX | Intentar recuperar NodeSet guardado
+if (_controller.Model.Mesh.NodeSets.ContainsKey("CustomSelection"))
+{
+    _customNodeSet =
+        _controller.Model.Mesh.NodeSets["CustomSelection"];
+
+    SetDrawDataOfSelectedNodes();
+    Highlight();
+}
+```
+
+---
 Primero agregamos las vars necesarias.
 ```csharp
 private OrderedDictionary<string, CoordPointSet> _coordPointSets;
@@ -542,3 +574,46 @@ public int MaxPointId
 }
 ```
 De preferencia ordenado, y antes del `public BoundingBox BoundingBox`.
+
+---
+Usar: `CoordinateSystem`. Como referencia.
+- [Coordinate Systen](https://gitlab.com/MatejB/PrePoMax/-/raw/master/CaeMesh/CoordinateSystem.cs?ref_type=heads)
+- [FE Reference Point](https://gitlab.com/MatejB/PrePoMax/-/raw/master/CaeMesh/FeReferencePoint.cs?ref_type=heads)
+
+Ya que esta hace algo parecido.
+
+---
+
+Agregamos la obtecion de datos. 
+En `public FeMesh(SerializationInfo info, StreamingContext context)`. Despues del `case "_coordinateSystems"`. Y Luego despues del `if (_coordinateSystems == null)`
+```csharp
+...
+foreach (SerializationEntry entry in info)
+{
+    switch (entry.Name)
+    {
+        ...
+        case "_coordPointSets":
+            _coordPointSets = (OrderedDictionary<string, CoordPointSet>)entry.Value;
+            break;
+        case "_maxPointId":
+            _maxPointId = (int)entry.Value;
+            break;
+        ...
+    }
+    ...
+    if (_coordPointSets == null)
+    {
+        _coordPointSets = new OrderedDictionary<string, CoordPointSet>("Coord Point Sets", sc);
+    }
+    ...
+}
+```
+
+Y en el `public void GetObjectData`, el objeto de mero abajo:
+```csharp
+info.AddValue("_coordPointSets", _coordPointSets);
+info.AddValue("_maxPointId", _maxPointId);
+```
+
+LISTO.. Ya lo probe y jala de una. Guardar esto no fue tan dificil.
