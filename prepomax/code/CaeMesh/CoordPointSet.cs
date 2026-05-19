@@ -13,7 +13,6 @@ namespace CaeMesh
     {
         // Variables
         private List<CoordPoint> _points;
-        private int _maxPointId;
 
         // Constructors
         public CoordPointSet(string name) 
@@ -29,12 +28,10 @@ namespace CaeMesh
             set { _points = value; }
         }
 
-        public void AddPoint(double x, double y, double z)
-        {
-            _maxPointId++;
-            
+        public void AddPoint(int id, double x, double y, double z)
+        {   
             _points.Add(
-                new CoordPoint(_maxPointId, x, y, z)
+                new CoordPoint(id, x, y, z)
             );
         }
     }

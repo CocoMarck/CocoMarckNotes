@@ -95,6 +95,13 @@ namespace PrePoMax.Forms
             // Controler
             _controller = controller;
             _controller.SetSelectByToOff();
+
+            // PMX | Intentar obtener data.
+            if (_controller.Model.Mesh.CoordPointSets.ContainsKey("SurfacePoints"))
+            {
+                _coordPointSet = _controller.Model.Mesh.CoordPointSets["SurfacePoints"];
+                Highlight();
+            }
         }
 
         public void RemoveMeasureAnnotation()
@@ -124,18 +131,6 @@ namespace PrePoMax.Forms
                 return;
             }
         }
-
-        // EstaFunc ya no se usaria Esta descartada, esta aca por trolling
-        /*
-        public void PickedIds(int[] ids)
-        {
-            
-            Debug.WriteLine($"FrmSurfacePointPicker. Entrando a picked ids.");
-
-            foreach (int id in ids)
-                MessageBox.Show($"{id}");
-        }
-        */
 
         public void PickedCoords(List<double[]> coords)
         {
@@ -171,9 +166,16 @@ namespace PrePoMax.Forms
         {
             if (point == null) return;
 
-            _coordPointSet.AddPoint(point[0], point[1], point[2]);
+            int id = _controller.Model.Mesh.GetNextPointId();
+            _coordPointSet.AddPoint(id, point[0], point[1], point[2]);
 
             Form_WriteDataToOutput($"Surface point: {point[0]}, {point[1]}, {point[2]}");
+
+            // PMX Agregar al model mesh si aun no existe.
+            if (!_controller.Model.Mesh.CoordPointSets.ContainsKey(_coordPointSet.Name))
+            {
+                _controller.Model.Mesh.CoordPointSets.Add( _coordPointSet.Name, _coordPointSet );
+            }
 
             Highlight();
         }

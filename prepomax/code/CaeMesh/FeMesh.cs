@@ -312,6 +312,16 @@ namespace CaeMesh
                         break;
                     case "_coordinateSystems":
                         _coordinateSystems = (OrderedDictionary<string, CoordinateSystem>)entry.Value; break;
+                    
+                    // CoordPointSets
+                    case "_coordPointSets":
+                        _coordPointSets = (OrderedDictionary<string, CoordPointSet>)entry.Value;
+                        break;
+                    case "_maxPointId":
+                        _maxPointId = (int)entry.Value;
+                        break;
+                    // CoordPointSets
+
                     case "_maxNodeId":
                         _maxNodeId = (int)entry.Value; break;
                     case "_maxElementId":
@@ -335,6 +345,13 @@ namespace CaeMesh
             // Compatibility for version v.2.1.0
             if (_coordinateSystems == null)
                 _coordinateSystems = new OrderedDictionary<string, CoordinateSystem>("Coordinate Systems", sc);
+            // CoordPointSets
+            if (_coordPointSets == null)
+            {
+                _coordPointSets = new OrderedDictionary<string, CoordPointSet>("Coord Point Sets", sc);
+            }
+            // CoordPointSets
+
             // Compatibility for version v.2.4.4
             _meshSetupItems.OnDeserialization(null);
             foreach (var entry in _meshSetupItems.ToArray())
@@ -6964,6 +6981,15 @@ namespace CaeMesh
 
             return minNodeId;
         }
+
+        // CoordPointSet
+        public int GetNextPointId()
+        {
+            _maxPointId++;
+            return _maxPointId;
+        }
+        // CoordPointSet
+
         private double GetEdgeAngle(int n1Id, int n2Id, int n3Id)
         {
             double[] n1 = _nodes[n1Id].Coor;
@@ -11109,6 +11135,11 @@ namespace CaeMesh
             info.AddValue("_maxNodeId", _maxNodeId, typeof(int));
             info.AddValue("_maxElementId", _maxElementId, typeof(int));
             info.AddValue("_boundingBox", _boundingBox, typeof(BoundingBox));
+
+            // CoordPointSets
+            info.AddValue("_coordPointSets", _coordPointSets);
+            info.AddValue("_maxPointId", _maxPointId);
+            // CoordPointSets
         }
     }
 }
