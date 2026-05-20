@@ -73,6 +73,7 @@ Por motivos Windowseros, aca esta el compilado de [CalculiX puro para windows](h
 - [Source code](https://github.com/Dhondtguido/CalculiX).
 - [WebSite](https://www.calculix.de/).
 - [Ejemplos de `inp` listos](https://github.com/calculix/CalculiX-Examples/tree/master)
+    - [Therminal Distortion](https://github.com/calculix/CalculiX-Examples/tree/master/Thermal/Thermal%20distortion): Sirve para entender que ponerle al inp, para deformacion por soldadura. `Shrinkage Model for Welding Distortion`.
 
 ---
 ## Conclusión
