@@ -10,3 +10,6 @@ Escribi los siguientes documentos:
 
 ---
 ## Comentario 2
+Ya me e visto el [video](https://www.youtube.com/watch?v=RskKZY1lXx8).
+
+[Documente lo que entendi](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/calculix/calculix-03-archivo-inp.md). El flujo de trabajo sera: meter el `inp` al CalculiX, convertir el `frd` a `vtu`. Y visualizar todo con ParaView.

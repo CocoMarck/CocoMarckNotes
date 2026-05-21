@@ -1,5 +1,5 @@
 # Archivo `inp`
-- [Video tutorial](https://www.youtube.com/watch?v=RskKZY1lXx8)
+Se escribio viendo un video tutorial.
 
 ## Secciones mas importantes
 Tiene secciando todo. En nodos, element, solid section, surfaces, etc.
@@ -17,11 +17,19 @@ Esto dice como se construyo la malla.
 ### Solid section
 Una solid section, se compone de x cantidad de nodos. 
 - `id` de solid section, seguido de `id` de nodos.
+- La sección `Solid Section` relaciona un conjunto de elementos (`ELSET`) con un material.
+- Esto indica que los elementos del conjunto `EALL` utilizarán el material `Steel`.
 
 Aqui se listan los nodos que tendran un a presión indicada.
 
 ### Surfaces
-Estan ligados a solid saction.
+Las surfaces definen caras o regiones del modelo FEM.
+Estas pueden utilizarse para:
+- contacto
+- presión
+- tie constraints
+- cargas
+- interacción entre piezas
 
 ### Material
 Este recive un nombre, y tiene atributos. Como elasticidad; coeficiente de poison.
@@ -31,6 +39,9 @@ Menciona lo que se hara, y en que orden. Los pasos a seguir.
 
 ### Boundary conditions
 Menciona que tipo de soporte sera. En que secciones estara restrigido. Los tres numeros finales, hacen referencia al restricción de grado de libertad, en los ejes `xyz`.
+- depende keyword
+- depende tipo elemento
+- depende DOFs
 
 ### Loads
 Las cargas. Mencionan que tipo de carga sera, por ejemplo fija, dinamica. Su nombre. Y despues menciona las caras en las que estara la carga.
@@ -48,7 +59,7 @@ Con por ejemplo:
 ```bash
 ccx_dynamic.exe "ruta-de-archivo-inp"
 ```
-> No es necesario ponerle el INP. Nomas le pasas la ruta con comillas, y ENTER.
+> No hay que ponerle el INP. Nomas le pasas la ruta con comillas, y ENTER.
 
 Cuando lo ejecuta, genera los siguientes archivos: `Archivo.dat, Archivo.sta, Archivo.cvg, Archivo.12d, Archivo.frd`.
 
@@ -60,6 +71,8 @@ Pues uno de los softwares mas potentes, para actualizar cosas relacionadas con e
 > ParaView, es de la compañia kitware. 
 
 **¿Que hizo PrePoMax?**: Si nos vamos a su carpeta `lib`, veremos `dlls` de `Kitware`. Ellos compraron PrePoMax, implementaron su procesamiento de view, de ParaView, adentro de PrePoMax. El PrePoMax, de alguna manerga convierte el `frd`, a algo legible para el ParaView dlls que tiene el PrePoMax.
+
+PrePoMax utiliza librerías de Kitware, especialmente VTK, para el renderizado y visualización de resultados FEM.
 
 Entonces para no depender de PrePoMax, tenemos que convertir el `archivo.frd` a archivo legible para ParaView. Y de hecho ParaView, soporta gran variedad de tipos de archivos.
 
@@ -104,7 +117,7 @@ if convert:
     print("Convertido we")
 ```
 
-El flujo de trabajo sera, meter el `inp` al CalculiX, convertir el `frd` a `vtr`. Y visualizar todo con ParaView.
+El flujo de trabajo sera, meter el `inp` al CalculiX, convertir el `frd` a `vtu`. Y visualizar todo con ParaView.
 
 ---
 
