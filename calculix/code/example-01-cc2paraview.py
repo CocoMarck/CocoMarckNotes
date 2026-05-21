@@ -3,9 +3,13 @@ Ejecutar como `py -3.11`
 '''
 # Python
 import os, subprocess, random, pathlib, shutil
+import traceback
 
-# Convertidor `frd` a `vtu`
+# Convertidor `frd` a `vtu`. Son dos
 from ccx2paraview import Converter
+from frd2vtu import frd2vtu
+import multiprocessing
+
 
 # Directorios
 cwd = os.getcwd()
@@ -21,6 +25,8 @@ output_dir = desktop_dir.joinpath("paraview-output-vtu-files")
 work_dirs = [cwd_dir, desktop_dir, input_dir, output_dir]
 
 dict_work_dirs = {}
+
+ridiculous_size_in_bytes = 20
 
 print("# Work dirs")
 for d in work_dirs:
@@ -47,13 +53,13 @@ def get_recursive_tree(path: object | pathlib.Path ) -> dict:
     Obtener directorio y archivos de manera recursiva. Depende del parametro `path`
     '''
     dict_path = {
-        "directory" : [], "file" : []
+        "directorys" : [], "files" : []
     }
     for dir_or_file in path.rglob('*'):
         if dir_or_file.is_dir():
-            dict_path["directory"].append( dir_or_file )
+            dict_path["directorys"].append( dir_or_file )
         elif dir_or_file.is_file():
-            dict_path["file"].append( dir_or_file )
+            dict_path["files"].append( dir_or_file )
 
     return dict_path
 
@@ -63,14 +69,22 @@ def ccx_process_inp(path):
     pass 
 
 # Funcs Converter
-def convert_frd_to_vtu(frd_path):
+def ccx2paraview_convert_frd_to_vtu(frd_path):
     c = Converter( str(frd_path), ["vtu"] )
     return c.run()
 
-def convert_all_things():
+def frd2vtu_convert_frd_to_vtu(frd_path, output_dir):
+    convert = frd2vtu( [str(frd_path)], str(output_dir))
+    return convert
+
+def convert_all_things(converter="frd2vtu"):
+    '''
+    frd2vtu, espera frd binario. No ASCII
+    ccx2paraview, espera ASCII.
+    '''
     tree_of_dir = get_recursive_tree(input_dir)
     frd_files = []
-    for f in tree_of_dir["file"]:
+    for f in tree_of_dir["files"]:
         if f.suffix == ".frd":
             frd_files.append(f)
     
@@ -79,16 +93,32 @@ def convert_all_things():
         return
     
     for frd in frd_files:
+        print(f"## File: `{frd}`")
+        print(f"- Using converter: {converter}")
+        print(f"- Input | Output: `{input_dir}` | `{output_dir}`")
+        frd_size_in_bytes = os.path.getsize(frd)
+        if frd_size_in_bytes < ridiculous_size_in_bytes:
+            print(f"Ridiculous size in bytes < `{ridiculous_size_in_bytes}`. Probably bad file.")
         try:
-            convert = convert_frd_to_vtu(frd)
-            if convert:
-                print(f"The file `{frd}` is converted.")
+            convert = False
+            if converter == "frd2vtu":
+                convert = frd2vtu_convert_frd_to_vtu(frd, output_dir)
+            elif converter == "ccx2paraview":
+                convert = ccx2paraview_convert_frd_to_vtu(frd)
                 name = frd.name.replace(".frd", ".vtu")
                 directory = frd.parent
-                vtu_file = directory.jopinpath(name) 
+                vtu_file = directory.joinpath(name) 
                 shutil.move(vtu_file, output_dir)
                 print(f"Moving `{vtu_file}`, to `{output_dir}`")
-        except:
+            if convert:
+                print(f"The file `{frd}` is converted.")
+        except Exception as e:
             print(f"Error converting frd to vtu: `{frd}`")
+            print(e)
+            #traceback.print_exc() # Error completo
+        print()
 print("# Converting files")
-convert_all_things()
+
+if __name__ == "__main__":
+    multiprocessing.freeze_support()
+    convert_all_things("ccx2paraview")

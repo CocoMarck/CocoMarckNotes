@@ -2,7 +2,7 @@
 Se escribio viendo un video tutorial.
 
 ## Secciones mas importantes
-Tiene secciando todo. En nodos, element, solid section, surfaces, etc.
+Tiene seccionado todo. En nodos, element, solid section, surfaces, etc.
 
 ### Nodos
 Los nodos: `id`, y coordenadas `xyz`.
@@ -38,7 +38,7 @@ Este recibe un nombre, y tiene atributos. Como elasticidad; coeficiente de poiso
 Menciona lo que se hara, y en que orden. Los pasos a seguir.
 
 ### Boundary conditions
-Menciona que tipo de soporte sera. En que secciones estara restrigido. Los tres numeros finales, hacen referencia a la restricción de grado de libertad, en los ejes `xyz`.
+Menciona que tipo de soporte sera. En que secciones estara restringido. Los tres numeros finales, hacen referencia a la restricción de grado de libertad, en los ejes `xyz`.
 - depende keyword
 - depende tipo elemento
 - depende DOFs
@@ -84,11 +84,26 @@ Esto se puede hacer con `ccx2paraview`, o con `frd2vtu`. Ambos jalan con python.
 ```powershell
 gsudo pip install vtk numpy
 gsudo pip install frd2vtu
-gsudo pip install ccx2paraview==3.0.0
+gsudo pip install ccx2paraview
 ```
 > Tienen dependencias: vtk, numpy.
 
 - Websites: [frd2vtu](https://github.com/wr1/frd2vtu), [ccx2paraview](https://github.com/calculix/ccx2paraview).
+
+#### Problemas con versión de python
+Para trabajar con esto, necesitamos un python, lo mas estable posible con. Python 3.11 debe jalar bien.
+```powershell
+gsudo winget install Python.Python.3.11
+
+gsudo py -3.11 -m pip install vtk numpy=1.26.4 frd2vtu ccx2paraview
+```
+> Establecemos version de `numpy`, a una adecuada para python `3.11`.
+
+Y ejecutar scripts asi:
+```powershell
+py -3.11 script.py
+```
+> En win puede ser `py`, `python`, o diretamente `python.exe`
 
 #### Uso de `ccx2paraview`
 Por terminal:
@@ -120,6 +135,7 @@ if convert:
 ```
 
 El flujo de trabajo sera, meter el `inp` al CalculiX, convertir el `frd` a `vtu`. Y visualizar todo con ParaView.
+
 
 ---
 
