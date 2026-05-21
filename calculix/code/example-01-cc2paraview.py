@@ -11,27 +11,27 @@ from frd2vtu import frd2vtu
 import multiprocessing
 
 
-# Directorios
+# Directorios y archivos
 cwd = os.getcwd()
 desktop_echo_output = subprocess.check_output( 
     ["cmd", "/c", "echo", "%USERPROFILE%\\Desktop"],  text=True 
 ).strip()
 
-cwd_dir = pathlib.Path(cwd)
-desktop_dir = pathlib.Path( desktop_echo_output )
-input_dir = desktop_dir.joinpath("paraview-input-frd-files")
-output_dir = desktop_dir.joinpath("paraview-output-vtu-files")
+CWD_DIR = pathlib.Path(cwd)
+WORK_DIR = pathlib.Path( desktop_echo_output )
+INPUT_FRD_DIR = WORK_DIR.joinpath("paraview-input-frd-files")
+OUTPUT_VTU_DIR = WORK_DIR.joinpath("paraview-output-vtu-files")
 
-work_dirs = [cwd_dir, desktop_dir, input_dir, output_dir]
+WORK_DIRS = [CWD_DIR, WORK_DIR, INPUT_FRD_DIR, OUTPUT_VTU_DIR]
 
-dict_work_dirs = {}
+CCX_EXECUTABLE_FILE = None
 
-ridiculous_size_in_bytes = 20
+DICT_WORK_DIRS = {}
 
 print("# Work dirs")
-for d in work_dirs:
+for d in WORK_DIRS:
     exists = d.exists()
-    dict_work_dirs.update(
+    DICT_WORK_DIRS.update(
         { d.name: { "path": d, "exists": exists} }
     )
     print( f"- {d}\n    exists: {exists}" )
@@ -39,11 +39,11 @@ print()
 
 ## Crear directorios
 print("# Creating dirs")
-if dict_work_dirs["Desktop"]["exists"]:
-    if not dict_work_dirs["paraview-input-frd-files"]["exists"]:
-        os.mkdir( dict_work_dirs["paraview-input-frd-files"]["path"] )
-    if not dict_work_dirs["paraview-output-vtu-files"]["exists"]:
-        os.mkdir( dict_work_dirs["paraview-output-vtu-files"]["path"] )
+if DICT_WORK_DIRS["Desktop"]["exists"]:
+    if not DICT_WORK_DIRS["paraview-input-frd-files"]["exists"]:
+        os.mkdir( DICT_WORK_DIRS["paraview-input-frd-files"]["path"] )
+    if not DICT_WORK_DIRS["paraview-output-vtu-files"]["exists"]:
+        os.mkdir( DICT_WORK_DIRS["paraview-output-vtu-files"]["path"] )
 print()
 
 
@@ -69,15 +69,39 @@ def ccx_process_inp(path):
     pass 
 
 # Funcs Converter
+ridiculous_size_in_bytes = 20
 def ccx2paraview_convert_frd_to_vtu(frd_path):
     c = Converter( str(frd_path), ["vtu"] )
-    return c.run()
+    try:
+        c.run()
+        return True
+    except Exception as e:
+        print(e)
+        return False
 
 def frd2vtu_convert_frd_to_vtu(frd_path, output_dir):
-    convert = frd2vtu( [str(frd_path)], str(output_dir))
-    return convert
+    try:
+        frd2vtu( [str(frd_path)], str(output_dir))
+        return True
+    except Exception as e:
+        print(e)
+        return False 
 
-def convert_all_things(converter="frd2vtu"):
+def move_vtu_files(input_dir, output_dir):
+    tree = get_recursive_tree(input_dir)
+    try:
+        for f in tree["files"]:
+            if f.suffix.lower() in [".vtu", ".pvd"]:
+                target = output_dir.joinpath(f.name)
+                if target.exists():
+                    target.unlink()
+                shutil.move( str(f), str(output_dir) )
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
+def convert_all_things(converter, input_dir, output_dir):
     '''
     frd2vtu, espera frd binario. No ASCII
     ccx2paraview, espera ASCII.
@@ -98,20 +122,18 @@ def convert_all_things(converter="frd2vtu"):
         print(f"- Input | Output: `{input_dir}` | `{output_dir}`")
         frd_size_in_bytes = os.path.getsize(frd)
         if frd_size_in_bytes < ridiculous_size_in_bytes:
-            print(f"Ridiculous size in bytes < `{ridiculous_size_in_bytes}`. Probably bad file.")
+            print(f"- Ridiculous size in bytes < `{ridiculous_size_in_bytes}`. Probably bad file.")
         try:
             convert = False
             if converter == "frd2vtu":
                 convert = frd2vtu_convert_frd_to_vtu(frd, output_dir)
             elif converter == "ccx2paraview":
                 convert = ccx2paraview_convert_frd_to_vtu(frd)
-                name = frd.name.replace(".frd", ".vtu")
-                directory = frd.parent
-                vtu_file = directory.joinpath(name) 
-                shutil.move(vtu_file, output_dir)
-                print(f"Moving `{vtu_file}`, to `{output_dir}`")
             if convert:
-                print(f"The file `{frd}` is converted.")
+                print(f"### The file `{frd}` is converted.")
+                move = move_vtu_files(input_dir, output_dir)
+                if move:
+                    print(f"Moving vtu files to `{output_dir}`.")
         except Exception as e:
             print(f"Error converting frd to vtu: `{frd}`")
             print(e)
@@ -121,4 +143,4 @@ print("# Converting files")
 
 if __name__ == "__main__":
     multiprocessing.freeze_support()
-    convert_all_things("ccx2paraview")
+    convert_all_things("ccx2paraview", INPUT_FRD_DIR, OUTPUT_VTU_DIR)
