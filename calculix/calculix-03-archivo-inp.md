@@ -20,7 +20,7 @@ Una solid section, se compone de x cantidad de nodos.
 - La sección `Solid Section` relaciona un conjunto de elementos (`ELSET`) con un material.
 - Esto indica que los elementos del conjunto `EALL` utilizarán el material `Steel`.
 
-Aqui se listan los nodos que tendran un a presión indicada.
+Aqui se listan los nodos que tendran una presión indicada.
 
 ### Surfaces
 Las surfaces definen caras o regiones del modelo FEM.
@@ -32,13 +32,13 @@ Estas pueden utilizarse para:
 - interacción entre piezas
 
 ### Material
-Este recive un nombre, y tiene atributos. Como elasticidad; coeficiente de poison.
+Este recibe un nombre, y tiene atributos. Como elasticidad; coeficiente de poison.
 
 ### Step
 Menciona lo que se hara, y en que orden. Los pasos a seguir.
 
 ### Boundary conditions
-Menciona que tipo de soporte sera. En que secciones estara restrigido. Los tres numeros finales, hacen referencia al restricción de grado de libertad, en los ejes `xyz`.
+Menciona que tipo de soporte sera. En que secciones estara restrigido. Los tres numeros finales, hacen referencia a la restricción de grado de libertad, en los ejes `xyz`.
 - depende keyword
 - depende tipo elemento
 - depende DOFs
@@ -63,20 +63,22 @@ ccx_dynamic.exe "ruta-de-archivo-inp"
 
 Cuando lo ejecuta, genera los siguientes archivos: `Archivo.dat, Archivo.sta, Archivo.cvg, Archivo.12d, Archivo.frd`.
 
-El punto es que, PrePoMax ya tiene un a interfaz grafica, lista para poder ver los resultados del CalculiX. El `archivo.frd`. Contiene todos los resultados, es legible. Pero casi no existen programas que lo lean, porque trae una estructura compleja, tema renderizado, colores, y etc. Pero existen varias personas que se tomaron el tiempo de hacer un convertidor de `archivo.frd` a algo mas estandar.
+El punto es que, PrePoMax ya tiene una interfaz grafica, lista para poder ver los resultados del CalculiX. El `archivo.frd`. Contiene todos los resultados, es legible. Pero casi no existen programas que lo lean, porque trae una estructura compleja, tema renderizado, colores, y etc. Pero existen varias personas que se tomaron el tiempo de hacer un convertidor de `archivo.frd` a algo mas estandar.
 
 ### ¿Que pasaria si no quiero usar PrePoMax?
 Pues uno de los softwares mas potentes, para actualizar cosas relacionadas con elemento finito, se llama [ParaView](https://www.paraview.org/).
 
 > ParaView, es de la compañia kitware. 
 
-**¿Que hizo PrePoMax?**: Si nos vamos a su carpeta `lib`, veremos `dlls` de `Kitware`. Ellos compraron PrePoMax, implementaron su procesamiento de view, de ParaView, adentro de PrePoMax. El PrePoMax, de alguna manerga convierte el `frd`, a algo legible para el ParaView dlls que tiene el PrePoMax.
+**¿Que hizo PrePoMax?**: Si nos vamos a su carpeta `lib`, veremos `dlls` de `Kitware`. Ellos compraron PrePoMax, implementaron su procesamiento de view, de ParaView, adentro de PrePoMax. El PrePoMax, de alguna manera convierte el `frd`, a algo legible para el ParaView dlls que tiene el PrePoMax.
 
 PrePoMax utiliza librerías de Kitware, especialmente VTK, para el renderizado y visualización de resultados FEM.
 
 Entonces para no depender de PrePoMax, tenemos que convertir el `archivo.frd` a archivo legible para ParaView. Y de hecho ParaView, soporta gran variedad de tipos de archivos.
 
-Convertir `archivo.frd`, a `archivo.vtu`.
+---
+
+### Convertir `archivo.frd`, a `archivo.vtu`
 
 Esto se puede hacer con `ccx2paraview`, o con `frd2vtu`. Ambos jalan con python.
 ```powershell
@@ -130,15 +132,15 @@ gsudo winget install --id Kitware.ParaView --source winget
 ```
 > Pesa como medio giga, y cada vez mas, pero es normal, es un programa muy cargado de features locas.
 
-Si tienes pc viejo, necesitas ParaView viejo. La ver `5.6` debe jalar de una. No pide tanto OpenGL new funcs. A una `AMD Radeon HD 5700 Series (1010.82 MiB) [Discrete]`, (GPU del 2010) le debe jalar.
-
 Dependencias si quieres usar la versión `MPI`:
 ```powershell
 winget install -e --id Microsoft.msmpi
 ```
 **En realidad la ver `MPI`, es para supercomputadoras, no pc's normales. Ni si quiera pc gamer, sino pc que maneje cientos de cpu, ram, vram, etc.**
 
+Si tienes pc viejo, necesitas ParaView viejo. La ver `5.6` debe jalar de una. No pide tanto OpenGL new funcs. A una `AMD Radeon HD 5700 Series (1010.82 MiB) [Discrete]`, (GPU del 2010) le debe jalar.
+
 --- 
 
 ## Notas sobre el source code de CalculuX
-El source code de CalculiX, es puro codigo escrito en `C`, y  `Fortrain`. En el source code de CalculiX, existen parches creados por la comunidad, que aun no han sido vistos o implementados de manera oficial, pero estan listos para producción. Estos estan en el dir `patches`. Podemos implementarlos al código, y compila, para tener la ver de CalculiX, con mas correcciones.
+El source code de CalculiX, es puro codigo escrito en `C`, y  `Fortrain`. En el source code de CalculiX, existen parches creados por la comunidad, que aun no han sido implementados de manera oficial, pero estan listos para producción. Estos estan en el dir `patches`. Podemos implementarlos al código, y compilar. Para tener la ver de CalculiX, con mas correcciones.
