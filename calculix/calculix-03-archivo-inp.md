@@ -104,10 +104,11 @@ if convert:
     print("Convertido we")
 ```
 
-El flujo de trabajo sera, meter el inp al CalculiX, convertir el `frd` a `vtr`. Y visualizar todo con ParaView.
+El flujo de trabajo sera, meter el `inp` al CalculiX, convertir el `frd` a `vtr`. Y visualizar todo con ParaView.
 
 ---
-### ParaView
+
+## ParaView
 ParaView, es un visualizador altamente capacitado. Porque puede dar mucha mas información, que por ejemplo el PrePoMax. Se puede ver el estado anterior del modelo en "x" step. Con transparencias, etc. Muchas cosas.
 
 Así se instala con winget.
@@ -115,3 +116,16 @@ Así se instala con winget.
 gsudo winget install --id Kitware.ParaView --source winget
 ```
 > Pesa como medio giga, y cada vez mas, pero es normal, es un programa muy cargado de features locas.
+
+Si tienes pc viejo, necesitas ParaView viejo. La ver `5.6` debe jalar de una. No pide tanto OpenGL new funcs. A una `AMD Radeon HD 5700 Series (1010.82 MiB) [Discrete]`, (GPU del 2010) le debe jalar.
+
+Dependencias si quieres usar la versión `MPI`:
+```powershell
+winget install -e --id Microsoft.msmpi
+```
+**En realidad la ver `MPI`, es para supercomputadoras, no pc's normales. Ni si quiera pc gamer, sino pc que maneje cientos de cpu, ram, vram, etc.**
+
+--- 
+
+## Notas sobre el source code de CalculuX
+El source code de CalculiX, es puro codigo escrito en `C`, y  `Fortrain`. En el source code de CalculiX, existen parches creados por la comunidad, que aun no han sido vistos o implementados de manera oficial, pero estan listos para producción. Estos estan en el dir `patches`. Podemos implementarlos al código, y compila, para tener la ver de CalculiX, con mas correcciones.
