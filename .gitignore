@@ -7,3 +7,5 @@ obj/
 *.props
 *.targets
 *.cache
+*.out
+spooles.out

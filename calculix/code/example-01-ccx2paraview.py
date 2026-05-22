@@ -2,11 +2,11 @@
 Ejecutar como `py -3.11`
 
 ```batch
-py -3.11 ".\example-01-cc2paraview.py" --ccx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe" --cgx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
+py -3.11 ".\example-01-ccx2paraview.py" --ccx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe" --cgx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
 ```
 
 ```powershell
-py -3.11 ".\example-01-cc2paraview.py" --ccx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe" --cgx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
+py -3.11 ".\example-01-ccx2paraview.py" --ccx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe" --cgx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
 ```
 '''
 # Python
