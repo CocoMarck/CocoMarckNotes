@@ -1,7 +1,9 @@
 '''
 Ejecutar como `py -3.11`
 
-py -3.11 ".\example-01-cc2paraview.py" --ccx "%USERPROFILE%\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe"
+py -3.11 ".\example-01-cc2paraview.py" --ccx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe"
+
+py -3.11 ".\example-01-cc2paraview.py" --ccx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe"
 '''
 # Python
 import os, subprocess, random, pathlib, shutil
@@ -16,6 +18,7 @@ import multiprocessing
 import argparse
 parser = argparse.ArgumentParser(description="CCX tool example for ParaView")
 parser.add_argument("--ccx", required=True, help="ccx.exe solver file")
+parser.add_argument("--cgx", required=False, help="ccx.exe solver file")
 args = parser.parse_args()
 
 
@@ -32,8 +35,6 @@ INPUT_FRD_DIR = WORK_DIR.joinpath("paraview-input-frd-files")
 OUTPUT_VTU_DIR = WORK_DIR.joinpath("paraview-output-vtu-files")
 
 WORK_DIRS = [CWD_DIR, WORK_DIR, INPS_DIR, INPUT_FRD_DIR, OUTPUT_VTU_DIR]
-
-CCX_EXECUTABLE_FILE = args.ccx
 
 DICT_WORK_DIRS = {}
 
@@ -57,6 +58,10 @@ if DICT_WORK_DIRS["Desktop"]["exists"]:
         os.mkdir( DICT_WORK_DIRS["paraview-inp-files"]["path"] )
 print()
 
+### Ejecutables
+CCX_EXECUTABLE_FILE = args.ccx
+CCG_EXECUTABLE_FILE = args.cgx
+
 
 # Utils
 def get_recursive_tree(path: object | pathlib.Path ) -> dict:
@@ -64,20 +69,44 @@ def get_recursive_tree(path: object | pathlib.Path ) -> dict:
     Obtener directorio y archivos de manera recursiva. Depende del parametro `path`
     '''
     dict_path = {
-        "directorys" : [], "files" : []
+        "directories" : [], "files" : []
     }
     for dir_or_file in path.rglob('*'):
         if dir_or_file.is_dir():
-            dict_path["directorys"].append( dir_or_file )
+            dict_path["directories"].append( dir_or_file )
         elif dir_or_file.is_file():
             dict_path["files"].append( dir_or_file )
 
     return dict_path
 
+import string
+def is_ascii(path, check_bytes=1024):
+    '''
+    Determina si un archvo es ASCII (texto plano), o binario.
+    '''
+    with open(path, "rb") as f:
+        data = f.read(check_bytes)
+    
+    printable = set(bytes(string.printable, "ascii"))
+    printables = 0
+    ratio = 0
+
+    for b in data:
+        if b in printable:
+            printables += 1
+
+    if data:
+        ratio = printables / len(data)
+    return ratio > 0.95
 
 # Process `inp` with `ccx`
 def ccx_process_inp(inp_file):
     subprocess.run([CCX_EXECUTABLE_FILE, str(inp_file).replace(inp_file.suffix,"")])
+    return True
+
+# Render `frd` with `ccx`
+def cgx_render_frd(frd_file):
+    subprocess.run([CCG_EXECUTABLE_FILE, "-b", str(frd_file)])
     return True
 
 # Funcs Converter
@@ -141,12 +170,17 @@ def process_inp_files(input_dir, output_dir):
     
     try:
         for i in inp_files:
+            print(f"## Trying process `{i}`.")
             ccx_process_inp(i)
+            print()
         move_frd_files(input_dir, output_dir)
+        print(f"Moving frd files to `{output_dir}`")
     except Exception as e:
         print(e)
 
-def convert_all_things(converter, input_dir, output_dir):
+def convert_all_things(
+    input_dir:pathlib=None, output_dir:pathlib=None, converter:str=None
+):
     '''
     frd2vtu, espera frd binario. No ASCII
     ccx2paraview, espera ASCII.
@@ -160,14 +194,23 @@ def convert_all_things(converter, input_dir, output_dir):
     if len(frd_files) == 0:
         print("Nothing bro...")
         return
-    
+
+    detect_type_of_file = converter is None
     for frd in frd_files:
         print(f"## File: `{frd}`")
+        if detect_type_of_file:
+            if is_ascii(frd):
+                converter = "ccx2paraview"
+                print("- The file is a ASCII text.")
+            else:
+                converter = "frd2vtu"
+                print("- The file is a binary.")
         print(f"- Using converter: {converter}")
         print(f"- Input | Output: `{input_dir}` | `{output_dir}`")
         frd_size_in_bytes = os.path.getsize(frd)
         if frd_size_in_bytes < ridiculous_size_in_bytes:
-            print(f"- Ridiculous size in bytes < `{ridiculous_size_in_bytes}`. Probably bad file.")
+            print(f"- Ridiculous size in bytes < `{ridiculous_size_in_bytes}`. Probably bad file. I don't process this...")
+            continue
         try:
             convert = False
             if converter == "frd2vtu":
@@ -176,14 +219,14 @@ def convert_all_things(converter, input_dir, output_dir):
                 convert = ccx2paraview_convert_frd_to_vtu(frd)
             if convert:
                 print(f"### The file `{frd}` is converted.")
-                move = move_vtu_files(input_dir, output_dir)
-                if move:
-                    print(f"Moving vtu files to `{output_dir}`.")
         except Exception as e:
             print(f"Error converting frd to vtu: `{frd}`")
             print(e)
             #traceback.print_exc() # Error completo
-        print()
+    move = move_vtu_files(input_dir, output_dir)
+    if move:
+        print(f"\n- Moving vtu files to `{output_dir}`.")
+    print()
 
 if __name__ == "__main__":
     multiprocessing.freeze_support()
@@ -192,5 +235,4 @@ if __name__ == "__main__":
     print()
     
     print("# Converting files")
-    convert_all_things("ccx2paraview", INPUT_FRD_DIR, OUTPUT_VTU_DIR)
-    #convert_all_things("frd2vtu", INPUT_FRD_DIR, OUTPUT_VTU_DIR)
+    convert_all_things(INPUT_FRD_DIR, OUTPUT_VTU_DIR, None)
