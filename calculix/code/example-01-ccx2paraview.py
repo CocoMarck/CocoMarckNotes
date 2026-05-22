@@ -1,9 +1,13 @@
 '''
 Ejecutar como `py -3.11`
 
-py -3.11 ".\example-01-cc2paraview.py" --ccx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe"
+```batch
+py -3.11 ".\example-01-cc2paraview.py" --ccx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe" --cgx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
+```
 
-py -3.11 ".\example-01-cc2paraview.py" --ccx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe"
+```powershell
+py -3.11 ".\example-01-cc2paraview.py" --ccx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe" --cgx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
+```
 '''
 # Python
 import os, subprocess, random, pathlib, shutil
@@ -228,6 +232,24 @@ def convert_all_things(
         print(f"\n- Moving vtu files to `{output_dir}`.")
     print()
 
+# Funcs render
+def render_all_frd_files(input_dir:pathlib):
+    tree_of_dir = get_recursive_tree(input_dir)
+    frd_files = []
+    for f in tree_of_dir["files"]:
+        if f.suffix == ".frd":
+            frd_files.append(f)
+    
+    for frd in frd_files:
+        frd_size_in_bytes = os.path.getsize(frd)
+        if frd_size_in_bytes < ridiculous_size_in_bytes:
+            print(f"- Ridiculous size in bytes < `{ridiculous_size_in_bytes}`. Probably bad file. I don't process this...")
+            continue
+        cgx_render_frd(frd_files)
+        input()
+
+
+# Main
 if __name__ == "__main__":
     multiprocessing.freeze_support()
     print("# Process inp files")
@@ -236,3 +258,6 @@ if __name__ == "__main__":
     
     print("# Converting files")
     convert_all_things(INPUT_FRD_DIR, OUTPUT_VTU_DIR, None)
+
+    print("# Render frd files")
+    render_all_things(INPUT_FRD_DIR)
