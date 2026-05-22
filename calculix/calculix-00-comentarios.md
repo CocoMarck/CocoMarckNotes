@@ -17,3 +17,9 @@ Ya me eh visto el [video](https://www.youtube.com/watch?v=RskKZY1lXx8).
 Tambien escribi un script de python. Para `ccx inp -> frd -> vtu`. [script](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/calculix/code/example-01-ccx2paraview.py). [log de script](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/calculix/code/log.txt).
 
 Y instale ParaView.
+
+---
+## Comentario 3
+Ya compile CalculiX. Lo documente [aca](https://github.com/jr23mx/Simulacion-de-soldadura-Calculix/blob/main/docs/como-compilar-ccx.md). Lo compile, y con los parches. Solo que no pude hacer los demas ejemplos, culpa del que pc tarda como 40 min en compila `Pentium(R) E5800 (2) @ 3.20 GHz`.
+- [Video 1](https://www.youtube.com/watch?v=fYa1HPyRR6c)
+- [Video 2](https://www.youtube.com/watch?v=eTWju2U4t7A)
