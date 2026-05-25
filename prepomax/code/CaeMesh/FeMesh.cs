@@ -177,6 +177,10 @@ namespace CaeMesh
             _surfaces = new OrderedDictionary<string, FeSurface>("Surfaces", sc);
             _referencePoints = new OrderedDictionary<string, FeReferencePoint>("Reference Points", sc);
             _coordinateSystems = new OrderedDictionary<string, CoordinateSystem>("Coordinate Systems", sc);
+
+            //  Init CoordPointSets
+            _coordPointSets = new OrderedDictionary<string, CoordPointSet>("Coord Point Sets", sc);
+
             //
             _parts = new OrderedDictionary<string, BasePart>("Base Parts", sc);
             ExtractParts(inpElementTypeSets, partNamePrefix, importOptions);
@@ -227,6 +231,11 @@ namespace CaeMesh
             _surfaces = new OrderedDictionary<string, FeSurface>("Surfaces", sc);
             _referencePoints = new OrderedDictionary<string, FeReferencePoint>("Reference Points", sc);
             _coordinateSystems = new OrderedDictionary<string, CoordinateSystem>("Coordinate Systems", sc);
+
+            // Init CoordPointSets
+            _coordPointSets = new OrderedDictionary<string, CoordPointSet>("Coord Point Sets", sc);
+            _maxPointId = mesh._maxPointId;
+
             //
             _maxNodeId = mesh._maxNodeId;
             _maxElementId = mesh._maxElementId;
@@ -345,7 +354,7 @@ namespace CaeMesh
             // Compatibility for version v.2.1.0
             if (_coordinateSystems == null)
                 _coordinateSystems = new OrderedDictionary<string, CoordinateSystem>("Coordinate Systems", sc);
-            // CoordPointSets
+            // Init CoordPointSets
             if (_coordPointSets == null)
             {
                 _coordPointSets = new OrderedDictionary<string, CoordPointSet>("Coord Point Sets", sc);

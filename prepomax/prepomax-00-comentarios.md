@@ -64,3 +64,10 @@ Implementacion de `vtkCellPicker`, en prepomax. Documente como lo hice. Aun no g
 Guardado de datos; De puntos seleccionados con `vtkCellPicker`. Se crearon las entidades serializadas `CoordPoint`, y `CoordPointSet`. Se implementaron en el `FeMesh -> FeModel -> Controller`, y el controller se encarga coordinar el guardado. El formulario `FrmPickSurfacePoints`, usa lo necesario para obtener data, guardar data, y dibujar.
 
 - [Documento](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/prepomax-16-pick-by-surface-point.md)
+
+
+---
+## Comentario 7
+Metas:
+- Mejoras en GUI. Vista de puntos seleccionados en `FrmPickSurfacePoints`.
+- Exportar puntos seleccionados a `Trayectorias.txt`. Formateado ?. Simplemente `XYZ`, por cada linea del texto.

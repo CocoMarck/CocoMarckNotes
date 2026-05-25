@@ -6,7 +6,7 @@ py -3.11 ".\example-01-ccx2paraview.py" --ccx "%USERPROFILE%\Desktop\Build-Calcu
 ```
 
 ```powershell
-py -3.11 ".\example-01-ccx2paraview.py" --ccx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx.exe" --cgx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
+py -3.11 ".\example-01-ccx2paraview.py" --ccx "$env:USERPROFILE\Desktop\ccx-mkl-pardiso-builds\2.21_2_trayectorias_moment_00\ccx.exe" --cgx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
 ```
 '''
 # Python
@@ -245,7 +245,7 @@ def render_all_frd_files(input_dir:pathlib):
         if frd_size_in_bytes < ridiculous_size_in_bytes:
             print(f"- Ridiculous size in bytes < `{ridiculous_size_in_bytes}`. Probably bad file. I don't process this...")
             continue
-        cgx_render_frd(frd_files)
+        cgx_render_frd(frd)
         input()
 
 
@@ -260,4 +260,4 @@ if __name__ == "__main__":
     convert_all_things(INPUT_FRD_DIR, OUTPUT_VTU_DIR, None)
 
     print("# Render frd files")
-    render_all_things(INPUT_FRD_DIR)
+    render_all_frd_files(INPUT_FRD_DIR)

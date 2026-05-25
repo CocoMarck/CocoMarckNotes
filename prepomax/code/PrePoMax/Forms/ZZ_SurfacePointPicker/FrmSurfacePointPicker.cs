@@ -27,22 +27,28 @@ namespace PrePoMax.Forms
         // Widgets
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnPickPoints;
+        private System.Windows.Forms.ListBox lstPoints;
+        private System.Windows.Forms.Label lblPoints;
+        private System.Windows.Forms.Label lblPointsNumber;
 
         // Callbacks
         public Action<string> Form_WriteDataToOutput;
         public Action<object, EventArgs> Form_RemoveAnnotations;
 
         // Para guardado en PMX File
-        private CoordPointSet _coordPointSet;
+        private CoordPointSet _surfacePoints;
 
         // Constructors
         public FrmSurfacePointPicker()
         {
             // InitializeComponet();
-            _coordPointSet = new CoordPointSet("SurfacePoints");
+            _surfacePoints = new CoordPointSet("SurfacePoints");
 
             this.btnClose = new System.Windows.Forms.Button();
             this.btnPickPoints = new System.Windows.Forms.Button();
+            this.lstPoints = new System.Windows.Forms.ListBox();
+            this.lblPoints = new System.Windows.Forms.Label();
+            this.lblPointsNumber = new System.Windows.Forms.Label();
 
             // btnClose
             this.btnClose.Name = "btnClose";
@@ -71,6 +77,42 @@ namespace PrePoMax.Forms
             this.btnPickPoints.Location = new System.Drawing.Point(26, 26);
             this.btnPickPoints.Click += new System.EventHandler(this.btnPickPoints_Click);
 
+            // lblPoints lblPointsNumber
+            this.lblPoints.Text = "Points: ";
+            this.lblPoints.Anchor = (
+                (System.Windows.Forms.AnchorStyles)
+                (
+                    (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                )
+            );
+            this.lblPoints.Size = new System.Drawing.Size(75, 23);
+            this.lblPoints.Location = new System.Drawing.Point(26, 65);
+            
+            this.lblPointsNumber.Text = "0";
+            this.lblPointsNumber.Anchor = (
+                 (System.Windows.Forms.AnchorStyles)
+                 (
+                     (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                 )
+             );
+            this.lblPointsNumber.Size = new System.Drawing.Size(75, 23);
+            this.lblPointsNumber.Location = new System.Drawing.Point(100, 65);
+
+            // lstPoints
+            this.lstPoints.Anchor = (
+                (System.Windows.Forms.AnchorStyles)
+                (
+                    System.Windows.Forms.AnchorStyles.Top |
+                    System.Windows.Forms.AnchorStyles.Bottom |
+                    System.Windows.Forms.AnchorStyles.Left |
+                    System.Windows.Forms.AnchorStyles.Right
+                )
+            );
+            this.lstPoints.FormattingEnabled = true;
+            this.lstPoints.Location = new System.Drawing.Point(26, 88);
+            this.lstPoints.Size = new System.Drawing.Size(200, 140);
+            this.lstPoints.HorizontalScrollbar = true;
+
             // FrmSurfacePointPicker
             this.Text = "Surface Point Picker";
             this.Name = "FrmSurfacePointPicker";
@@ -87,6 +129,9 @@ namespace PrePoMax.Forms
             // Agregar widget
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnPickPoints);
+            this.Controls.Add(this.lstPoints);
+            this.Controls.Add(this.lblPoints);
+            this.Controls.Add(this.lblPointsNumber);
         }
 
         // Eventos principales
@@ -99,9 +144,17 @@ namespace PrePoMax.Forms
             // PMX | Intentar obtener data.
             if (_controller.Model.Mesh.CoordPointSets.ContainsKey("SurfacePoints"))
             {
-                _coordPointSet = _controller.Model.Mesh.CoordPointSets["SurfacePoints"];
-                Highlight();
+                _surfacePoints = _controller.Model.Mesh.CoordPointSets["SurfacePoints"];
+                Highlight(); // Render
             }
+            else 
+            {
+                // Limpia mugrete temp.
+                _surfacePoints = new CoordPointSet("SurfacePoints");
+            }
+            // Actualizar data
+            RefreshPointList(); // GUI
+            UpdatePointCount(); // GUI
         }
 
         public void RemoveMeasureAnnotation()
@@ -134,7 +187,12 @@ namespace PrePoMax.Forms
 
         public void PickedCoords(List<double[]> coords)
         {
-            // Supongo que esta algun dia se usara. Pero por ahora no hace falta `2026-05-19`.
+            // Supongo que esta función algun dia se usara. Pero por ahora no hace falta `2026-05-19`.
+        }
+
+        // Format Text
+        private string FormatSurfacePoint(double x, double y, double z) {
+            return $"Surface point: {x:F2}, {y:F2}, {z:F2}";
         }
 
         // Widgets
@@ -149,15 +207,27 @@ namespace PrePoMax.Forms
             _controller.Selection.SelectItem = vtkSelectItem.SurfacePoint;
         }
 
+        private void RefreshPointList()
+        {
+            lstPoints.Items.Clear();
+            foreach (var point in _surfacePoints.Points) {
+                lstPoints.Items.Add( FormatSurfacePoint(point.Coor[0], point.Coor[1], point.Coor[2]) );
+            }
+        }
+
+        private void UpdatePointCount() 
+        {
+            lblPointsNumber.Text = $"{lstPoints.Items.Count}";
+        }
+
         // Render
         // Mostrar puntos
         public void Highlight()
         {
-            if (_coordPointSet == null) return;
-            if (_coordPointSet.Points.Count <= 0) return;
+            if (_surfacePoints == null) return;
+            if (_surfacePoints.Points.Count <= 0) return;
 
-            double[][] points = _coordPointSet.Points.
-                Select(p => p.Coor).ToArray();
+            double[][] points = _surfacePoints.Points.Select(p => p.Coor).ToArray();
 
             _controller.HighlightNodes(points);
         }
@@ -167,17 +237,19 @@ namespace PrePoMax.Forms
             if (point == null) return;
 
             int id = _controller.Model.Mesh.GetNextPointId();
-            _coordPointSet.AddPoint(id, point[0], point[1], point[2]);
-
-            Form_WriteDataToOutput($"Surface point: {point[0]}, {point[1]}, {point[2]}");
+            _surfacePoints.AddPoint(id, point[0], point[1], point[2]);
+            
+            Form_WriteDataToOutput( FormatSurfacePoint(point[0], point[1], point[2]) );
 
             // PMX Agregar al model mesh si aun no existe.
-            if (!_controller.Model.Mesh.CoordPointSets.ContainsKey(_coordPointSet.Name))
+            if (!_controller.Model.Mesh.CoordPointSets.ContainsKey(_surfacePoints.Name))
             {
-                _controller.Model.Mesh.CoordPointSets.Add( _coordPointSet.Name, _coordPointSet );
+                _controller.Model.Mesh.CoordPointSets.Add( _surfacePoints.Name, _surfacePoints );
             }
 
-            Highlight();
+            Highlight(); // Render
+            RefreshPointList(); // GUI
+            UpdatePointCount(); // GUI
         }
     }
 }

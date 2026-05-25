@@ -418,7 +418,7 @@ Ya que esta hace algo parecido.
 
 ---
 
-Agregamos la obtecion de datos. 
+### Agregamos la obtecion de datos. Los Init
 En `public FeMesh(SerializationInfo info, StreamingContext context)`. Despues del `case "_coordinateSystems"`. Y Luego despues del `if (_coordinateSystems == null)`
 ```csharp
 ...
@@ -443,6 +443,27 @@ foreach (SerializationEntry entry in info)
     ...
 }
 ```
+
+Aca:
+```
+public FeMesh(Dictionary<int, FeNode> nodes, Dictionary<int, FeElement> elements, MeshRepresentation representation,
+        List<InpElementSet> inpElementTypeSets, string partNamePrefix, bool convertToSecondOrder,
+        ImportOptions importOptions)
+```
+Agregamos:
+```csharp
+_coordPointSets = new OrderedDictionary<string, CoordPointSet>("Coord Point Sets", sc);
+```
+> Junto a los demas `OrderedDictionary`. 
+
+En `public FeMesh(FeMesh mesh, string[] partsToKeep)`
+Ponemos:
+```csharp
+_coordPointSets = new OrderedDictionary<string, CoordPointSet>("Coord Point Sets", sc);
+_maxPointId = mesh._maxPointId;
+```
+> Junto a los demas `OrderedDictionary`, y `_max`.
+
 
 Y en el `public void GetObjectData`, el objeto de mero abajo:
 ```csharp
