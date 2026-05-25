@@ -25,4 +25,6 @@ Ya compile CalculiX. Lo documente [aca](https://github.com/jr23mx/Simulacion-de-
 - [Video 2](https://www.youtube.com/watch?v=eTWju2U4t7A)
 
 ## Conentario 4
-Compilado de CalculiX, con parches para que jalan las trayectorias.
+Compilado de CalculiX, con parches para que jalan las trayectorias. Ya funciona.
+- Mejoras en GUI. Vista de puntos seleccionados en `FrmPickSurfacePoints`.
+- Exportar puntos seleccionados a `Trayectorias.csv`. Formateado `id;x;y;z`, por cada linea del texto.

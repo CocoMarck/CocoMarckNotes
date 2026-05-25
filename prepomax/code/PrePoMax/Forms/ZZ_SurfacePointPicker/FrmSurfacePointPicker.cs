@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CaeGlobals;
 using CaeMesh;
+using PrePoMax.Utils;
 
 namespace PrePoMax.Forms
 {
@@ -27,7 +28,8 @@ namespace PrePoMax.Forms
         // Widgets
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnPickPoints;
-        private System.Windows.Forms.ListBox lstPoints;
+        private System.Windows.Forms.Button btnExportPoints;
+        private System.Windows.Forms.DataGridView dgvPoints;
         private System.Windows.Forms.Label lblPoints;
         private System.Windows.Forms.Label lblPointsNumber;
 
@@ -46,9 +48,10 @@ namespace PrePoMax.Forms
 
             this.btnClose = new System.Windows.Forms.Button();
             this.btnPickPoints = new System.Windows.Forms.Button();
-            this.lstPoints = new System.Windows.Forms.ListBox();
+            this.dgvPoints = new System.Windows.Forms.DataGridView();
             this.lblPoints = new System.Windows.Forms.Label();
             this.lblPointsNumber = new System.Windows.Forms.Label();
+            this.btnExportPoints = new System.Windows.Forms.Button();
 
             // btnClose
             this.btnClose.Name = "btnClose";
@@ -56,7 +59,7 @@ namespace PrePoMax.Forms
             this.btnClose.Anchor = (
                 (System.Windows.Forms.AnchorStyles)
                 (
-                    (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)
+                    (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 )
             );
             this.btnClose.Size = new System.Drawing.Size(75, 23);
@@ -98,8 +101,8 @@ namespace PrePoMax.Forms
             this.lblPointsNumber.Size = new System.Drawing.Size(75, 23);
             this.lblPointsNumber.Location = new System.Drawing.Point(100, 65);
 
-            // lstPoints
-            this.lstPoints.Anchor = (
+            // dgvPoints
+            this.dgvPoints.Anchor = (
                 (System.Windows.Forms.AnchorStyles)
                 (
                     System.Windows.Forms.AnchorStyles.Top |
@@ -108,10 +111,28 @@ namespace PrePoMax.Forms
                     System.Windows.Forms.AnchorStyles.Right
                 )
             );
-            this.lstPoints.FormattingEnabled = true;
-            this.lstPoints.Location = new System.Drawing.Point(26, 88);
-            this.lstPoints.Size = new System.Drawing.Size(200, 140);
-            this.lstPoints.HorizontalScrollbar = true;
+            this.dgvPoints.Location = new System.Drawing.Point(26, 88);
+            this.dgvPoints.Size = new System.Drawing.Size(200, 140);
+            this.dgvPoints.AllowUserToAddRows = false;
+            this.dgvPoints.RowHeadersVisible = false; // Quitar filas vacias.
+            this.dgvPoints.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPoints.Columns.Add("id", "ID");
+            this.dgvPoints.Columns.Add("x", "X");
+            this.dgvPoints.Columns.Add("y", "Y");
+            this.dgvPoints.Columns.Add("z", "Z");
+
+            // btnExportPoints
+            this.btnExportPoints.Name = "btnPickPoints";
+            this.btnExportPoints.Text = "Export points";
+            this.btnExportPoints.Anchor = (
+                (System.Windows.Forms.AnchorStyles)
+                (
+                    (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)
+                )
+            );
+            this.btnExportPoints.Size = new System.Drawing.Size(75, 23);
+            this.btnExportPoints.Location = new System.Drawing.Point(100, 256-26);
+            this.btnExportPoints.Click += new System.EventHandler(this.btnExportPoints_Click);
 
             // FrmSurfacePointPicker
             this.Text = "Surface Point Picker";
@@ -129,9 +150,10 @@ namespace PrePoMax.Forms
             // Agregar widget
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnPickPoints);
-            this.Controls.Add(this.lstPoints);
+            this.Controls.Add(this.dgvPoints);
             this.Controls.Add(this.lblPoints);
             this.Controls.Add(this.lblPointsNumber);
+            this.Controls.Add(this.btnExportPoints);
         }
 
         // Eventos principales
@@ -207,17 +229,25 @@ namespace PrePoMax.Forms
             _controller.Selection.SelectItem = vtkSelectItem.SurfacePoint;
         }
 
+        private void btnExportPoints_Click(object sender, EventArgs e)
+        {
+            if ( CoordPointExporter.ExportXYZ(_surfacePoints, "Trayectorias.csv") ) 
+            {
+                MessageBox.Show("Saved");
+            }
+        }
+
         private void RefreshPointList()
         {
-            lstPoints.Items.Clear();
+            dgvPoints.Rows.Clear();
             foreach (var point in _surfacePoints.Points) {
-                lstPoints.Items.Add( FormatSurfacePoint(point.Coor[0], point.Coor[1], point.Coor[2]) );
+                dgvPoints.Rows.Add( point.Id, point.Coor[0], point.Coor[1], point.Coor[2] );
             }
         }
 
         private void UpdatePointCount() 
         {
-            lblPointsNumber.Text = $"{lstPoints.Items.Count}";
+            lblPointsNumber.Text = $"{dgvPoints.Rows.Count}";
         }
 
         // Render
