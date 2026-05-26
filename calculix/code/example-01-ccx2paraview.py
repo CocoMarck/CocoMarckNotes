@@ -2,11 +2,11 @@
 Ejecutar como `py -3.11`
 
 ```batch
-py -3.11 ".\example-01-ccx2paraview.py" --ccx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\ccx_MTK.exe" --cgx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
+py -3.11 ".\example-01-ccx2paraview.py" --ccx "%USERPROFILE%\Desktop\ccx-mkl-pardiso-builds\2.21_2_trayectorias_moment_01\ccx_MKL.exe" --cgx "%USERPROFILE%\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
 ```
 
 ```powershell
-py -3.11 ".\example-01-ccx2paraview.py" --ccx "$env:USERPROFILE\Desktop\ccx-mkl-pardiso-builds\2.21_2_trayectorias_moment_01\ccx_MTK.exe" --cgx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
+py -3.11 ".\example-01-ccx2paraview.py" --ccx "$env:USERPROFILE\Desktop\ccx-mkl-pardiso-builds\2.21_2_trayectorias_moment_01\ccx_MKL.exe" --cgx "$env:USERPROFILE\Desktop\Build-CalculiX-2.20.0-win-x64\bin\cgx.exe"
 ```
 '''
 # Python
@@ -64,7 +64,7 @@ print()
 
 ### Ejecutables
 CCX_EXECUTABLE_FILE = args.ccx
-CCG_EXECUTABLE_FILE = args.cgx
+CGX_EXECUTABLE_FILE = args.cgx
 
 
 # Utils
@@ -105,12 +105,17 @@ def is_ascii(path, check_bytes=1024):
 
 # Process `inp` with `ccx`
 def ccx_process_inp(inp_file):
-    subprocess.run([CCX_EXECUTABLE_FILE, str(inp_file).replace(inp_file.suffix,"")])
-    return True
+    final_file_path = str(inp_file).replace(inp_file.suffix,"")
+    try:
+        subprocess.run([CCX_EXECUTABLE_FILE, final_file_path], check=True)
+        return True
+    except Exception as e:
+        print(e)
+        return False
 
 # Render `frd` with `ccx`
 def cgx_render_frd(frd_file):
-    subprocess.run([CCG_EXECUTABLE_FILE, "-b", str(frd_file)])
+    subprocess.run([CGX_EXECUTABLE_FILE, "-b", str(frd_file)])
     return True
 
 # Funcs Converter
@@ -254,10 +259,12 @@ if __name__ == "__main__":
     multiprocessing.freeze_support()
     print("# Process inp files")
     process_inp_files(INPS_DIR, INPUT_FRD_DIR)
+    input("Pause..")
     print()
     
     print("# Converting files")
     convert_all_things(INPUT_FRD_DIR, OUTPUT_VTU_DIR, None)
+    input("Pause..")
 
     print("# Render frd files")
     render_all_frd_files(INPUT_FRD_DIR)

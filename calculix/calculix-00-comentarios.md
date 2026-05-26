@@ -28,3 +28,5 @@ Ya compile CalculiX. Lo documente [aca](https://github.com/jr23mx/Simulacion-de-
 Compilado de CalculiX, con parches para que jalan las trayectorias. Ya funciona.
 - Mejoras en GUI. Vista de puntos seleccionados en `FrmPickSurfacePoints`.
 - Exportar puntos seleccionados a `Trayectorias.csv`. Formateado `id;x;y;z`, por cada linea del texto.
+
+[Con esto exporto a csv](https://github.com/CocoMarck/CocoMarckNotes/blob/tutorial/prepomax/code/PrePoMax/Utils/CoordPointExporter.cs)
