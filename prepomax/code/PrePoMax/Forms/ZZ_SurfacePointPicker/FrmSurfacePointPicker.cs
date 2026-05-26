@@ -1,4 +1,8 @@
-﻿using System;
+﻿using CaeGlobals;
+using CaeMesh;
+// Mio
+using PrePoMax.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +14,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CaeGlobals;
-using CaeMesh;
-using PrePoMax.Utils;
+using Utils.Text;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PrePoMax.Forms
 {
@@ -27,11 +30,15 @@ namespace PrePoMax.Forms
 
         // Widgets
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnPickPoints;
         private System.Windows.Forms.Button btnExportPoints;
         private System.Windows.Forms.DataGridView dgvPoints;
         private System.Windows.Forms.Label lblPoints;
         private System.Windows.Forms.Label lblPointsNumber;
+        private System.Windows.Forms.TextBox tbPointSetName;
+
+        private System.Windows.Forms.Button btnAddCoordWithText;
+        private System.Windows.Forms.Button btnAddCoordWithNode;
+        private System.Windows.Forms.Button btnAddCoordWithPoint;
 
         // Callbacks
         public Action<string> Form_WriteDataToOutput;
@@ -41,103 +48,101 @@ namespace PrePoMax.Forms
         private CoordPointSet _surfacePoints;
 
         // Constructors
-        public FrmSurfacePointPicker()
+        public FrmSurfacePointPicker(string coordPointSetName = "SurfacePoints")
         {
-            // InitializeComponet();
-            _surfacePoints = new CoordPointSet("SurfacePoints");
+            _surfacePoints = new CoordPointSet(coordPointSetName);
+            InitializeComponent();
+        }
 
+        private void InitializeComponent()
+        {
+            // Inicializar todos los widgets.
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnPickPoints = new System.Windows.Forms.Button();
+            this.btnExportPoints = new System.Windows.Forms.Button();
             this.dgvPoints = new System.Windows.Forms.DataGridView();
             this.lblPoints = new System.Windows.Forms.Label();
             this.lblPointsNumber = new System.Windows.Forms.Label();
-            this.btnExportPoints = new System.Windows.Forms.Button();
+            this.tbPointSetName = new TextBox();
+
+            this.btnAddCoordWithText = new System.Windows.Forms.Button();
+            this.btnAddCoordWithNode = new System.Windows.Forms.Button();
+            this.btnAddCoordWithPoint = new System.Windows.Forms.Button();
+
+            // lblPointSetName
+            tbPointSetName.Location = new Point(26, 26);
+            tbPointSetName.Size = new Size(200, 23);
+            tbPointSetName.Text = _surfacePoints.Name;
+            tbPointSetName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbPointSetName.Leave += tbPointSetName_Leave;
+            tbPointSetName.KeyDown += tbPointSetName_KeyDown;
 
             // btnClose
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Text = "Close";
-            this.btnClose.Anchor = (
-                (System.Windows.Forms.AnchorStyles)
-                (
-                    (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                )
-            );
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.Location = new System.Drawing.Point(26, 256 - 26);
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            btnClose.Name = "btnClose";
+            btnClose.Text = "Close";
+            btnClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnClose.Size = new Size(75, 23);
+            btnClose.Location = new Point(26, 230);
+            btnClose.Click += btnClose_Click;
 
-            // btnPickPoint
-            this.btnPickPoints.Name = "btnPickPoints";
-            this.btnPickPoints.Text = "Pick Points";
-            this.btnPickPoints.Anchor = (
-                (System.Windows.Forms.AnchorStyles)
-                (
-                    (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                )
-            );
-            this.btnPickPoints.Size = new System.Drawing.Size(75, 23);
-            this.btnPickPoints.Location = new System.Drawing.Point(26, 26);
-            this.btnPickPoints.Click += new System.EventHandler(this.btnPickPoints_Click);
+            // lblPoints
+            lblPoints.Text = "Points:";
+            lblPoints.Location = new Point(26, 65);
+            lblPoints.Size = new Size(75, 23);
 
-            // lblPoints lblPointsNumber
-            this.lblPoints.Text = "Points: ";
-            this.lblPoints.Anchor = (
-                (System.Windows.Forms.AnchorStyles)
-                (
-                    (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                )
-            );
-            this.lblPoints.Size = new System.Drawing.Size(75, 23);
-            this.lblPoints.Location = new System.Drawing.Point(26, 65);
-            
-            this.lblPointsNumber.Text = "0";
-            this.lblPointsNumber.Anchor = (
-                 (System.Windows.Forms.AnchorStyles)
-                 (
-                     (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                 )
-             );
-            this.lblPointsNumber.Size = new System.Drawing.Size(75, 23);
-            this.lblPointsNumber.Location = new System.Drawing.Point(100, 65);
+            // lblPointsNumber
+            lblPointsNumber.Text = "0";
+            lblPointsNumber.Location = new Point(100, 65);
+            lblPointsNumber.Size = new Size(75, 23);
 
             // dgvPoints
-            this.dgvPoints.Anchor = (
-                (System.Windows.Forms.AnchorStyles)
-                (
-                    System.Windows.Forms.AnchorStyles.Top |
-                    System.Windows.Forms.AnchorStyles.Bottom |
-                    System.Windows.Forms.AnchorStyles.Left |
-                    System.Windows.Forms.AnchorStyles.Right
-                )
-            );
-            this.dgvPoints.Location = new System.Drawing.Point(26, 88);
-            this.dgvPoints.Size = new System.Drawing.Size(200, 140);
-            this.dgvPoints.AllowUserToAddRows = false;
-            this.dgvPoints.RowHeadersVisible = false; // Quitar filas vacias.
-            this.dgvPoints.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvPoints.Columns.Add("id", "ID");
-            this.dgvPoints.Columns.Add("x", "X");
-            this.dgvPoints.Columns.Add("y", "Y");
-            this.dgvPoints.Columns.Add("z", "Z");
+            dgvPoints.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvPoints.Location = new Point(26, 88);
+            dgvPoints.Size = new Size(200, 140);
+            dgvPoints.AllowUserToAddRows = false;
+            dgvPoints.RowHeadersVisible = false;
+            dgvPoints.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPoints.Padding = new Padding(4, 0, 4, 0);
+            dgvPoints.Columns.Add("id", "ID");
+            dgvPoints.Columns.Add("x", "X");
+            dgvPoints.Columns.Add("y", "Y");
+            dgvPoints.Columns.Add("z", "Z");
+            //dgvPoints.CellValidating += dgvPoints_CellValidating;
+            //dgvPoints.RowValidating += dgvPoints_RowValidating;
+
+            //// btnAddCoord buttons
+            btnAddCoordWithText.Name = "btnAddCoordWithText";
+            btnAddCoordWithText.Text = "Text";
+            btnAddCoordWithText.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddCoordWithText.Size = new Size(80, 23);
+            btnAddCoordWithText.Location = new Point(223, 88);
+            btnAddCoordWithText.Click += btnAddCoordWithText_Click;
+
+            btnAddCoordWithNode.Name = "btnAddCoordWithNode";
+            btnAddCoordWithNode.Text = "Node";
+            btnAddCoordWithNode.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddCoordWithNode.Size = new Size(80, 23);
+            btnAddCoordWithNode.Location = new Point(223, 111);
+            btnAddCoordWithNode.Click += btnAddCoordWithNode_Click;
+
+            btnAddCoordWithPoint.Name = "btnAddCoordWithPoint";
+            btnAddCoordWithPoint.Text = "Point";
+            btnAddCoordWithPoint.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAddCoordWithPoint.Size = new Size(80, 23);
+            btnAddCoordWithPoint.Location = new Point(223, 134);
+            btnAddCoordWithPoint.Click += btnAddCoordWithPoint_Click;
 
             // btnExportPoints
-            this.btnExportPoints.Name = "btnPickPoints";
-            this.btnExportPoints.Text = "Export points";
-            this.btnExportPoints.Anchor = (
-                (System.Windows.Forms.AnchorStyles)
-                (
-                    (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)
-                )
-            );
-            this.btnExportPoints.Size = new System.Drawing.Size(75, 23);
-            this.btnExportPoints.Location = new System.Drawing.Point(100, 256-26);
-            this.btnExportPoints.Click += new System.EventHandler(this.btnExportPoints_Click);
+            btnExportPoints.Name = "btnExportPoints";
+            btnExportPoints.Text = "Export Points";
+            btnExportPoints.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnExportPoints.Size = new Size(100, 23);
+            btnExportPoints.Location = new Point(126, 230);
+            btnExportPoints.Click += btnExportPoints_Click;
 
-            // FrmSurfacePointPicker
+            // FormSurfacePointPicker
             this.Text = "Surface Point Picker";
             this.Name = "FrmSurfacePointPicker";
-            this.ClientSize = new System.Drawing.Size(256, 256);
+            this.ClientSize = new System.Drawing.Size(320, 256);
             this.CancelButton = this.btnClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -147,36 +152,49 @@ namespace PrePoMax.Forms
             this.SuspendLayout();
             this.ResumeLayout(false);
 
-            // Agregar widget
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnPickPoints);
-            this.Controls.Add(this.dgvPoints);
-            this.Controls.Add(this.lblPoints);
-            this.Controls.Add(this.lblPointsNumber);
-            this.Controls.Add(this.btnExportPoints);
+            // Add controls
+            this.Controls.Add(tbPointSetName);
+            this.Controls.Add(btnClose);
+            this.Controls.Add(btnExportPoints);
+            this.Controls.Add(dgvPoints);
+            this.Controls.Add(lblPoints);
+            this.Controls.Add(lblPointsNumber);
+            this.Controls.Add(btnAddCoordWithText);
+            this.Controls.Add(btnAddCoordWithNode);
+            this.Controls.Add(btnAddCoordWithPoint);
         }
 
         // Eventos principales
+        public void SetSurfacePointSetName(string coordPointSetName) 
+        {
+            _surfacePoints.Name = coordPointSetName;
+        }
+        private void TryToGetAndHighlightSurfacePoints()
+        {
+            // PMX | Intentar obtener data.
+            if (_controller.Model.Mesh.CoordPointSets.ContainsKey(_surfacePoints.Name))
+            {
+                _surfacePoints = _controller.Model.Mesh.CoordPointSets[_surfacePoints.Name];
+                Highlight(); // Render
+            }
+            else
+            {
+                // Limpia mugrete temp.
+                _surfacePoints = new CoordPointSet(_surfacePoints.Name);
+                _controller.HighlightNodes(new double[0][]);
+            }
+            // Actualizar data
+            RefreshPointList(); // GUI
+            UpdatePointCount(); // GUI
+            FocusInLastRow(); // GUI
+        }
         public void PrepareForm(Controller controller)
         {
             // Controler
             _controller = controller;
             _controller.SetSelectByToOff();
 
-            // PMX | Intentar obtener data.
-            if (_controller.Model.Mesh.CoordPointSets.ContainsKey("SurfacePoints"))
-            {
-                _surfacePoints = _controller.Model.Mesh.CoordPointSets["SurfacePoints"];
-                Highlight(); // Render
-            }
-            else 
-            {
-                // Limpia mugrete temp.
-                _surfacePoints = new CoordPointSet("SurfacePoints");
-            }
-            // Actualizar data
-            RefreshPointList(); // GUI
-            UpdatePointCount(); // GUI
+            TryToGetAndHighlightSurfacePoints();
         }
 
         public void RemoveMeasureAnnotation()
@@ -223,19 +241,125 @@ namespace PrePoMax.Forms
             Hide();
         }
 
-        private void btnPickPoints_Click(object sender, EventArgs e)
+        private void btnAddCoordWithPoint_Click(object sender, EventArgs e)
         {
             _controller.SelectBy = vtkSelectBy.SurfacePoint;
             _controller.Selection.SelectItem = vtkSelectItem.SurfacePoint;
         }
+        private void btnAddCoordWithNode_Click(object sender, EventArgs e)
+        {
+            _controller.SelectBy = vtkSelectBy.Node;
+            _controller.Selection.SelectItem = vtkSelectItem.Node;
+            RemoveMeasureAnnotation();
+            _controller.ClearSelectionHistoryAndCallSelectionChanged();
+        }
+        private void btnAddCoordWithText_Click(object sender, EventArgs e)
+        {
+            _controller.SelectBy = vtkSelectBy.Off;
+            _controller.Selection.SelectItem = vtkSelectItem.None;
+
+            // Agregar fila bien vacia en tabla.
+            dgvPoints.Rows.Add("", "", "", "");
+
+            // Focus en ultima fila hecha en tabla.
+            FocusInLastRow();
+        }
+
+        // Funciones de tabla
+        private void FocusInLastRow()
+        {
+            if (dgvPoints.Rows.Count == 0) { return; } 
+            int lastRowIndex = dgvPoints.Rows.Count - 1;
+            dgvPoints.CurrentCell = dgvPoints.Rows[lastRowIndex].Cells[3];
+        }
+        // Validacion de datos en tabla
+        private bool IsNumeric(string text)
+        {
+            double result;
+            return double.TryParse(text, out result);
+        }
+        private bool PointTextPassFilter(string text) 
+        {
+            if (TextFilter.PassTextFilter(text, "-1234567890."))
+            {
+                return IsNumeric(text);
+            }
+            return false;
+        }
+        private void dgvPoints_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            // Solo validar columnas 1, 2 y 3 (XYZ)
+            if (e.ColumnIndex >= 1 && e.ColumnIndex <= 3)
+            {
+                string text = e.FormattedValue?.ToString();
+                if (!PointTextPassFilter(text))
+                {
+                    dgvPoints.Rows[e.RowIndex].ErrorText = "Only double values";
+                    e.Cancel = true; // no deja salir de la celda
+                }
+                else
+                {
+                    dgvPoints.Rows[e.RowIndex].ErrorText = string.Empty;
+                }
+            }
+        }
+        private void dgvPoints_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            var row = dgvPoints.Rows[e.RowIndex];
+
+            bool ok =
+                PointTextPassFilter(Convert.ToString(row.Cells[1].Value)) &&
+                PointTextPassFilter(Convert.ToString(row.Cells[2].Value)) &&
+                PointTextPassFilter(Convert.ToString(row.Cells[3].Value));
+
+            if (!ok)
+            {
+                row.ErrorText = "Only double values";
+                e.Cancel = true;
+            }
+            else
+            {
+                row.ErrorText = string.Empty;
+            }
+        }
+
 
         private void btnExportPoints_Click(object sender, EventArgs e)
         {
-            if ( CoordPointExporter.ExportXYZ(_surfacePoints, "Trayectorias.csv") ) 
+            using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                MessageBox.Show("Saved");
+                sfd.Filter = "CSV files (*.csv)|*csv|All files (*.*)|*.*";
+                sfd.Title = "Save file CSV";
+                sfd.FileName = "Teyectories.csv";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    if ( CoordPointExporter.ExportXYZ(_surfacePoints, sfd.FileName) )
+                    {
+                        MessageBox.Show($"Saved {sfd.FileName}");
+                    }
+                }
             }
         }
+        private void tbPointSetName_Leave(object sender, EventArgs e)
+        {
+            string name = tbPointSetName.Text.Trim();
+
+            if (name == "") return;
+            if (_surfacePoints.Name == name) return;
+
+            _surfacePoints.Name = name;
+            TryToGetAndHighlightSurfacePoints();
+        }
+        private void tbPointSetName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                this.ActiveControl = dgvPoints; // fuerza Leave
+            }
+        }
+
 
         private void RefreshPointList()
         {
@@ -262,6 +386,7 @@ namespace PrePoMax.Forms
             _controller.HighlightNodes(points);
         }
 
+
         public void AddSurfacePoint(double[] point)
         {
             if (point == null) return;
@@ -271,15 +396,29 @@ namespace PrePoMax.Forms
             
             Form_WriteDataToOutput( FormatSurfacePoint(point[0], point[1], point[2]) );
 
-            // PMX Agregar al model mesh si aun no existe.
-            if (!_controller.Model.Mesh.CoordPointSets.ContainsKey(_surfacePoints.Name))
-            {
-                _controller.Model.Mesh.CoordPointSets.Add( _surfacePoints.Name, _surfacePoints );
-            }
-
+            // Modo de renderizar.
             Highlight(); // Render
             RefreshPointList(); // GUI
             UpdatePointCount(); // GUI
+            FocusInLastRow(); // GUI
+
+            // PMX Agregar al model mesh si aun no existe.
+            if (!_controller.Model.Mesh.CoordPointSets.ContainsKey(_surfacePoints.Name))
+            {
+                _controller.Model.Mesh.CoordPointSets.Add(_surfacePoints.Name, _surfacePoints);
+            }
+        }
+
+        // SelectBy
+        public bool SelectByPoints()
+        {
+            return _controller.SelectBy == vtkSelectBy.SurfacePoint && _controller.Selection.SelectItem == vtkSelectItem.SurfacePoint;
+        }
+        public bool SelectByNodes() {
+            return _controller.SelectBy == vtkSelectBy.Node && _controller.Selection.SelectItem == vtkSelectItem.Node;
+        }
+        public bool SelectByText() {
+            return SelectByNodes() != true && SelectByPoints() != true;
         }
     }
 }

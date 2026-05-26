@@ -48,9 +48,14 @@ namespace PrePoMax.Utils
                     $"{point.Id};true;{point.X};{point.Y};{point.Z};0;0;1" 
                 );
             }
-            File.WriteAllLines(fileName, lines);
-            
-            return true;
+            try
+            {
+                File.WriteAllLines(fileName, lines);
+                return true;
+            }
+            catch {
+                return false;
+            }
         }
     }
 }
