@@ -73,10 +73,31 @@
     </div>
 
     <h3>Ejercicio 80</h3>
-    <div class="formula big">$$
+    <div class="formula big">
+        $$
         y = x \cdot \sqrt{4 -x^2} + 4arcsen({x \over 2})
-    $$</div>
+        $$
+    </div>
     <p>"x" por la raiz de cuatro menos "x" al cuadrado, esto mas cuatro arcoseno de "x" sobre dos</p>
+    <div class="formula">
+        $$
+        y' =
+        \sqrt{4 -x^2} + {
+            {x \cdot -2x} \over {2 \sqrt{4 -x^2} }
+        } +
+        4 \cdot {
+            { 1 \over 2 } \over {
+                \sqrt{ 1 -{x \over 2}^2 }
+            }
+        }
+        $$
+    </div>
+    <p>
+    Primeramente la regla de derivación del producto. Para: `$x \cdot \sqrt{4 -x^2}$`, es `$\sqrt{4 -x^2}$`.
 
+    <li>
+        <b>Regla del producto</b>: $x \cdot y = x \cdot y' + y \cdot x'$.
+    </li>
+    </p>
 </body>
 </html>
