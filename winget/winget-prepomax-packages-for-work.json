@@ -11,12 +11,6 @@
           "PackageIdentifier": "Git.Git"
         },
         {
-          "PackageIdentifier": "BleachBit.BleachBit"
-        },
-        {
-          "PackageIdentifier": "KDE.Kate"
-        },
-        {
           "PackageIdentifier": "GNU.nano"
         },
         {
@@ -24,6 +18,9 @@
         },
         {
           "PackageIdentifier": "Python.Python.3.13"
+        },
+        {
+          "PackageIdentifier": "Microsoft.VisualStudioCode"
         }
       ],
       "SourceDetails": {
