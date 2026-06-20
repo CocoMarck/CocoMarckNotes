@@ -7,6 +7,6 @@ Para tema pasar de markdown a html, no hay mucha complicacion. De hecho por defe
 pandoc doc.md -o doc.html
 pandoc doc.md -o doc.pdf --pdf-engine=xelatex
 pandoc doc.tex -s --mathjax -o doc.html
-pandoc doc.tex o doc.pdf --pdf-engine=xelatex
+pandoc doc.tex -o doc.pdf --pdf-engine=xelatex
 ```
 
