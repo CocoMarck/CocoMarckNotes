@@ -21,6 +21,12 @@
         },
         {
           "PackageIdentifier": "Microsoft.VisualStudioCode"
+        },
+        {
+          "PackageIdentifier": "JohnMacFarlane.Pandoc"
+        },
+        {
+          "PackageIdentifier": "ONLYOFFICE.DesktopEditors"
         }
       ],
       "SourceDetails": {
