@@ -23,10 +23,16 @@
           "PackageIdentifier": "Microsoft.VisualStudioCode"
         },
         {
+          "PackageIdentifier": "Microsoft.VisualStudio.2022.Community"
+        },
+        {
           "PackageIdentifier": "JohnMacFarlane.Pandoc"
         },
         {
           "PackageIdentifier": "ONLYOFFICE.DesktopEditors"
+        },
+        {
+          "PackageIdentifer": "SumatraPDF.SumatraPDF"
         },
         {
           "PackageIdentifier": "OBSProject.OBSStudio"
