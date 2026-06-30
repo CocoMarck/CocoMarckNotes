@@ -30,6 +30,12 @@
         },
         {
           "PackageIdentifier": "OBSProject.OBSStudio"
+        },
+        {
+          "PackageIdentifier": "gmsh.gmsh"
+        },
+        {
+          "PackageIdentifier": "Kitware.ParaView"
         }
       ],
       "SourceDetails": {
