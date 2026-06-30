@@ -27,6 +27,9 @@
         },
         {
           "PackageIdentifier": "ONLYOFFICE.DesktopEditors"
+        },
+        {
+          "PackageIdentifier": "OBSProject.OBSStudio"
         }
       ],
       "SourceDetails": {
