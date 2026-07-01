@@ -42,6 +42,9 @@
         },
         {
           "PackageIdentifier": "Kitware.ParaView"
+        },
+        {
+          "PackageIdentifer": "DBBrowserForSQLite.DBBrowserForSQLite"
         }
       ],
       "SourceDetails": {
