@@ -1,0 +1,24 @@
+{
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+        "other": false,
+        "comments": "off",
+        "strings": "off"
+    },
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingComments": "never",
+    "editor.autoClosingDelete": "never",
+    "editor.autoClosingOvertype": "never",
+    "editor.autoClosingQuotes": "never",
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.tabCompletion": "off",
+    "editor.inlineSuggest.enabled": false,
+    "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": false,
+    "html.autoClosingTags": false,
+    "js/ts.autoClosingTags.enabled": false,
+    
+    "github.copilot.enable": {
+        "*": false
+    }
+}
