@@ -1,7 +1,3 @@
-# Games
-com.retroarch
-org.supertuxkart.stk
-
 # General Player
 is.xyz.mpv
 
@@ -25,3 +21,9 @@ de.markusfisch.android.pielauncher
 # Keyboard
 com.menny.android.anysoftkeyboard
 com.anysoftkeyboard.languagepack.spain
+
+# Games
+com.retroarch
+org.supertuxkart.stk
+org.mupen64plusae.v3.alpha
+rs.ruffle
