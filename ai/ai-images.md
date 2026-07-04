@@ -1,4 +1,4 @@
-# Enlace de imagenes generadas por ChatGPT
+# Enlace de imagenes generadas por IA
 
 ## ChatGPT
 - [Gato cevoya123](https://chatgpt.com/s/m_6a00b335a8448191b406d5ceadd9d347)
