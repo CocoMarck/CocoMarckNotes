@@ -1,0 +1,2 @@
+com.android.providers.contacts
+com.google.android.syncadapters.contacts

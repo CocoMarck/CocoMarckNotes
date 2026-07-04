@@ -1,0 +1,27 @@
+# Games
+com.retroarch
+org.supertuxkart.stk
+
+# General Player
+is.xyz.mpv
+
+# Music Player
+com.hardcodecoder.pulsemusic
+
+# Music utils
+de.moekadu.tuner
+com.bobek.metronome
+
+# Stats
+com.kgurgul.cpuinfo
+
+# Package Mangager
+app.pwhs.universalinstaller
+com.aurora.store
+
+# GUI
+de.markusfisch.android.pielauncher
+
+# Keyboard
+com.menny.android.anysoftkeyboard
+com.anysoftkeyboard.languagepack.spain

@@ -1,0 +1,130 @@
+adb shell pm uninstall -k --user 0 com.lenovo.anyshare.gps
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.lenovo.leos.cloud.sync.row
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.lenovo.serviceit
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.motorola.ptt.prip
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.motorola.genie
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.motorola.ccc.ota
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.motorola.ccc.devicemanagement
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.facebook.lite
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.apps.maps
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.apps.docs
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.apps.tachyon
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.youtube
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.calendar
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.music
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.videos
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.apps.photos
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.talk
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.apps.wellbeing
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.apps.youtube.music
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.inputmethod.latin
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.apps.googleassistant
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.overlay.gmsconfig.assistantgo
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.apps.assistant
+Failure [not installed for 0]
+
+adb shell pm uninstall -k --user 0 com.google.android.apps.searchlite
+Failure [not installed for 0]
+
+https://f-droid.org/repo/index-v1.jar not modified
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install com.retroarch
+com.retroarch is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install org.supertuxkart.stk
+org.supertuxkart.stk is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install is.xyz.mpv
+is.xyz.mpv is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install com.hardcodecoder.pulsemusic
+com.hardcodecoder.pulsemusic is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install de.moekadu.tuner
+de.moekadu.tuner is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install com.bobek.metronome
+com.bobek.metronome is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install com.kgurgul.cpuinfo
+com.kgurgul.cpuinfo is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install app.pwhs.universalinstaller
+app.pwhs.universalinstaller is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install com.aurora.store
+com.aurora.store is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install de.markusfisch.android.pielauncher
+de.markusfisch.android.pielauncher is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install com.menny.android.anysoftkeyboard
+com.menny.android.anysoftkeyboard is up to date
+
+/home/jean_abraham/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 install com.anysoftkeyboard.languagepack.spain
+com.anysoftkeyboard.languagepack.spain is up to date
+
+adb shell cmd package install-existing com.android.providers.contacts
+Package com.android.providers.contacts installed for user: 0
+
+adb shell cmd package install-existing com.google.android.syncadapters.contacts
+Package com.google.android.syncadapters.contacts installed for user: 0
+
+adb shell cmd package install-existing com.google.android.gms
+Package com.google.android.gms installed for user: 0
+
+adb shell cmd package install-existing com.android.vending
+Package com.android.vending installed for user: 0
+
+adb shell cmd package install-existing com.google.android.gsf
+Package com.google.android.gsf installed for user: 0
+
+adb shell cmd package install-existing com.android.chrome
+Package com.android.chrome installed for user: 0
+
+adb shell cmd package install-existing com.google.android.gm
+Package com.google.android.gm installed for user: 0
+
