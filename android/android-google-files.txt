@@ -1,0 +1,2 @@
+com.google.android.apps.gallery
+com.google.android.apps.files
