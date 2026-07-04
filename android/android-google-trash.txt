@@ -1,0 +1,17 @@
+# Android google trash
+com.google.android.apps.maps
+com.google.android.apps.docs
+com.google.android.apps.tachyon
+com.google.android.youtube
+com.google.android.calendar
+com.google.android.music
+com.google.android.videos
+com.google.android.apps.photos
+com.google.android.talk
+com.google.android.apps.wellbeing
+com.google.android.apps.youtube.music
+com.google.android.inputmethod.latin
+com.google.android.apps.googleassistant
+com.google.android.overlay.gmsconfig.assistantgo
+com.google.android.apps.assistant
+com.google.android.apps.searchlite

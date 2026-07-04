@@ -1,0 +1,3 @@
+# GMAIL CHROME
+com.android.chrome
+com.google.android.gm

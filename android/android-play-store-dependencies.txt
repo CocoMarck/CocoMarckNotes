@@ -1,0 +1,5 @@
+# Android play store dependencies.
+# Google Play Services, Play Store, Google Servicies Framework
+com.google.android.gms
+com.android.vending
+com.google.android.gsf
