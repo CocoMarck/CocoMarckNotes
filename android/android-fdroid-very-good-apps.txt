@@ -1,12 +1,26 @@
 # General Player
 is.xyz.mpv
 
+# Email
+net.thunderbird.android
+
+# Streaming video
+org.schabi.newpipe
+
+# QR
+com.example.barcodescanner
+
 # Music Player
 com.hardcodecoder.pulsemusic
 
 # Music utils
 de.moekadu.tuner
 com.bobek.metronome
+
+# Documents
+org.documentfoundation.libreoffice
+com.artifex.mupdf.viewer.app
+com.maxistar.textpad
 
 # Stats
 com.kgurgul.cpuinfo

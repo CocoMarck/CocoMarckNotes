@@ -15,3 +15,4 @@ $instruction_get_apps "$HOME/Programas/fdroidcl/fdroidcl_v0.8.1_linux_amd64 inst
 $instruction_get_apps "adb shell cmd package install-existing" ./android-dependencies.txt
 $instruction_get_apps "adb shell cmd package install-existing" ./android-play-store-dependencies.txt
 $instruction_get_apps "adb shell cmd package install-existing" ./android-google-internet-apps.txt
+$instruction_get_apps "adb shell cmd package install-existing" ./android-facebook-dependencies.txt 
