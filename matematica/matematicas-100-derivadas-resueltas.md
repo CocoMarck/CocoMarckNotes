@@ -1,82 +1,165 @@
 # Matemáticas con MathJax
 
-[Video de 100 derivadas
-resueltas](https://www.youtube.com/watch?v=B5oxL1AQpLo)
-
-La derivada de $x^2$ es $2x$
-
-<div class="formula">
-
-$$
-        y = \sqrt{4xyz}
-        $$
-
-</div>
-
-<div class="formula">
-
-$$
-        \frac{d}{dx}(x^2) = 2x
-        $$
-
-</div>
-
-<div class="formula">
-
-$$
-        \int_0^1 x^2 \, dx
-        $$
-
-</div>
-
-<div class="formula big">
-
-$$
-        e^{i\pi} + 1 = 0
-        $$
-
-</div>
+[Video de 100 derivadas resueltas](https://www.youtube.com/watch?v=B5oxL1AQpLo)
 
 ### Ejercicio 80
+> Tiempo en video `4:14:11`
 
-<div class="formula big">
-
-$$
-        y = x \cdot \sqrt{4 -x^2} + 4arcsen({x \over 2})
-        $$
-
-</div>
+```math
+y = x \cdot {
+    \sqrt{4 -x^{2}}
+} 
++ 4 \text{arcsen} ( \frac{x}{2} )
+```
 
 "x" por la raiz de cuatro menos "x" al cuadrado, esto mas cuatro
 arcoseno de "x" sobre dos
 
-<div class="formula">
+```math
+y' = 
+\sqrt{4 -x^2} + { 
+    \frac{x \cdot -2x}{2 \cdot \sqrt{4 -x^2}} 
+} + 4 \cdot 
+{
+    \frac{
+        \frac{1}{2} 
+    } { 
+        \sqrt{ 1 -{\frac{x}{2}}^2 } 
+    }
+} 
+``` 
 
-$$
-        y' =
-        \sqrt{4 -x^2} + {
-            {x \cdot -2x} \over {2 \sqrt{4 -x^2} }
-        } +
-        4 \cdot {
-            { 1 \over 2 } \over {
-                \sqrt{ 1 -{x \over 2}^2 }
-            }
-        }
-        $$ $$
-        =
-        \sqrt{4 -x^2} + {
-            {x \cdot {-2x \over 2} } \over {\sqrt{4 -x^2} }
-        } +
-        2 \cdot {
-            { 2 \cdot {1 \over 2} } \over {
-                \sqrt{ 1 -{x \over 2}^2 }
-            }
-        }
-        $$
+```math
+\text{=}
+\sqrt{4 -x^2} + 
+{ 
+    \frac
+    {x \cdot {\frac{-2x}{2}} }
+    { \sqrt{4 -x^2} } 
+} + 2
+\cdot 
+{
+    \frac
+    { 2 \cdot {\frac{1}{2}} }
+    {  {\frac{1}{2}} \cdot \sqrt{ {4 -x^2} } } 
+}
+```
 
-</div>
+```math
+\text{=}
+\sqrt{4 -x^2} + { {-x^2}  \over {\sqrt{4 -x^2}}  }
++ { 
+    { 
+        2 \cdot ( {2 \over 2} )
+    } \over 
+    { 
+        {1 \over 2} \cdot \sqrt{ {4 -x^2} } 
+    } 
+}
+```
 
-Primeramente la regla de derivación del producto. Para:
-\`$x \cdot \sqrt{4 -x^2}$\`, es \`$\sqrt{4 -x^2}$\`.
+```math
+\text{=}
+\sqrt{4 -x^2} + { {-x^2}  \over {\sqrt{4 -x^2}}  }
++ { 
+    { 
+        2
+    } \over 
+    { 
+        {1 \over 2} \cdot \sqrt{ {4 -x^2} } 
+    } 
+}
+```
 
-**Regla del producto**: $x \cdot y = x \cdot y' + y \cdot x'$.
+```math
+\text{=}
+\sqrt{4 -x^2} + { {-x^2}  \over {\sqrt{4 -x^2}}  }
++ { {4} \over { \sqrt{ {4 -x^2} } } }
+```
+
+#### Contexto de soluciones
+Resolución para:
+```math
+\sqrt{ 1 -{x^2 \over 2^2}}
+=
+\sqrt{ {4 \over 4} -{x^2 \over 4}}
+=
+\sqrt{ {4 -x^2} \over 4 }
+=
+{ { \sqrt{4 -x^2} } \over { \sqrt{4} } }
+=
+{ { \sqrt{4 -x^2} } \over {2} }
+=
+{1 \over 2} \cdot \sqrt{ {4 -x^2} }
+```
+
+Resolución para:
+```math
+{ 
+    {
+        x \cdot { {2 \cdot -1 \cdot x} \over 2} 
+    }  \over 
+    {
+        \sqrt{4 -x^2} 
+    } 
+}
+= 
+{ 
+    {
+        x \cdot -1 \cdot x
+    }  \over 
+    {
+        \sqrt{4 -x^2} 
+    } 
+}
+=
+{ {-x^2}  \over {\sqrt{4 -x^2}}  }
+```
+
+Resolución para:
+```math
+{ 
+    { 
+        2
+    } \over 
+    { 
+        {1 \over 2} \cdot \sqrt{ {4 -x^2} } 
+    } 
+}
+=
+{ 
+    { 
+        1 \cdot 2
+    } \over 
+    { 
+        {1 \over 2} \cdot \sqrt{ {4 -x^2} } 
+    } 
+}
+=
+{ 
+    { 
+        (1 \cdot 2) \cdot 2
+    } \over 
+    { 
+        {( {1 \over 2} \cdot 2)} \cdot \sqrt{ {4 -x^2} } 
+    } 
+}
+=
+{ {  2 \cdot 2 } \over { 1 \cdot \sqrt{ {4 -x^2} } } }
+=
+{ {4} \over { \sqrt{ {4 -x^2} } } }
+```
+
+#### Reglas aplicadas
+Primeramente la regla de derivación del producto. Para: 
+```math
+\sqrt{ 
+    1 -{ 
+        {x^{2}} \over {2^{2}}
+    }
+}
+```
+
+- **Regla del producto**: $x \cdot y = x \cdot y' + y \cdot x'$
+
+- **Propiedad de la raíz de una división**: $\sqrt{\frac{A}{B}} = \frac{\sqrt{A}}{\sqrt{B}}$
