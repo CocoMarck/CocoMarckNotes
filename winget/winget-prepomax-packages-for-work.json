@@ -32,7 +32,7 @@
           "PackageIdentifier": "ONLYOFFICE.DesktopEditors"
         },
         {
-          "PackageIdentifer": "SumatraPDF.SumatraPDF"
+          "PackageIdentifier": "SumatraPDF.SumatraPDF"
         },
         {
           "PackageIdentifier": "OBSProject.OBSStudio"
@@ -44,7 +44,22 @@
           "PackageIdentifier": "Kitware.ParaView"
         },
         {
-          "PackageIdentifer": "DBBrowserForSQLite.DBBrowserForSQLite"
+          "PackageIdentifier": "DBBrowserForSQLite.DBBrowserForSQLite"
+        },
+        {
+          "PackageIdentifier": "Microsoft.VCRedist.2015+.x64"
+        },
+        {
+          "PackageIdentifier": "Microsoft.VCRedist.2015+.x86"
+        },
+        {
+          "PackageIdentifier": "Microsoft.VCRedist.2010.x86"
+        },
+        {
+          "PackageIdentifier": "Microsoft.VCRedist.2010.x64"
+        },
+        {
+          "PackageIdentifier": "Microsoft.DirectX"
         }
       ],
       "SourceDetails": {
