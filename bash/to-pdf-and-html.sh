@@ -22,5 +22,5 @@ fi
 for path_md in "$SCRIPT_DIR"/*.md; do
     name=$(basename "$path_md" .md)
     pandoc -f "gfm+hard_line_breaks" "$path_md" -s -o "$HTML_DIR/$name.html"
-    pandoc -f "gfm+hard_line_breaks" "$path_md" --pdf-engine=xelatex -o "$PDF_DIR/$name.pdf"
+    pandoc -f "gfm+hard_line_breaks" "$path_md" --pdf-engine=xelatex -o "$PDF_DIR/$name.pdf" -V geometry:margin=2cm
 done
