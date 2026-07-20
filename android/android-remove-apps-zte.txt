@@ -1,0 +1,24 @@
+#    Gameloft   #
+com.gameloft.android.GloftDHMP
+com.gameloft.android.GAND.GloftDBMP
+
+# Claro, servicio de comonicaciónes
+com.clarodrive.android
+
+# Android Go
+com.celltick.lockscreen.go
+
+# ZTE
+cn.zte.recorder
+com.zte.powersavemode
+com.zte.zdm.omacp
+com.zte.videoplayer
+com.android.zte.gdpr.provision
+com.zte.wallpaper
+com.zte.zdmdaemon
+zte.com.cn.usermanual
+com.zte.zdmdaemon.install
+com.zte.heartyservice.strategy
+com.zte.zdm
+com.zte.privacypolicy
+

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Se preparara para jalar con google play store, minimo.
 # Ejemplo: ./prepare-motorola-apps.sh ../../script/bash/instruction-get-apps.sh
 instruction_get_apps=$1
 

@@ -1,0 +1,6 @@
+# Games
+# Central de emulacion el n64, y el mupen64.
+com.retroarch
+org.supertuxkart.stk
+org.mupen64plusae.v3.alpha
+rs.ruffle
