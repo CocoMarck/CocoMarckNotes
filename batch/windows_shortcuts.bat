@@ -1,6 +1,10 @@
 @echo off
-set "PDF1=%USERPROFILE%\Documents\AutoHotKey\w10-11-shortcuts-chido.pdf"
-set "PDF2=%USERPROFILE%\Documents\AutoHotKey\w10-shortcuts-official-file.pdf"
+
+REM Constantes necesarias
+set "ROOT=%~dp0"
+
+set "PDF1=%ROOT%windows_shortcuts_chido.pdf"
+set "PDF2=%ROOT%windows_shortcuts_official_file.pdf"
 
 if exist "%PDF1%" (
     start "" "%PDF1%"
