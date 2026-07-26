@@ -1,0 +1,7 @@
+# Nintendo
+org.DolphinEmu.dolphin-emu
+io.github.gopher64.gopher64
+io.github.ryubing.Ryujinx
+
+# Flash player
+rs.ruffle.Ruffle

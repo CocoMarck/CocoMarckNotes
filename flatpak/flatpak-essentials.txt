@@ -1,0 +1,5 @@
+# Network
+org.telegram.desktop
+
+# PC Stress test
+com.geeks3d.furmark

@@ -1,8 +1,0 @@
-com.geeks3d.furmark
-com.github.Xenoveritas.abuse
-com.visualstudio.code
-io.mrarm.mcpelauncher
-net.supertuxkart.SuperTuxKart
-org.luanti.luanti
-org.telegram.desktop
-rs.ruffle.Ruffle

@@ -1,0 +1,5 @@
+# Movies and series
+com.stremio.Stremio
+
+# Youtube
+jp.nonbili.noutube

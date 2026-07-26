@@ -1,0 +1,13 @@
+# Like minecraft
+org.luanti.luanti
+io.mrarm.mcpelauncher
+
+# Shooter
+com.github.Xenoveritas.abuse
+
+# Racing
+net.supertuxkart.SuperTuxKart
+org.supertuxproject.SuperTux
+
+# Launcher
+com.heroicgameslauncher.hgl

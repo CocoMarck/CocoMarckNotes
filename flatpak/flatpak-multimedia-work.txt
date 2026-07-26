@@ -1,0 +1,11 @@
+# 3d design
+org.blender.Blender
+
+# 2d design
+org.kde.krita
+
+# Video
+org.kde.kdenlive
+
+# Music
+com.giadamusic.Giada
