@@ -1,17 +1,19 @@
 #!/bin/bash
 
 # Preparar apps para KDE desktop. 2026.
-# Uso ./apt_prepare_debian13_2026_kde.sh ../../script/bash/instruction-get-apps.sh
+# Uso ./apt_prepare_debian13_2026_kde.sh ../prepare_dispositive.sh
 # Donde esta el script que obtiene names de un txt. Ordenados; nombre de package por cada linea.
 
 # Constants
-SCRIPT_DIR=$(dirname "$0")
-PREPARE_DISPOSITIVE_SCRIPT="$SCRIPT_DIR/../prepare_dispositive.sh"
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+
+# Establecer directorio de trabajo
+PREPARE_DISPOSITIVE_SCRIPT=$1
 
 # Variables
-instruction_get_apps=$1
 install_prefix="sudo apt install -y "
 uninstall_prefix="sudo apt purge -y "
+
 
 install_apps_paths=( 
     # Esenciales
@@ -36,7 +38,6 @@ install_apps_paths=(
 
 uninstall_apps_paths=(
     "$SCRIPT_DIR/apt-debian13-remove-apps.txt"
-    "$SCRIPT_DIR/apt-debian13-remove-libreoffice.txt"
 )
 
 
@@ -44,10 +45,10 @@ uninstall_apps_paths=(
 source "$PREPARE_DISPOSITIVE_SCRIPT"
 
 # Debug
-echo $instruction_get_apps
 echo $PREPARE_DISPOSITIVE_SCRIPT
 
 # Execute
+sudo dpkg --add-architecture i386
 sudo apt update
 work
 sudo apt autoremove -y; sudo apt clean;
