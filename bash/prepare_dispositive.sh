@@ -37,10 +37,12 @@ using_requirements() {
 }
 
 # Funcion final
-for path in ${install_apps_paths[@]}; do
-    using_requirements "$install_prefix" "$path"
-done
+work(){
+    for path in ${install_apps_paths[@]}; do
+        using_requirements "$install_prefix" "$path"
+    done
 
-for path in ${uninstall_apps_paths[@]}; do
-    using_requirements "$uninstall_prefix" "$path"
-done
+    for path in ${uninstall_apps_paths[@]}; do
+        using_requirements "$uninstall_prefix" "$path"
+    done
+}
