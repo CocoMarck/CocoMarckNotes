@@ -9,3 +9,6 @@ obj/
 *.cache
 *.out
 spooles.out
+*.odt
+*.html
+*.pdf
