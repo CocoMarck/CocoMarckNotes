@@ -73,9 +73,25 @@ y' =
 
 ```math
 \text{=}
-\sqrt{4 -x^2} + { {-x^2}  \over {\sqrt{4 -x^2}}  }
+\sqrt{4 -x^2} - { {x^2}  \over {\sqrt{4 -x^2}}  }
 + { {4} \over { \sqrt{ {4 -x^2} } } }
 ```
+```math
+\text{=}
+[ \sqrt{ 4 -x^2 } \cdot { \sqrt{ 4 -x^2 } \over \sqrt{ 4 -x^2 } } ]
+-{ {x^2}  \over {\sqrt{4 -x^2}}  }
++ { {4} \over { \sqrt{ {4 -x^2} } } }
+```
+```math
+\text{= }
+\sqrt{4-x^2} \cdot
+\frac{
+    \sqrt{4-x^2} -x^2 + 4
+}{
+    \sqrt{4-x^2}
+}
+```
+
 
 #### Contexto de soluciones
 Resolución para:
@@ -150,6 +166,12 @@ Resolución para:
 { {4} \over { \sqrt{ {4 -x^2} } } }
 ```
 
+Resolusión para:
+```math
+\sqrt { 4 -x^2 }
+= \sqrt{ 4 -x^2 } \cdot { \sqrt{ 4 -x^2 } \over \sqrt{ 4 -x^2 } }
+```
+
 #### Reglas aplicadas
 Primeramente la regla de derivación del producto. Para: 
 ```math
@@ -163,3 +185,5 @@ Primeramente la regla de derivación del producto. Para:
 - **Regla del producto**: $x \cdot y = x \cdot y' + y \cdot x'$
 
 - **Propiedad de la raíz de una división**: $\sqrt{\frac{A}{B}} = \frac{\sqrt{A}}{\sqrt{B}}$
+
+- **Esto es verdadero**: $\sqrt{x} = \sqrt{x} \cdot \frac{\sqrt{x}}{\sqrt{x}}$. Cualquier numero multiplicado por uno, es lo mismo.
