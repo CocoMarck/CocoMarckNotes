@@ -84,12 +84,65 @@ y' =
 ```
 ```math
 \text{= }
-\sqrt{4-x^2} \cdot
+\frac{\sqrt{4-x^2}}{1} \cdot
 \frac{
     \sqrt{4-x^2} -x^2 + 4
 }{
     \sqrt{4-x^2}
 }
+```
+```math
+\text{= }
+\frac{
+    4 -x^2 -x^2 + 4
+}{
+    \sqrt{4-x^2}
+}
+=
+\frac{
+    4 + 4 -2x^2 
+}{
+    \sqrt{4-x^2}
+}
+=
+\frac{
+    (4 \cdot 2) (-1 \cdot 2 \cdot x^2 )
+}{
+    \sqrt{4-x^2}
+}
+\newline{}\newline{}
+\text{Sacamos factor comun al dos:}
+\newline{}\newline{}
+= 
+\frac{
+    2 \cdot (4 -x^2 )
+}{
+    \sqrt{4-x^2}
+}
+=
+\frac{
+    2 \cdot (4 -x^2 )
+}{
+    \sqrt{4-x^2}
+} \cdot
+\frac{\sqrt{4-x^2}}{\sqrt{4-x^2}}
+=
+\frac{
+    2 \cdot (4 -x^2 ) \cdot \sqrt{4-x^2}
+}{
+    \sqrt{4-x^2} \cdot \sqrt{4-x^2}
+}
+\newline{}\newline{}
+=
+\frac{
+    2 \cdot (4 -x^2 ) \cdot \sqrt{4-x^2}
+}{
+    4-x^2
+}
+=
+2 \cdot \sqrt{4-x^2}
+\newline{}\newline{}
+\text{Resultado!}
 ```
 
 
