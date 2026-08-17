@@ -110,10 +110,13 @@ y' =
 }{
     \sqrt{4-x^2}
 }
-\newline{}\newline{}
+```
+
+```math
 \text{Sacamos factor comun al dos:}
-\newline{}\newline{}
-= 
+```
+```math
+\text{= }
 \frac{
     2 \cdot (4 -x^2 )
 }{
@@ -132,8 +135,12 @@ y' =
 }{
     \sqrt{4-x^2} \cdot \sqrt{4-x^2}
 }
-\newline{}\newline{}
-=
+```
+```math
+\text{Resultado: }
+```
+```math
+\text{= }
 \frac{
     2 \cdot (4 -x^2 ) \cdot \sqrt{4-x^2}
 }{
@@ -141,8 +148,6 @@ y' =
 }
 =
 2 \cdot \sqrt{4-x^2}
-\newline{}\newline{}
-\text{Resultado!}
 ```
 
 
