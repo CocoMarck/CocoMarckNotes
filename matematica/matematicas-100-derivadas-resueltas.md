@@ -245,3 +245,33 @@ Primeramente la regla de derivación del producto. Para:
 - **Propiedad de la raíz de una división**: $\sqrt{\frac{A}{B}} = \frac{\sqrt{A}}{\sqrt{B}}$
 
 - **Esto es verdadero**: $\sqrt{x} = \sqrt{x} \cdot \frac{\sqrt{x}}{\sqrt{x}}$. Cualquier numero multiplicado por uno, es lo mismo.
+
+---
+
+### Ejercicio 81
+```math
+y = sen^3(2x -3)
+```
+<center>Seno al cubo de dos "x" menos tres.</center>
+
+```math
+y' = 3 \cdot sen^{3-1}(2x -3) \cdot sen(2x -3)'
+```
+```math
+\text{= }
+3 \cdot sen^{2}(2x -3) \cdot [ cos(2x -3) \cdot (2x-3)' ]
+```
+```math
+\text{= }
+3 \cdot sen^{2}(2x -3) \cdot [ cos(2x -3) \cdot 2 ]
+```
+
+
+#### Reglas aplicadas
+- **Regla de la potencia**: 
+    $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
+- **Como derivar seno**: 
+    $(sen{x})' = cos{x}$
+- **Regla de la cadena**:
+    $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
+- **La derivada de una constante siempre es cero**.
