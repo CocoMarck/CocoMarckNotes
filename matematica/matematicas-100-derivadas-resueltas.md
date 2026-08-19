@@ -249,10 +249,12 @@ Primeramente la regla de derivación del producto. Para:
 ---
 
 ### Ejercicio 81
+> Momento: `4:17:36`
+
 ```math
 y = sen^3(2x -3)
 ```
-<center>Seno al cubo de dos "x" menos tres.</center>
+<p style="text-align: center;">Seno al cubo de dos "x" menos tres.</p>
 
 ```math
 y' = 3 \cdot sen^{3-1}(2x -3) \cdot sen(2x -3)'
@@ -265,7 +267,32 @@ y' = 3 \cdot sen^{3-1}(2x -3) \cdot sen(2x -3)'
 \text{= }
 3 \cdot sen^{2}(2x -3) \cdot [ cos(2x -3) \cdot 2 ]
 ```
+```math
+\text{= }
+6 \cdot sen^{2}(2x -3) \cdot cos(2x -3) 
+```
+<p style="text-align: center;">Podriamos dejarlo asi, pero vamos a seguir siplificando un poco mas.</p>
 
+```math
+\text{= }
+6 \cdot sen(2x -3) \cdot [ sen(2x -3) \cdot cos(2x-3) ]
+```
+```math
+\text{= }
+6 \cdot sen(2x -3) \cdot \frac{sen[2 \cdot (2x-3)]}{2}
+=
+6 \cdot sen(2x -3) \cdot \frac{sen(4x-6)}{2}
+```
+```math
+\text{= }
+\frac{ [6 \cdot sen(2x -3)] \cdot sen(4x-6)}{2}
+=
+\frac{6}{2} \cdot sen(2x -3) \cdot sen(4x-6)
+```
+```math
+\text{= }
+3 sen(2x -3) \cdot sen(4x -6)
+```
 
 #### Reglas aplicadas
 - **Regla de la potencia**: 
@@ -275,3 +302,5 @@ y' = 3 \cdot sen^{3-1}(2x -3) \cdot sen(2x -3)'
 - **Regla de la cadena**:
     $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
 - **La derivada de una constante siempre es cero**.
+- **Identidad**: $sen(a) \cdot cos(a) = \frac{sen(2a)}{2}$
+- $\frac{x \cdot y}{2} = \frac{x}{2} \cdot y = x \cdot \frac{y}{2}$
