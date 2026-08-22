@@ -1,6 +1,7 @@
 # Matemáticas con MathJax
-
 [Video de 100 derivadas resueltas](https://www.youtube.com/watch?v=B5oxL1AQpLo)
+
+![image](./cat-delta.svg)
 
 ### Ejercicio 80
 > Tiempo en video `4:14:11`
@@ -293,6 +294,7 @@ y' = 3 \cdot sen^{3-1}(2x -3) \cdot sen(2x -3)'
 \text{= }
 3 sen(2x -3) \cdot sen(4x -6)
 ```
+<p style="text-align: center;">¡Resultado!</p>
 
 #### Reglas aplicadas
 - **Regla de la potencia**: 
@@ -304,3 +306,35 @@ y' = 3 \cdot sen^{3-1}(2x -3) \cdot sen(2x -3)'
 - **La derivada de una constante siempre es cero**.
 - **Identidad**: $sen(a) \cdot cos(a) = \frac{sen(2a)}{2}$
 - $\frac{x \cdot y}{2} = \frac{x}{2} \cdot y = x \cdot \frac{y}{2}$
+
+---
+
+### Ejercicio 82
+```math
+y = \frac{1}{2} tg(x) \cdot sen(2x)
+```
+Derivar: Unos sobre dos tangente de "x", por seno de "x".
+
+Mirad. Seguramente si escribimos, esta expreción en función simplemente de "x". Evitar la "x". Podriamos simplificar las cosas.
+
+```math
+y = \frac{1}{2} \cdot \frac{sen(x)}{cos(x)} \cdot 2 \cdot \frac{sen(2x)}{2}
+```
+```math
+\text{= }
+\frac{1}{2} \cdot \frac{sen(x)}{cos(x)} \cdot 2 \cdot sen(x) \cdot cos(x)
+```
+
+### Contexto de soluciones
+```math
+sen(2x) = 
+\frac{sen(2x)}{1} \cdot 1 =
+\frac{sen(2x)}{1} \cdot \frac{2}{2} =
+\frac{sen(2x) \cdot 2}{2} =
+\frac{sen(2x)}{2} \cdot \frac{2}{1}
+```
+
+
+### Reglas aplicadas
+- $sen(a) \cdot cos(a) = \frac{sen(2a)}{2}$
+- $tg(x) = \frac{sen(x)}{cos(x)}$
