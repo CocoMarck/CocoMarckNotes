@@ -48,40 +48,36 @@ y' =
 
 ```math
 \text{=}
-\sqrt{4 -x^2} + { {-x^2}  \over {\sqrt{4 -x^2}}  }
+\sqrt{4 -x^2} + { \frac{-x^2}{\sqrt{4 -x^2}}  }
 + { 
-    { 
-        2 \cdot ( {2 \over 2} )
-    } \over 
-    { 
-        {1 \over 2} \cdot \sqrt{ {4 -x^2} } 
+    \frac{ 
+        2 \cdot ( \frac{2}{2} )
+    }{ 
+        \frac{1}{2} \cdot \sqrt{ {4 -x^2} } 
     } 
 }
 ```
 
 ```math
 \text{=}
-\sqrt{4 -x^2} + { {-x^2}  \over {\sqrt{4 -x^2}}  }
+\sqrt{4 -x^2} + { \frac{-x^2}{\sqrt{4 -x^2}}  }
 + { 
-    { 
-        2
-    } \over 
-    { 
-        {1 \over 2} \cdot \sqrt{ {4 -x^2} } 
+    \frac{2}{ 
+        \frac{1}{2} \cdot \sqrt{ {4 -x^2} } 
     } 
 }
 ```
 
 ```math
 \text{=}
-\sqrt{4 -x^2} - { {x^2}  \over {\sqrt{4 -x^2}}  }
-+ { {4} \over { \sqrt{ {4 -x^2} } } }
+\sqrt{4 -x^2} - { \frac{x^2}{\sqrt{4 -x^2}}  }
++ { \frac{4}{ \sqrt{ {4 -x^2} } } }
 ```
 ```math
 \text{=}
-[ \sqrt{ 4 -x^2 } \cdot { \sqrt{ 4 -x^2 } \over \sqrt{ 4 -x^2 } } ]
--{ {x^2}  \over {\sqrt{4 -x^2}}  }
-+ { {4} \over { \sqrt{ {4 -x^2} } } }
+[ \sqrt{ 4 -x^2 } \cdot { \frac{\sqrt{ 4 -x^2 }}{\sqrt{ 4 -x^2 }}} ]
+-{ \frac{x^2}{\sqrt{4 -x^2}}  }
++ { \frac{4}{ \sqrt{ {4 -x^2} } } }
 ```
 ```math
 \text{= }
@@ -155,80 +151,75 @@ y' =
 #### Contexto de soluciones
 Resolución para:
 ```math
-\sqrt{ 1 -{x^2 \over 2^2}}
+\sqrt{ 1 -\frac{x^2}{2^2}}
 =
-\sqrt{ {4 \over 4} -{x^2 \over 4}}
+\sqrt{ \frac{4}{4} -\frac{x^2}{4}}
 =
-\sqrt{ {4 -x^2} \over 4 }
+\sqrt{ \frac{4 -x^2}{4} }
 =
-{ { \sqrt{4 -x^2} } \over { \sqrt{4} } }
+{ \frac{ \sqrt{4 -x^2} }{ \sqrt{4} } }
 =
-{ { \sqrt{4 -x^2} } \over {2} }
+{ \frac{ \sqrt{4 -x^2} }{2} }
 =
-{1 \over 2} \cdot \sqrt{ {4 -x^2} }
+\frac{1}{2} \cdot \sqrt{ {4 -x^2} }
 ```
 
 Resolución para:
 ```math
 { 
-    {
-        x \cdot { {2 \cdot -1 \cdot x} \over 2} 
-    }  \over 
-    {
+    \frac{
+        x \cdot { \frac{2 \cdot -1 \cdot x}{2}} 
+    }{
         \sqrt{4 -x^2} 
     } 
 }
 = 
 { 
-    {
+    \frac{
         x \cdot -1 \cdot x
-    }  \over 
-    {
+    }{
         \sqrt{4 -x^2} 
     } 
 }
 =
-{ {-x^2}  \over {\sqrt{4 -x^2}}  }
+{ \frac{-x^2}{\sqrt{4 -x^2}}  }
 ```
 
 Resolución para:
 ```math
 { 
-    { 
+    \frac{ 
         2
-    } \over 
-    { 
-        {1 \over 2} \cdot \sqrt{ {4 -x^2} } 
+    }{ 
+        \frac{1}{2} \cdot \sqrt{ {4 -x^2} } 
     } 
 }
 =
 { 
-    { 
+    \frac{ 
         1 \cdot 2
-    } \over 
-    { 
-        {1 \over 2} \cdot \sqrt{ {4 -x^2} } 
+    }{ 
+        \frac{1}{2} \cdot \sqrt{ {4 -x^2} } 
     } 
 }
 =
 { 
-    { 
+    \frac{ 
         (1 \cdot 2) \cdot 2
-    } \over 
-    { 
-        {( {1 \over 2} \cdot 2)} \cdot \sqrt{ {4 -x^2} } 
+    }{ 
+        {( \frac{1}{2} \cdot 2)} \cdot \sqrt{ {4 -x^2} } 
     } 
 }
 =
-{ {  2 \cdot 2 } \over { 1 \cdot \sqrt{ {4 -x^2} } } }
+{ \frac{  2 \cdot 2 }{ 1 \cdot \sqrt{ {4 -x^2} } } }
 =
-{ {4} \over { \sqrt{ {4 -x^2} } } }
+{ \frac{4}{ \sqrt{ {4 -x^2} } } }
 ```
 
 Resolusión para:
 ```math
 \sqrt { 4 -x^2 }
-= \sqrt{ 4 -x^2 } \cdot { \sqrt{ 4 -x^2 } \over \sqrt{ 4 -x^2 } }
+= \sqrt{ 4 -x^2 } \cdot { \frac{\sqrt{ 4 -x^2 }}{\sqrt{ 4 -x^2 }} }
 ```
 
 #### Reglas aplicadas
@@ -236,7 +227,7 @@ Primeramente la regla de derivación del producto. Para:
 ```math
 \sqrt{ 
     1 -{ 
-        {x^{2}} \over {2^{2}}
+        \frac{x^{2}}{2^{2}}
     }
 }
 ```
@@ -324,13 +315,45 @@ y = \frac{1}{2} \cdot \frac{sen(x)}{cos(x)} \cdot 2 \cdot \frac{sen(2x)}{2}
 \text{= }
 \frac{1}{2} \cdot \frac{sen(x)}{cos(x)} \cdot 2 \cdot sen(x) \cdot cos(x)
 ```
+```math
+\text{= }
+\frac{1}{2} \cdot \frac{2}{1} \cdot 
+\frac{sen(x)}{cos(x)} \cdot \frac{cos(x)}{1} \cdot sen(x) 
+=
+\frac{2}{2} \cdot \frac{sen(x) \cdot cos(x)}{cos(x)} \cdot sen(x) 
+```
+```math
+\text{= }
+sen(x) \cdot sen(x)
+=
+sen(x)^2
+```
+Quedo algo bien simple. 
+
+**Ahora si derivemos:**
+```math
+y' = 2 \cdot sen(x)^{2- 1} \cdot cos(x)
+=
+2 \cdot sen(x) \cdot cos(x)
+=
+\frac{2}{1} \cdot \frac{sen(2x)}{2}
+=
+\frac{2 \cdot sen(2x)}{2}
+```
+
+```math
+\text{= }
+sen(2x)
+```
+
+La deriva de "y" es seno de dos "x". Que bonito ejercicio.
 
 ### Contexto de soluciones
 ```math
 sen(2x) = 
 \frac{sen(2x)}{1} \cdot 1 =
 \frac{sen(2x)}{1} \cdot \frac{2}{2} =
-\frac{sen(2x) \cdot 2}{2} =
+\frac{sen(2x) \cdot 2}{1 \cdot 2} =
 \frac{sen(2x)}{2} \cdot \frac{2}{1}
 ```
 
@@ -338,3 +361,6 @@ sen(2x) =
 ### Reglas aplicadas
 - $sen(a) \cdot cos(a) = \frac{sen(2a)}{2}$
 - $tg(x) = \frac{sen(x)}{cos(x)}$
+- **Regla de la potencia**: $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
+- **Como derivar seno**: $(sen{x})' = cos{x}$
+- **Regla de la cadena**: $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
