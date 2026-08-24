@@ -13,7 +13,7 @@ y = x \cdot {
 + 4 \text{arcsen} ( \frac{x}{2} )
 ```
 
-"x" por la raiz de cuatro menos "x" al cuadrado, esto mas cuatro
+"x" por la raíz de cuatro menos "x" al cuadrado, esto mas cuatro
 arcoseno de "x" sobre dos
 
 ```math
@@ -110,7 +110,7 @@ y' =
 ```
 
 ```math
-\text{Sacamos factor comun al dos:}
+\text{Sacamos factor común al dos:}
 ```
 ```math
 \text{= }
@@ -216,7 +216,7 @@ Resolución para:
 { \frac{4}{ \sqrt{ {4 -x^2} } } }
 ```
 
-Resolusión para:
+Resolución para:
 ```math
 \sqrt { 4 -x^2 }
 = \sqrt{ 4 -x^2 } \cdot { \frac{\sqrt{ 4 -x^2 }}{\sqrt{ 4 -x^2 }} }
@@ -263,7 +263,7 @@ y' = 3 \cdot sen^{3-1}(2x -3) \cdot sen(2x -3)'
 \text{= }
 6 \cdot sen^{2}(2x -3) \cdot cos(2x -3) 
 ```
-<p style="text-align: center;">Podriamos dejarlo asi, pero vamos a seguir siplificando un poco mas.</p>
+<p style="text-align: center;">Podríamos dejarlo asi, pero vamos a seguir simplificando un poco mas.</p>
 
 ```math
 \text{= }
@@ -306,7 +306,7 @@ y = \frac{1}{2} tg(x) \cdot sen(2x)
 ```
 Derivar: Unos sobre dos tangente de "x", por seno de "x".
 
-Mirad. Seguramente si escribimos, esta expreción en función simplemente de "x". Evitar la "x". Podriamos simplificar las cosas.
+Mirad. Seguramente si escribimos, esta excreción en función simplemente de "x". Evitar la "x". Podríamos simplificar las cosas.
 
 ```math
 y = \frac{1}{2} \cdot \frac{sen(x)}{cos(x)} \cdot 2 \cdot \frac{sen(2x)}{2}
@@ -375,14 +375,13 @@ y = (\frac{x}{1+x})^5
 Derivar "x" sobre uno mas "x", elevado a la quinta potencia.
 
 ### Reglas/Propiedades aplicadas
-- **Regla la derivadad de un cociente**
-    ```math
-    \frac{d}{dx} [\frac{f(x)}{g(x)}] = 
-    \frac{ 
-        f'(x) \cdot g(x) -f(x) \cdot g'(x) 
-    }{ [g(x)]^2 }
-    ```
-    La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
+- **Regla la derivada de un cociente**: La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
+```math
+\frac{d}{dx} [\frac{f(x)}{g(x)}] = 
+\frac{ 
+    f'(x) \cdot g(x) -f(x) \cdot g'(x) 
+}{ [g(x)]^2 }
+```
 
 - **Regla de la potencia**: $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
 
