@@ -364,3 +364,26 @@ sen(2x) =
 - **Regla de la potencia**: $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
 - **Como derivar seno**: $(sen{x})' = cos{x}$
 - **Regla de la cadena**: $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
+
+---
+
+### Ejercicio 83
+> Momento: `4:23:53`
+```math
+y = (\frac{x}{1+x})^5
+```
+Derivar "x" sobre uno mas "x", elevado a la quinta potencia.
+
+### Reglas/Propiedades aplicadas
+- **Regla la derivadad de un cociente**
+    ```math
+    \frac{d}{dx} [\frac{f(x)}{g(x)}] = 
+    \frac{ 
+        f'(x) \cdot g(x) -f(x) \cdot g'(x) 
+    }{ [g(x)]^2 }
+    ```
+    La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
+
+- **Regla de la potencia**: $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
+
+- **Regla de la cadena**: $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
