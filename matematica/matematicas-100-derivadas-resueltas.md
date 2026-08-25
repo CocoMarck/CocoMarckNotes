@@ -374,6 +374,26 @@ y = (\frac{x}{1+x})^5
 ```
 Derivar "x" sobre uno mas "x", elevado a la quinta potencia.
 
+```math
+y' = 5 \cdot (\frac{x}{1+x})^{5-1} \cdot \frac{x' \cdot (1+x) -x \cdot (1+x)'}{(1+x)^2} 
+=
+\frac{5}{1} \cdot \frac{x^4}{(1+x)^4} \cdot 
+\frac{1 \cdot (1+x) -x \cdot 1}{(1+x)\cdot(1+x)}
+```
+```math
+\text{= }
+\frac{5x^4}{(1+x)^4} \cdot
+\frac{1 + x -x}{(1+x)\cdot(1+x)}
+=
+\frac{5x^4}{(1+x)^4} \cdot 
+\frac{1}{(1+x)^2}
+```
+```math
+\text{Resultado: } \frac{5x^4}{(1+x)^6}
+```
+
+Cinco "x" a la cuarta potencia, sobre uno mas "x", elevado a la sexta potencia.
+
 ### Reglas/Propiedades aplicadas
 - **Regla la derivada de un cociente**: La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
 ```math
@@ -386,3 +406,7 @@ Derivar "x" sobre uno mas "x", elevado a la quinta potencia.
 - **Regla de la potencia**: $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
 
 - **Regla de la cadena**: $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
+
+- **Dos potencias de la misma base que se están multiplicando, los exponentes, se suman:** $y^z \cdot y^x = y^{z + x}$
+
+- **Cualquier valor multiplicado por uno, es igual ese valor.**
