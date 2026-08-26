@@ -410,3 +410,68 @@ Cinco "x" a la cuarta potencia, sobre uno mas "x", elevado a la sexta potencia.
 - **Dos potencias de la misma base que se están multiplicando, los exponentes, se suman:** $y^z \cdot y^x = y^{z + x}$
 
 - **Cualquier valor multiplicado por uno, es igual ese valor.**
+
+---
+
+### Ejercicio 84
+```math
+y = \sin(\sqrt{x} \cdot \ln(x))
+```
+Seno de raíz de "x" por logaritmo neperiano de "x".
+```math
+y' = \cos(\sqrt{x} \cdot \ln(x)) \cdot (
+    [
+        \frac{1}{2} \cdot \ln(x) + x^{(\frac{1}{2} -{1})}
+    ] \cdot \ln{x} + 
+    \frac{1}{x} \cdot \sqrt{x}
+)
+```
+```math
+\text{= } 
+\cos(\sqrt{x} \cdot \ln(x)) \cdot (
+    [\frac{1}{2} \cdot \frac{x^{(\frac{1}{2} -\frac{2}{2})}}{1}] \cdot
+    \ln{x} + \frac{1}{x} \cdot {\sqrt{x}}
+)
+=
+\cos(\sqrt{x} \cdot \ln(x)) \cdot (
+    [\frac{1}{2} \cdot \frac{x^{(-\frac{1}{2})}}{1}] \cdot 
+    \ln{x} + \frac{1}{x} \cdot \sqrt{x}
+)
+```
+```math
+\text{= }
+\cos(\sqrt{x} \cdot \ln(x)) \cdot (
+    [\frac{1}{2} \cdot \frac{1}{x^{(\frac{1}{2})}}] \cdot 
+    \ln{x} + \frac{1}{x} \cdot \sqrt{x}
+)
+=
+\cos(\sqrt{x} \cdot \ln(x)) \cdot (
+    \frac{1}{2 \cdot x^{(\frac{1}{2})}} \cdot 
+    \ln{x} + \frac{1}{x} \cdot \sqrt{x}
+)
+```
+```math
+\text{= }
+\cos(\sqrt{x} \cdot \ln(x)) \cdot (
+    [\frac{1}{2 \cdot x^{(\frac{1}{2})}} \cdot \ln{x} ] +
+    [\frac{1}{x} \cdot \sqrt{x}]
+)
+```
+
+### Reglas/Propiedades aplicadas
+
+- **Regla de la cadena**: $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
+
+- **Regla de la potencia**: $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
+
+- **Regla del producto**: $x \cdot y = x \cdot y' + y \cdot x'$
+
+- **Como derivar logaritmo neperiano**: $\ln'(x) = \frac{1}{x}$
+
+- **Como derivar seno**: $\sin'(x) = \cos(x)$
+
+- **Raíz cuadrada es exponente decimal `> 0; < 1`**: 
+    $\sqrt{x} = x^{\frac{1}{2}}; \sqrt[y]{x} = x^{\frac{1}{y}}$
+
+- **Logaritmo neperiano de "x", es lo mismo que logaritmo base "euler" de "x"**:
+    $\ln{x} = \log_e{x}$
