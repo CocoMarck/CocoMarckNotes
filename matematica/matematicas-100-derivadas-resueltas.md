@@ -414,6 +414,7 @@ Cinco "x" a la cuarta potencia, sobre uno mas "x", elevado a la sexta potencia.
 ---
 
 ### Ejercicio 84
+> Momento: `4:26:58`
 ```math
 y = \sin(\sqrt{x} \cdot \ln(x))
 ```
@@ -421,7 +422,7 @@ Seno de raíz de "x" por logaritmo neperiano de "x".
 ```math
 y' = \cos(\sqrt{x} \cdot \ln(x)) \cdot (
     [
-        \frac{1}{2} \cdot \ln(x) + x^{(\frac{1}{2} -{1})}
+        \frac{1}{2} \cdot x^{(\frac{1}{2} -{1})}
     ] \cdot \ln{x} + 
     \frac{1}{x} \cdot \sqrt{x}
 )
@@ -475,3 +476,5 @@ y' = \cos(\sqrt{x} \cdot \ln(x)) \cdot (
 
 - **Logaritmo neperiano de "x", es lo mismo que logaritmo base "euler" de "x"**:
     $\ln{x} = \log_e{x}$
+
+- **Regla del exponente negativo**: $\dfrac{x^{-y}}{1} = \dfrac{1}{x^{y}}$. Eso si, preferiblemente se usa bajo: `x != 0; y != 0`
