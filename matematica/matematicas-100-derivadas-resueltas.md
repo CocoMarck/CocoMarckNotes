@@ -416,47 +416,95 @@ Cinco "x" a la cuarta potencia, sobre uno mas "x", elevado a la sexta potencia.
 ### Ejercicio 84
 > Momento: `4:26:58`
 ```math
-y = \sin(\sqrt{x} \cdot \ln(x))
+y = sen(\sqrt{x} \cdot ln(x))
 ```
 Seno de raíz de "x" por logaritmo neperiano de "x".
 ```math
-y' = \cos(\sqrt{x} \cdot \ln(x)) \cdot (
+y' = cos(\sqrt{x} \cdot ln(x)) \cdot (
     [
         \frac{1}{2} \cdot x^{(\frac{1}{2} -{1})}
-    ] \cdot \ln{x} + 
+    ] \cdot ln(x) + 
     \frac{1}{x} \cdot \sqrt{x}
 )
 ```
 ```math
 \text{= } 
-\cos(\sqrt{x} \cdot \ln(x)) \cdot (
+cos(\sqrt{x} \cdot ln(x)) \cdot (
     [\frac{1}{2} \cdot \frac{x^{(\frac{1}{2} -\frac{2}{2})}}{1}] \cdot
-    \ln{x} + \frac{1}{x} \cdot {\sqrt{x}}
+    ln(x) + \frac{1}{x} \cdot {\sqrt{x}}
 )
 =
-\cos(\sqrt{x} \cdot \ln(x)) \cdot (
+cos(\sqrt{x} \cdot ln(x)) \cdot (
     [\frac{1}{2} \cdot \frac{x^{(-\frac{1}{2})}}{1}] \cdot 
-    \ln{x} + \frac{1}{x} \cdot \sqrt{x}
+    ln(x) + \frac{1}{x} \cdot \sqrt{x}
 )
 ```
 ```math
 \text{= }
-\cos(\sqrt{x} \cdot \ln(x)) \cdot (
+cos(\sqrt{x} \cdot ln(x)) \cdot (
     [\frac{1}{2} \cdot \frac{1}{x^{(\frac{1}{2})}}] \cdot 
-    \ln{x} + \frac{1}{x} \cdot \sqrt{x}
+    ln(x) + \frac{1}{x} \cdot \sqrt{x}
 )
 =
-\cos(\sqrt{x} \cdot \ln(x)) \cdot (
+cos(\sqrt{x} \cdot ln(x)) \cdot (
     \frac{1}{2 \cdot x^{(\frac{1}{2})}} \cdot 
-    \ln{x} + \frac{1}{x} \cdot \sqrt{x}
+    ln(x) + \frac{1}{x} \cdot \sqrt{x}
 )
 ```
 ```math
 \text{= }
-\cos(\sqrt{x} \cdot \ln(x)) \cdot (
-    [\frac{1}{2 \cdot x^{(\frac{1}{2})}} \cdot \ln{x} ] +
+cos(\sqrt{x} \cdot ln(x)) \cdot (
+    [\frac{1}{2 \cdot x^{(\frac{1}{2})}} \cdot ln(x) ] +
     [\frac{1}{x} \cdot \sqrt{x}]
 )
+```
+```math
+cos(\sqrt{x} \cdot ln(x)) \cdot (
+    [\frac{ln(x)}{2 \cdot \sqrt{x}} ] +
+    [\frac{\sqrt{x}}{x}]
+)
+=
+cos(\sqrt{x} \cdot ln(x)) \cdot (
+    \frac{
+        [ln(x) \cdot x] + [\sqrt{x} \cdot ({2} \cdot \sqrt{x})]
+    }{
+        2 \cdot \sqrt{x} \cdot {x}
+    }
+)
+```
+```math
+\text{= }
+cos(\sqrt{x} \cdot ln(x)) \cdot (
+    \frac{
+        [x \cdot ln(x)] + [2 \cdot x]
+    }{
+        2 \cdot x \cdot \sqrt{x}
+    }
+)
+=
+cos(\sqrt{x} \cdot ln(x)) \cdot (
+    \frac{
+        x \cdot [ln(x) + 2]
+    }{
+        2 \cdot x \cdot \sqrt{x}
+    }
+)
+```
+```math
+\text{Resultado: }
+cos(\sqrt{x} \cdot ln(x)) \cdot (
+    \frac{ln(x) + 2}{ 2 \cdot \sqrt{x} }
+)
+```
+
+### Contexto de soluciones
+**Regla del producto**:
+```math
+[\sqrt{x} \cdot \ln(x)]' = \frac{1}{2\sqrt{x}} \cdot \ln(x) + \sqrt{x} \cdot \frac{1}{x}
+```
+**Simplificación**:
+```math
+x^{-\frac{1}{2}} = \frac{1}{x^{\frac{1}{2}}} = \frac{1}{\sqrt{x}}
 ```
 
 ### Reglas/Propiedades aplicadas
@@ -467,14 +515,27 @@ y' = \cos(\sqrt{x} \cdot \ln(x)) \cdot (
 
 - **Regla del producto**: $x \cdot y = x \cdot y' + y \cdot x'$
 
-- **Como derivar logaritmo neperiano**: $\ln'(x) = \frac{1}{x}$
+- **Como derivar logaritmo neperiano**: $ln'(x) = \frac{1}{x}$
 
-- **Como derivar seno**: $\sin'(x) = \cos(x)$
+- **Como derivar seno**: $sen'(x) = cos(x)$
 
 - **Raíz cuadrada es exponente decimal `> 0; < 1`**: 
     $\sqrt{x} = x^{\frac{1}{2}}; \sqrt[y]{x} = x^{\frac{1}{y}}$
 
 - **Logaritmo neperiano de "x", es lo mismo que logaritmo base "euler" de "x"**:
-    $\ln{x} = \log_e{x}$
+    $ln(x) = log_e{x}$
 
 - **Regla del exponente negativo**: $\dfrac{x^{-y}}{1} = \dfrac{1}{x^{y}}$. Eso si, preferiblemente se usa bajo: `x != 0; y != 0`
+
+- **Operar fracciones de forma cruzada:**
+    $\dfrac{x}{y} + \dfrac{z}{w} = \dfrac{xw + zy}{yw}$
+
+- **Dos raíces de "x" que se multiplican es igual a "x":** 
+```math
+\sqrt{x} \cdot \sqrt{x} = 
+{x}^{\frac{1}{2}} \cdot {x}^{\frac{1}{2}} = 
+x^{ (\frac{1}{2} + \frac{1}{2} )} =
+x
+```
+
+- **Factor común**: $f(x) \times g(x) + f(x) \times h(x) = f(x) \times ( g(x) + h(x) )$
