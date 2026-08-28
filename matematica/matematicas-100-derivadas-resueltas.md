@@ -497,7 +497,7 @@ cos(\sqrt{x} \cdot ln(x)) \cdot (
 )
 ```
 
-### Contexto de soluciones
+#### Contexto de soluciones
 **Regla del producto**:
 ```math
 [\sqrt{x} \cdot \ln(x)]' = \frac{1}{2\sqrt{x}} \cdot \ln(x) + \sqrt{x} \cdot \frac{1}{x}
@@ -507,7 +507,7 @@ cos(\sqrt{x} \cdot ln(x)) \cdot (
 x^{-\frac{1}{2}} = \frac{1}{x^{\frac{1}{2}}} = \frac{1}{\sqrt{x}}
 ```
 
-### Reglas/Propiedades aplicadas
+#### Reglas/Propiedades aplicadas
 
 - **Regla de la cadena**: $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
 
@@ -539,3 +539,48 @@ x
 ```
 
 - **Factor común**: $f(x) \times g(x) + f(x) \times h(x) = f(x) \times ( g(x) + h(x) )$
+
+---
+
+### Ejercicio 85
+> Momento: `4:28:25`
+```math
+y = arctg(2x + 3)
+```
+$$\text{Derivar arco tangente de dos "x" mas tres.}$$
+
+Esto es una derivada inmediata chaval.
+```math
+y' = \frac{2}{1 + (2x+3)^2} =
+\frac{2}{1 + (4x^2 + 12x + 9)} =
+\frac{2}{4x^2 + 12x + 10}
+```
+
+$$\text{Sacamos factor común, a un dos. Y cancelamos el dos.}$$
+```math
+= 
+\frac{2}{ (2 \cdot 2 \cdot x^2) + (6 \cdot 2 \cdot x) + (2 \cdot 5)} =
+\frac{2 \cdot 1}{ 2 \cdot (2x^2 + 6x + 5)}
+```
+$$\text{Resultado: } \frac{1}{ 2x^2 + 6x + 5}$$
+
+#### Contexto de soluciones
+Derivada:
+$$(2x + 3)' = 2 \cdot 1 \cdot x^{1-1} + 0 = 2 \cdot x^{0} = 2$$
+
+Simplificar:
+$$(2x + 3)^2 = (2x + 3) \cdot (2x + 3)$$
+$$= [ (2x \cdot 2x) + (2x \cdot 3) ] + [(3 \cdot 2x) + (3 \cdot 3)]$$
+$$= [4x^2 + 6x] + [6x + 3^2] = 4x^2 + 12x + 9$$
+
+#### Reglas/Propiedades aplicadas
+- $arctg'(u) = \dfrac{u'}{1 + u^2}$: La derivada de arco tangente "u" es; "u" sobre uno mas "u" al cuadrado.
+- **Regla de la potencia**: $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
+- **La derivada de una constante es cero**. No confundir con la regla del múltiplo constante.
+- `x != 0; y != 0`:
+```math
+(x + y)^2 = 
+(x + y) \cdot (x + y) =
+[ (x \cdot x) + (x \cdot y) ] + [ (y \cdot x) + (y \cdot y) ] =
+x^2 + xy + yx + y^2
+```
