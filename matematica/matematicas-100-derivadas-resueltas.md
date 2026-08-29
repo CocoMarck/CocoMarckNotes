@@ -1,7 +1,11 @@
 # Matemáticas con MathJax
 [Video de 100 derivadas resueltas](https://www.youtube.com/watch?v=B5oxL1AQpLo)
 
-![image](./cat-delta.svg)
+<img
+    style="display: block; margin-left: auto; margin-right: auto; width: 30%;"
+    src="./cat-delta.svg"
+    alt="image">
+</img>
 
 ### Ejercicio 80
 > Tiempo en video `4:14:11`
@@ -584,3 +588,26 @@ $$= [4x^2 + 6x] + [6x + 3^2] = 4x^2 + 12x + 9$$
 [ (x \cdot x) + (x \cdot y) ] + [ (y \cdot x) + (y \cdot y) ] =
 x^2 + xy + yx + y^2
 ```
+
+---
+### Ejercicio 86
+```math
+y = ( arcsen(x) )^2
+```
+<p style="text-align: center;">Derivar arco seno de "x", elevado al cuadrado.</p>
+
+```math
+y' = 2 \cdot ( arcsen(x) )^{2-1} \cdot \frac{x'}{1 -x^2}
+```
+```math
+\text{Resultado: } 2 \cdot arcsen(x) \cdot \frac{1}{\sqrt{1 -x^2}}
+```
+
+### Contexto de soluciones
+$$x' =  1 \cdot 1 \cdot x^{1-1} = x^{0} = 1$$
+
+#### Reglas/Propiedades aplicadas
+- **Regla de la potencia**: $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
+- **Regla de la cadena**: $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
+- $arcsen'(u) = \dfrac{u'}{\sqrt{1 -u^2}}$: La derivada de arco seno de "u", es; derivada de "u", sobre raíz de uno menos "u" al cuadrado.
+- Cualquier numero elevado a cero, es uno.
