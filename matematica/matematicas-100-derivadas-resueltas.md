@@ -1,11 +1,7 @@
-# Matemáticas con MathJax
+# 100 Derivadas resueltas
 [Video de 100 derivadas resueltas](https://www.youtube.com/watch?v=B5oxL1AQpLo)
 
-<img
-    style="display: block; margin-left: auto; margin-right: auto; width: 30%;"
-    src="./cat-delta.svg"
-    alt="image">
-</img>
+![image](./cat-delta.png){width=30%}
 
 ### Ejercicio 80
 > Tiempo en video `4:14:11`
@@ -611,3 +607,103 @@ $$x' =  1 \cdot 1 \cdot x^{1-1} = x^{0} = 1$$
 - **Regla de la cadena**: $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
 - $arcsen'(u) = \dfrac{u'}{\sqrt{1 -u^2}}$: La derivada de arco seno de "u", es; derivada de "u", sobre raíz de uno menos "u" al cuadrado.
 - Cualquier numero elevado a cero, es uno.
+
+### Ejercicio 87
+```math
+y = \sqrt{ \frac{x-1}{x+1} } = ({ \frac{x-1}{x+1} })^{\frac{1}{2}}
+```
+
+Derivada de raíz de "x" menos uno, sobre "x" mas uno.
+
+```math
+y' = 
+\frac{1}{2} \cdot 
+({ \frac{x-1}{x+1} })^{\frac{1}{2} -1} \cdot
+( \frac{x-1}{x+1} )'
+=
+\frac{1}{ 2 \cdot \sqrt{\frac{x-1}{x+1}} } \cdot 
+\frac{ 2 }{(x+1)^2}
+=
+\frac{ 2 }{
+    2 \cdot \sqrt{\frac{x-1}{x+1}} \cdot (x+1)^2
+}
+```
+```math
+\text{= }
+\frac{ 1 }{
+    \sqrt{\frac{x-1}{x+1}} \cdot (x+1)^2
+}
+=
+\frac{ 1 }{
+    \frac{ 
+        (x-1)^{\frac{1}{2}}
+    }{ 
+        (x+1)^{\frac{1}{2}} 
+    } \cdot \frac{  
+        (x+1)^2 \cdot (x+1)^2
+    }{(x+1)^2}
+}
+ 
+```
+
+#### Contexto de soluciones
+1. Usando la regla de la potencia:
+```math
+\frac{1}{2} \cdot ({ \frac{x-1}{x+1} })^{\frac{1}{2} -1} =
+\frac{1}{2} \cdot \frac{ ({ \frac{x-1}{x+1} })^{\frac{1}{2} -\frac{2}{2}} }{1}
+=
+\frac{1}{2} \cdot \frac{ 
+    ({ \frac{x-1}{x+1} })^{ -\frac{1}{2}} 
+}{1}
+\text{= }
+\frac{1}{2} \cdot 
+\frac{1}{ ({ \frac{x-1}{x+1} })^{ \frac{1}{2}} }
+=
+\frac{1}{ 2 \cdot \sqrt{\frac{x-1}{x+1}} }
+```
+
+2. Usando la regla del cociente:
+```math
+( \frac{x-1}{x+1} )' = 
+\frac{ 
+    (x-1)' \cdot (x+1) -(x-1) \cdot (x+1)' 
+}{(x+1)^2}
+=
+\frac{ 
+    1 \cdot (x+1) [-1 \cdot (x-1)] \cdot 1
+}{(x+1)^2}
+```
+```math
+\text{= }
+\frac{ x+1 -x+1 }{(x+1)^2} =
+\frac{ x-x+1+1 }{(x+1)^2} =
+\frac{ 2 }{(x+1)^2}
+```
+
+3. Usando la regla de la potencia:
+```math
+(x-1)' = 1 \cdot 1 \cdot x^{1-1} -0 = x^{0} = 1
+```
+```math
+(x+1)' = 1 \cdot 1 \cdot x^{1-1} +0 = x^{0} = 1
+```
+
+4. Multiplicando por uno a conveniencia:
+```math
+(x+1)^2 = (x+1)^2 \cdot \frac{(x+1)^2}{(x+1)^2} =
+ \frac{(x+1)^2 \cdot (x+1)^2}{(x+1)^2}
+```
+
+#### Reglas aplicadas
+- **Regla la derivada de un cociente**: La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
+```math
+\frac{d}{dx} [\frac{f(x)}{g(x)}] = 
+\frac{ 
+    f'(x) \cdot g(x) -f(x) \cdot g'(x) 
+}{ [g(x)]^2 }
+```
+- **Regla de la potencia**: $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
+
+- **Regla de la cadena**: $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
+
+- **Esto es verdadero**: $\sqrt{x} = \sqrt{x} \cdot \frac{\sqrt{x}}{\sqrt{x}}$. Cualquier numero multiplicado por uno, es lo mismo.
