@@ -634,16 +634,21 @@ y' =
     \sqrt{\frac{x-1}{x+1}} \cdot (x+1)^2
 }
 =
-\frac{ 1 }{
-    \frac{ 
-        (x-1)^{\frac{1}{2}}
-    }{ 
-        (x+1)^{\frac{1}{2}} 
-    } \cdot \frac{  
-        (x+1)^2 \cdot (x+1)^2
-    }{(x+1)^2}
-}
- 
+\frac{1}{\frac{ (x-1)^{\frac{1}{2}} }{ (x+1)^{\frac{1}{2}} }} \cdot
+\frac{ 1 }{(x+1)^2}
+=
+\frac{ (x+1)^{\frac{1}{2}} }{ (x-1)^{\frac{1}{2}} } \cdot
+\frac{ 1 }{(x+1)^2}
+```
+```math
+\text{= }
+\frac{ (x+1)^{\frac{1}{2}} }{ (x-1)^{\frac{1}{2}} \cdot (x+1)^2} =
+\frac{ 1 \cdot (x+1)^{\frac{1}{2}} }{ (x-1)^{\frac{1}{2}} \cdot (x+1)^2} =
+```
+```math
+\text{= }
+\frac{ 1 }{ (x-1)^{\frac{1}{2}}} \cdot \frac{(x+1)^{\frac{1}{2}}}{(x+1)^2} =
+\frac{ 1 }{ (x-1)^{\frac{1}{2}}} \cdot (x+1)^{-\frac{3}{2}}
 ```
 
 #### Contexto de soluciones
@@ -694,6 +699,34 @@ y' =
  \frac{(x+1)^2 \cdot (x+1)^2}{(x+1)^2}
 ```
 
+5. Simplificando:
+```math
+\frac{ 1 }{
+    \frac{ (x-1)^{\frac{1}{2}}}{ (x+1)^{\frac{1}{2}} }
+}
+=
+\frac{
+    \frac{ (x+1)^{\frac{1}{2}} }{ (x-1)^{\frac{1}{2}} }
+}{1}
+=    
+\frac{ (x+1)^{\frac{1}{2}} }{ (x-1)^{\frac{1}{2}} }
+```
+
+6. Simplificando:
+```math
+\frac{ (x+1)^{\frac{1}{2}} }{ (x+1)^2} =
+\frac{ (x+1)^{\frac{1}{2}} }{ 1 } \cdot \frac{1}{(x+1)^2} =
+\frac{ (x+1)^{\frac{1}{2}} }{ 1 } \cdot \frac{(x+1)^{-2}}{1} =
+(x+1)^{\frac{1}{2} -2} =
+```
+```math
+\text{= }
+(x+1)^{\frac{1}{2} -\frac{2}{1}} =
+(x+1)^{\frac{1}{2} -\frac{4}{2}} =
+(x+1)^{-\frac{3}{2}}
+```
+
+
 #### Reglas aplicadas
 - **Regla la derivada de un cociente**: La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
 ```math
@@ -707,3 +740,14 @@ y' =
 - **Regla de la cadena**: $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
 
 - **Esto es verdadero**: $\sqrt{x} = \sqrt{x} \cdot \frac{\sqrt{x}}{\sqrt{x}}$. Cualquier numero multiplicado por uno, es lo mismo.
+
+- **Igualdad**:
+```math
+\frac{ a^{\frac{1}{2}} }{a^2} = a^{ \frac{1}{2} -2 } =  a^{-\frac{3}{2}}
+```
+
+- **Igualdad**:
+```math
+\frac{1}{\frac{x}{y}} = \frac{\frac{y}{x}}{1} = \frac{y}{x} 
+\quad \text{Mientras: } x, y \neq 0
+```
