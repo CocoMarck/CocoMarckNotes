@@ -609,6 +609,7 @@ $$x' =  1 \cdot 1 \cdot x^{1-1} = x^{0} = 1$$
 - Cualquier numero elevado a cero, es uno.
 
 ### Ejercicio 87
+> `4:33:45`
 ```math
 y = \sqrt{ \frac{x-1}{x+1} } = ({ \frac{x-1}{x+1} })^{\frac{1}{2}}
 ```
@@ -643,12 +644,16 @@ y' =
 ```math
 \text{= }
 \frac{ (x+1)^{\frac{1}{2}} }{ (x-1)^{\frac{1}{2}} \cdot (x+1)^2} =
-\frac{ 1 \cdot (x+1)^{\frac{1}{2}} }{ (x-1)^{\frac{1}{2}} \cdot (x+1)^2} =
+\frac{ 1 \cdot (x+1)^{\frac{1}{2}} }{ (x-1)^{\frac{1}{2}} \cdot (x+1)^2}
 ```
 ```math
 \text{= }
 \frac{ 1 }{ (x-1)^{\frac{1}{2}}} \cdot \frac{(x+1)^{\frac{1}{2}}}{(x+1)^2} =
-\frac{ 1 }{ (x-1)^{\frac{1}{2}}} \cdot (x+1)^{-\frac{3}{2}}
+\frac{ 1 }{ (x-1)^{\frac{1}{2}}} \cdot (x+1)^{-\frac{3}{2}} =
+\frac{ 1 }{ (x-1)^{\frac{1}{2}}} \cdot \frac{1}{(x+1)^{\frac{3}{2}}}
+```
+```math
+\frac{ 1 }{ \sqrt{(x+1)^3} \cdot \sqrt{x-1} }
 ```
 
 #### Contexto de soluciones
@@ -751,3 +756,20 @@ y' =
 \frac{1}{\frac{x}{y}} = \frac{\frac{y}{x}}{1} = \frac{y}{x} 
 \quad \text{Mientras: } x, y \neq 0
 ```
+
+- **Igualdad:** $\dfrac{x^{-y}}{1} = \dfrac{1}{x^{y}} \quad x > 0$
+
+- **Igualdad:** $x^{\frac{3}{2}} = \sqrt{x^3} \quad x \geq 0$ 
+
+- **Igualdad:** 
+$$
+\sqrt{x^3} = 
+x^{\frac{3}{2}} =
+x^{\frac{1}{2} + \frac{2}{2}} =
+x^{\frac{1}{2}} \cdot x^{\frac{2}{2}} =
+x \cdot \sqrt{x} 
+
+\quad \text{Mientras: } x \geq 0
+$$
+
+- En un producto, no importa el orden de los factores, el valor es el mismo. Propiedad conmutativa de la multiplicación.
