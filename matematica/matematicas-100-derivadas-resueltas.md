@@ -608,6 +608,8 @@ $$x' =  1 \cdot 1 \cdot x^{1-1} = x^{0} = 1$$
 - $arcsen'(u) = \dfrac{u'}{\sqrt{1 -u^2}}$: La derivada de arco seno de "u", es; derivada de "u", sobre raíz de uno menos "u" al cuadrado.
 - Cualquier numero elevado a cero, es uno.
 
+---
+
 ### Ejercicio 87
 > `4:33:45`
 ```math
@@ -652,9 +654,16 @@ y' =
 \frac{ 1 }{ (x-1)^{\frac{1}{2}}} \cdot (x+1)^{-\frac{3}{2}} =
 \frac{ 1 }{ (x-1)^{\frac{1}{2}}} \cdot \frac{1}{(x+1)^{\frac{3}{2}}}
 ```
+
+Resultado:
 ```math
-\frac{ 1 }{ \sqrt{(x+1)^3} \cdot \sqrt{x-1} }
+\text{= }
+\frac{ 1 }{ (x+1) \cdot \sqrt{x+1} \cdot \sqrt{x-1} } = 
+\frac{ 1 }{ (x+1) \cdot \sqrt{(x+1) \cdot (x-1)} } =
+\frac{ 1 }{ (x+1) \cdot \sqrt{x^2 -1} }
 ```
+
+La derivada de $y$ es; uno sobre "x" mas uno, por raíz cuadrada de "x" al cuadrado menos uno.
 
 #### Contexto de soluciones
 1. Usando la regla de la potencia:
@@ -731,6 +740,22 @@ y' =
 (x+1)^{-\frac{3}{2}}
 ```
 
+7. Simplificando:
+```math
+(x+1)^{\frac{3}{2}} =
+(x+1)^{\frac{1}{2} + \frac{2}{2}} =
+(x+1)^{\frac{1}{2}} \cdot (x+1)^{\frac{2}{2}} =
+(x+1) \cdot \sqrt{(x+1)} 
+```
+
+8. Simplificando:
+```math
+\sqrt{x+1} \cdot \sqrt{x-1} = 
+(x+1)^{\frac{1}{2}} \cdot (x-1)^{\frac{1}{2}} =
+[ (x-1) \cdot (x+1) ]^{\frac{1}{2}} = 
+\sqrt{(x-1) \cdot (x+1)}
+```
+
 
 #### Reglas aplicadas
 - **Regla la derivada de un cociente**: La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
@@ -762,7 +787,7 @@ y' =
 - **Igualdad:** $x^{\frac{3}{2}} = \sqrt{x^3} \quad x \geq 0$ 
 
 - **Igualdad:** 
-$$
+```math
 \sqrt{x^3} = 
 x^{\frac{3}{2}} =
 x^{\frac{1}{2} + \frac{2}{2}} =
@@ -770,6 +795,19 @@ x^{\frac{1}{2}} \cdot x^{\frac{2}{2}} =
 x \cdot \sqrt{x} 
 
 \quad \text{Mientras: } x \geq 0
-$$
+```
+
+- **Igualdad:**: 
+```math
+(x+1) \cdot (x-1) = 
+(x \cdot x + x \cdot -1) + (1 \cdot x + 1 \cdot -1) = 
+x^2 -x + x -1 = 
+x^2 -1
+```
+
+- **Igualdad**:
+```math
+x^n \cdot y^n = (x \cdot y)^n
+```
 
 - En un producto, no importa el orden de los factores, el valor es el mismo. Propiedad conmutativa de la multiplicación.
