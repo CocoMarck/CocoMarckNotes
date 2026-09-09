@@ -1,7 +1,7 @@
 # 100 Derivadas resueltas
 [Video de 100 derivadas resueltas](https://www.youtube.com/watch?v=B5oxL1AQpLo)
 
-![image](./cat-delta.png){width=30%}
+![image](./cat-delta.png)
 
 ### Ejercicio 80
 > Tiempo en video `4:14:11`
@@ -811,3 +811,53 @@ x^n \cdot y^n = (x \cdot y)^n
 ```
 
 - En un producto, no importa el orden de los factores, el valor es el mismo. Propiedad conmutativa de la multiplicación.
+
+---
+
+### Ejercicio 88
+> 4:36:38
+```math
+y = \frac{tg(2x)}{1 - cotg(2x)}
+```
+Tangente de dos "x", sobre uno menos cotangente de dos "x".
+
+```math
+y' = \frac{ tg'(2x) \cdot [1 -cotg(2x)] - tg(2x) \cdot [1 -cotg(2x)]' }{ [1 -cotg(2x)]^2 }
+```
+```math
+\text{= }
+\frac{ 
+    [sec^2(2x) \cdot 2] \cdot [1 -cotg(2x)] - tg(2x) \cdot [csc^2(2x) \cdot 2] }{ 
+    [1 -cotg(2x)]^2}
+```
+
+Derivamos con la regla del cociente, la regla de la cadena, la regla de la potencia, y la regla del múltiplo constante.
+
+
+#### Contexto de soluciones
+```math
+tg'(2x) = 
+sec^2(2x) \cdot (2 \cdot [1 \cdot 1 \cdot x^{1-1}]) =
+sec^2(2x) \cdot 2
+```
+```math
+1 -cotg'(2x) =
+1 -1 \cdot cotg'(2x) = 0 -1 \cdot -csc^2(2x) \cdot (2 \cdot [1 \cdot 1 \cdot x^{1-1}]) =
+csc^2(2x) \cdot 2
+```
+
+#### Reglas aplicadas
+- **Regla la derivada de un cociente**: La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
+```math
+\frac{d}{dx} [\frac{f(x)}{g(x)}] = 
+\frac{ 
+    f'(x) \cdot g(x) -f(x) \cdot g'(x) 
+}{ [g(x)]^2 }
+```
+- **Derivada de tangente de "x"**: $tan'(x) = sec^2(x)$
+
+- **Derivada de cotangente de "x"**: $cotg'(x) = -csc^2(x) = -\dfrac{1}{sin^2(x)}$
+
+- **Regla de derivación del múltiplo constante**: $c \cdot f(x) = c \cdot f'(x)$
+
+- La derivada de una constante, es cero.
