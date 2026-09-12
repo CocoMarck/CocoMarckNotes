@@ -829,6 +829,17 @@ y' = \frac{ tg'(2x) \cdot [1 -cotg(2x)] - tg(2x) \cdot [1 -cotg(2x)]' }{ [1 -cot
 \frac{ 
     [sec^2(2x) \cdot 2] \cdot [1 -cotg(2x)] - tg(2x) \cdot [csc^2(2x) \cdot 2] }{ 
     [1 -cotg(2x)]^2}
+=
+\frac{ 
+    2 \cdot [ ( sec^2(2x) \cdot [1 -cotg(2x)] ) - (tg(2x) \cdot csc^2(2x)) ] }{
+    [1 -cotg(2x)]^2}
+```
+```math
+\text{= }
+\frac{2}{1} \cdot
+\frac{ 
+    ( sec^2(2x) \cdot [1 -cotg(2x)] ) - (tg(2x) \cdot csc^2(2x)) }{
+    [1 -cotg(2x)]^2}
 ```
 
 Derivamos con la regla del cociente, la regla de la cadena, la regla de la potencia, y la regla del múltiplo constante.
@@ -846,6 +857,13 @@ sec^2(2x) \cdot 2
 csc^2(2x) \cdot 2
 ```
 
+Sacamos factor común:
+```math
+( sec^2(2x) \cdot 2 \cdot [1 -cotg(2x)] ) - (tg(2x) \cdot csc^2(2x) \cdot 2)
+=
+2 \cdot [ ( sec^2(2x) \cdot [1 -cotg(2x)] ) - (tg(2x) \cdot csc^2(2x)) ]
+```
+
 #### Reglas aplicadas
 - **Regla la derivada de un cociente**: La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
 ```math
@@ -854,10 +872,12 @@ csc^2(2x) \cdot 2
     f'(x) \cdot g(x) -f(x) \cdot g'(x) 
 }{ [g(x)]^2 }
 ```
-- **Derivada de tangente de "x"**: $tan'(x) = sec^2(x)$
+- **Derivada de tangente de "x"**: $tan'(x) = sec^2(x) \cdot x'$
 
-- **Derivada de cotangente de "x"**: $cotg'(x) = -csc^2(x) = -\dfrac{1}{sin^2(x)}$
+- **Derivada de cotangente de "x"**: $cotg'(u) = -csc^2(x) \cdot u' = -\dfrac{1}{sin^2(x)} \cdot u'$
 
 - **Regla de derivación del múltiplo constante**: $c \cdot f(x) = c \cdot f'(x)$
 
 - La derivada de una constante, es cero.
+
+- **Factor común**: $f(x) \times g(x) - f(x) \times h(x) = f(x) \times ( g(x) - h(x) )$
