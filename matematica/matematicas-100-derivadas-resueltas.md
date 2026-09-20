@@ -864,6 +864,13 @@ Sacamos factor común:
 2 \cdot [ ( sec^2(2x) \cdot [1 -cotg(2x)] ) - (tg(2x) \cdot csc^2(2x)) ]
 ```
 
+Simplificamos:
+```math
+sec^2(2x) \cdot [1 -cotg(2x)) =
+(sec^2(2x) \cdot 1) + (sec^2(2x) \cdot -cotg(2x)) =
+sec^2(2x) + [sec^2(2x) \cdot -cotg(2x)]
+```
+
 #### Reglas aplicadas
 - **Regla la derivada de un cociente**: La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
 ```math
