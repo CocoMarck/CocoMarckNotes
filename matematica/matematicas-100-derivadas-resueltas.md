@@ -841,6 +841,21 @@ y' = \frac{ tg'(2x) \cdot [1 -cotg(2x)] - tg(2x) \cdot [1 -cotg(2x)]' }{ [1 -cot
     ( sec^2(2x) \cdot [1 -cotg(2x)] ) - (tg(2x) \cdot csc^2(2x)) }{
     [1 -cotg(2x)]^2}
 ```
+```math
+\text{= }
+2 \cdot
+\frac{ 
+    ( sec^2(2x) -sec^2(2x) \cdot cotg(2x) ) - (tg(2x) \cdot csc^2(2x)) }{
+    [1 -cotg(2x)]^2}
+```
+```math
+\text{= }
+2 \cdot
+\frac{ 
+    ( \frac{1}{cos^2(2x)} -\frac{1}{cos^2(2x)} \cdot \frac{cos(2x)}{sen(2x)} ) 
+    -(\frac{sen(2x)}{cos{2x}} \cdot \frac{1}{sen^2(2x)}) }{
+    [1 -cotg(2x)]^2}
+```
 
 Derivamos con la regla del cociente, la regla de la cadena, la regla de la potencia, y la regla del múltiplo constante.
 
@@ -857,19 +872,31 @@ sec^2(2x) \cdot 2
 csc^2(2x) \cdot 2
 ```
 
-Sacamos factor común:
+1. Sacamos factor común:
 ```math
 ( sec^2(2x) \cdot 2 \cdot [1 -cotg(2x)] ) - (tg(2x) \cdot csc^2(2x) \cdot 2)
 =
 2 \cdot [ ( sec^2(2x) \cdot [1 -cotg(2x)] ) - (tg(2x) \cdot csc^2(2x)) ]
 ```
 
-Simplificamos:
+2. Simplificamos:
 ```math
 sec^2(2x) \cdot [1 -cotg(2x)) =
 (sec^2(2x) \cdot 1) + (sec^2(2x) \cdot -cotg(2x)) =
 sec^2(2x) + [sec^2(2x) \cdot -cotg(2x)]
 ```
+
+3. Distribuir:
+```math
+sec^2(2x) \cdot [1 -cotg(2x)] =
+(sec^2(2x) \cdot 1) + (sec^2(2x) \cdot -cotg(2x))
+```
+```math
+\text{= }
+sec^2(2x) -(sec^2(2x) \cdot cotg(2x)) =
+sec^2(2x) -sec^2(2x) \cdot cotg(2x)
+```
+> Este paso no me fue claro jajaj, pero si entiendo como jala. 
 
 #### Reglas aplicadas
 - **Regla la derivada de un cociente**: La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
@@ -888,3 +915,11 @@ sec^2(2x) + [sec^2(2x) \cdot -cotg(2x)]
 - La derivada de una constante, es cero.
 
 - **Factor común**: $f(x) \times g(x) - f(x) \times h(x) = f(x) \times ( g(x) - h(x) )$
+
+- $sec(x) = \frac{1}{cos(x)}$
+
+- $cotg(x) = \frac{cos(x)}{sen(x)}$
+
+- $tag(x) = \frac{sen(x)}{cos(x)}$
+
+- $csc(x) = \frac{1}{sen(x)}$
