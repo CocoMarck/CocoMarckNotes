@@ -2,6 +2,7 @@
 
 ## ChatGPT
 - [Gato cevoya123](https://chatgpt.com/s/m_6a00b335a8448191b406d5ceadd9d347)
+- [Open Source Skating ChatGPT](https://chatgpt.com/s/m_6ab6fb58667c8191978624e30e4bb8e4)
 
 ---
 ## Google Flow
@@ -18,3 +19,6 @@
 - [Chease 2](https://drive.google.com/file/d/1Skw9fqf0lXukbx1dIgHxTfCqqWzdXgv5/view?usp=drive_link)
 
 - [AI torivio en moto](https://drive.google.com/file/d/1QxBc8jVYNidZ4VHYSCdUyzixAcrflKuA/view?usp=drive_link)
+
+## GLM Image
+- [Open Source Skating GLM](https://pub-0c2b4f1382124bc6b28a6c42fdaf5518.r2.dev/image-generator/b51a071d-2335-41cc-9371-3bbd7abf1b60.png)
