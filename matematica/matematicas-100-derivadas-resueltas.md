@@ -856,6 +856,13 @@ y' = \frac{ tg'(2x) \cdot [1 -cotg(2x)] - tg(2x) \cdot [1 -cotg(2x)]' }{ [1 -cot
     -(\frac{sen(2x)}{cos{2x}} \cdot \frac{1}{sen^2(2x)}) }{
     [1 -cotg(2x)]^2}
 ```
+```math
+\text{= }
+2 \cdot
+\frac{ 
+    \frac{1}{cos^2(2x)} -\frac{2}{cos(2x) \cdot sen(2x)}
+} { [1 -cotg(2x)]^2 }
+```
 
 Derivamos con la regla del cociente, la regla de la cadena, la regla de la potencia, y la regla del múltiplo constante.
 
@@ -898,6 +905,31 @@ sec^2(2x) -sec^2(2x) \cdot cotg(2x)
 ```
 > Este paso no me fue claro jajaj, pero si entiendo como jala. 
 
+4. Simplificar:
+```math
+(
+    \frac{1}{cos^2(2x)} -\frac{1}{cos^2(2x)} \cdot \frac{cos(2x)}{sen(2x)} 
+) -(
+    \frac{sen(2x)}{cos{2x}} \cdot \frac{1}{sen^2(2x)}
+)
+```
+```math
+\text{= }
+(
+    \frac{1}{cos^2(2x)} -\frac{cos(2x) }{cos^2(2x) \cdot sen(2x)}
+) -\frac{sen(2x)}{cos{2x} \cdot sen^2(2x)}
+```
+```math
+\text{= }
+\frac{1}{cos^2(2x)} -\frac{1}{cos(2x) \cdot sen(2x)} -\frac{1}{cos(2x) \cdot sen(2x)}
+=
+\frac{1}{cos^2(2x)} -\frac{2}{cos(2x) \cdot sen(2x)}
+```
+```math
+\text{= }
+\frac{1}{cos^2(2x)} -\frac{2}{\frac{sen(4x)}{2}}
+```
+
 #### Reglas aplicadas
 - **Regla la derivada de un cociente**: La derivada de un cociente tipo $f(x) : g(x)$, es; La “derivada del numerador” por el “denominador”, menos el “numerador”, por el “denominador derivado”. Esto dividido entre; el “denominador al cuadrado”.
 ```math
@@ -923,3 +955,11 @@ sec^2(2x) -sec^2(2x) \cdot cotg(2x)
 - $tag(x) = \frac{sen(x)}{cos(x)}$
 
 - $csc(x) = \frac{1}{sen(x)}$
+
+- $cos(a) \cdot sen(a) = \frac{sen(2a)}{2}$
+
+- Dividir entre una fracción equivale a multiplicar por su **recíproco** (darle la vuelta):
+```math
+\dfrac{x}{\dfrac{y}{z}} = \dfrac{x \cdot z}{y} \quad x, y, z > 0
+```
+
