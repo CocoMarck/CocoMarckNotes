@@ -841,6 +841,9 @@ y' = \frac{ tg'(2x) \cdot [1 -cotg(2x)] - tg(2x) \cdot [1 -cotg(2x)]' }{ [1 -cot
     ( sec^2(2x) \cdot [1 -cotg(2x)] ) - (tg(2x) \cdot csc^2(2x)) }{
     [1 -cotg(2x)]^2}
 ```
+
+Derivamos con la regla del cociente, la regla de la cadena, la regla de la potencia, y la regla del múltiplo constante.
+
 ```math
 \text{= }
 2 \cdot
@@ -860,11 +863,11 @@ y' = \frac{ tg'(2x) \cdot [1 -cotg(2x)] - tg(2x) \cdot [1 -cotg(2x)]' }{ [1 -cot
 \text{= }
 2 \cdot
 \frac{ 
-    \frac{1}{cos^2(2x)} -\frac{2}{cos(2x) \cdot sen(2x)}
+    sec^2(2x) -4cosec(4x)
 } { [1 -cotg(2x)]^2 }
 ```
 
-Derivamos con la regla del cociente, la regla de la cadena, la regla de la potencia, y la regla del múltiplo constante.
+Resultado: La derivada de "y" es dos por secante cuadrada de dos "x", menos cuatro cosecante de cuatro "x", sobre uno menos cotangente de dos "x", elevado a dos.
 
 
 #### Contexto de soluciones
@@ -916,18 +919,30 @@ sec^2(2x) -sec^2(2x) \cdot cotg(2x)
 ```math
 \text{= }
 (
-    \frac{1}{cos^2(2x)} -\frac{cos(2x) }{cos^2(2x) \cdot sen(2x)}
+    sec^2(2x) -\frac{cos(2x) }{cos^2(2x) \cdot sen(2x)}
 ) -\frac{sen(2x)}{cos{2x} \cdot sen^2(2x)}
 ```
 ```math
 \text{= }
-\frac{1}{cos^2(2x)} -\frac{1}{cos(2x) \cdot sen(2x)} -\frac{1}{cos(2x) \cdot sen(2x)}
+sec^2(2x) -\frac{1}{cos(2x) \cdot sen(2x)} -\frac{1}{cos(2x) \cdot sen(2x)}
 =
-\frac{1}{cos^2(2x)} -\frac{2}{cos(2x) \cdot sen(2x)}
+sec^2(2x) -\frac{2}{cos(2x) \cdot sen(2x)}
 ```
 ```math
 \text{= }
-\frac{1}{cos^2(2x)} -\frac{2}{\frac{sen(4x)}{2}}
+sec^2(2x) -\frac{2}{\frac{sen(4x)}{2}}
+=
+sec^2(2x) -\frac{1 \cdot 2}{\frac{sen(4x)}{1} \cdot \frac{1}{2}}
+= 
+sec^2(2x) -\frac{1}{sen(4x) \cdot \frac{1}{2}} \cdot \frac{2}{1}
+```
+```math
+\text{= }
+sec^2(2x) -\frac{1}{sen(4x)} \cdot \frac{2}{\frac{1}{2}}
+=
+sec^2(2x) -cosec(4x) \cdot \frac{4}{1}
+=
+sec^2(2x) -4cosec(4x)
 ```
 
 #### Reglas aplicadas
@@ -963,3 +978,4 @@ sec^2(2x) -sec^2(2x) \cdot cotg(2x)
 \dfrac{x}{\dfrac{y}{z}} = \dfrac{x \cdot z}{y} \quad x, y, z > 0
 ```
 
+- $\frac{1}{sen(a)} = cosec(a)$
