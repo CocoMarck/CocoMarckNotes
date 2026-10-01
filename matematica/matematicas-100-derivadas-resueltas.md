@@ -979,3 +979,40 @@ sec^2(2x) -4cosec(4x)
 ```
 
 - $\frac{1}{sen(a)} = cosec(a)$
+
+---
+### Ejercicio 89
+> `4:45:20`
+```math
+y = 2x^2 \cdot \sqrt{2-x}
+```
+Dos "x" al cuadrado por raíz de dos menos "x".
+
+```math
+y' = 2x^2 \cdot (\sqrt{2-x})' + \sqrt{2-x} \cdot (2x^2)'
+```
+Tenemos un producto de dos funciones, por lo que se usara la regla del producto. La regla de la cadena para la derivada de la raíz de dos menos "x". La regla de la potencia, y del múltiplo constante, para dos "x" elevado a dos.
+
+#### Contexto de operaciones
+1. Operar:
+```math
+\sqrt{2-x}' = 
+[(2-x)^{\frac{1}{2}}]' \cdot (2-x)'
+```
+```math
+\text{= }
+\frac{1}{2} \cdot 1 \cdot (2-x)^{ \frac{1}{2} -1} \cdot 2 =
+\frac{1}{2} \cdot (2-x)^{ -\frac{1}{2} } \cdot 2
+```
+
+2. Operar:
+```math
+(2x^2)' = 2 \cdot 2 \cdot x^{2-1} = 4x
+```
+
+#### Reglas aplicadas
+- **Regla del producto**: $x \cdot y = x \cdot y' + y \cdot x'$
+- **Regla de la potencia**: 
+    $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
+- **Regla de la cadena**:
+    $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
