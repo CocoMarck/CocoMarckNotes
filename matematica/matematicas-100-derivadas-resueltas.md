@@ -986,12 +986,17 @@ sec^2(2x) -4cosec(4x)
 ```math
 y = 2x^2 \cdot \sqrt{2-x}
 ```
-Dos "x" al cuadrado por raíz de dos menos "x".
+Dos "x" al cuadrado por raíz cuadrada de dos menos "x".
 
 ```math
 y' = 2x^2 \cdot (\sqrt{2-x})' + \sqrt{2-x} \cdot (2x^2)'
 ```
 Tenemos un producto de dos funciones, por lo que se usara la regla del producto. La regla de la cadena para la derivada de la raíz de dos menos "x". La regla de la potencia, y del múltiplo constante, para dos "x" elevado a dos.
+
+```math
+\text{= }
+2x^2 \cdot \frac{1}{2 \cdot \sqrt{2-x}} \cdot -1 + \sqrt{2-x} \cdot 4x
+```
 
 #### Contexto de operaciones
 1. Operar:
@@ -1001,8 +1006,13 @@ Tenemos un producto de dos funciones, por lo que se usara la regla del producto.
 ```
 ```math
 \text{= }
-\frac{1}{2} \cdot 1 \cdot (2-x)^{ \frac{1}{2} -1} \cdot 2 =
-\frac{1}{2} \cdot (2-x)^{ -\frac{1}{2} } \cdot 2
+\frac{1}{2} \cdot 1 \cdot (2-x)^{ \frac{1}{2} -1} \cdot 0 -x^{1-1} =
+\frac{1}{2} \cdot (2-x)^{ -\frac{1}{2} } \cdot -x^0
+```
+```math
+\text{= }
+\frac{1}{2} \cdot \frac{1}{(2-x)^{ \frac{1}{2} }} \cdot -1 =
+\frac{1}{2 \cdot \sqrt{2-x}} \cdot -1
 ```
 
 2. Operar:
