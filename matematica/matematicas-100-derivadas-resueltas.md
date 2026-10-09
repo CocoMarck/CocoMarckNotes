@@ -995,7 +995,19 @@ Tenemos un producto de dos funciones, por lo que se usara la regla del producto.
 
 ```math
 \text{= }
-2x^2 \cdot \frac{1}{2 \cdot \sqrt{2-x}} \cdot -1 + \sqrt{2-x} \cdot 4x
+[2x^2 \cdot \frac{1}{2 \cdot \sqrt{2-x}} \cdot -1] + [\sqrt{2-x} \cdot 4x]
+=
+[\frac{2x^2}{2 \cdot \sqrt{2-x}} \cdot -1] + [\frac{\sqrt{2-x}}{1} \cdot 4x]
+```
+```math
+\text{= }
+[\frac{x^2 \cdot -1}{\sqrt{2-x}}] + [\frac{\sqrt{2-x} \cdot \sqrt{2-x}}{1 \cdot \sqrt{2-x}} \cdot 4x]
+=
+\frac{-x^2}{\sqrt{2-x}} + \frac{(2-x) \cdot 4x}{\sqrt{2-x}}
+```
+```math
+\text{= }
+\frac{-x^2 + [(2-x) \cdot 4x]}{\sqrt{2-x}}
 ```
 
 #### Contexto de operaciones
@@ -1026,3 +1038,4 @@ Tenemos un producto de dos funciones, por lo que se usara la regla del producto.
     $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
 - **Regla de la cadena**:
     $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
+- Recuerda el orden de prioridades de operaciones, primero están las multiplicación sobre las sumas.
