@@ -1007,7 +1007,10 @@ Tenemos un producto de dos funciones, por lo que se usara la regla del producto.
 ```
 ```math
 \text{= }
-\frac{-x^2 + [(2-x) \cdot 4x]}{\sqrt{2-x}}
+\frac{-x^2 + [(2-x) \cdot 4x]}{\sqrt{2-x}} =
+\frac{8x -4x^2 -x^2}{\sqrt{2-x}} =
+\frac{8x -5x^2}{\sqrt{2-x}} =
+\frac{x \cdot (8 -5x)}{\sqrt{2-x}}
 ```
 
 #### Contexto de operaciones
@@ -1032,6 +1035,16 @@ Tenemos un producto de dos funciones, por lo que se usara la regla del producto.
 (2x^2)' = 2 \cdot 2 \cdot x^{2-1} = 4x
 ```
 
+3. Simplificar:
+```math
+(2-x) \cdot 4x = (4x \cdot 2) + (4x \cdot -x) = 8x - 4x^2
+```
+
+4. Sacar factor común:
+```math
+8x -5x^2 = (8 \cdot x) -(5 \cdot (x \cdot x)) = x \cdot (8 -5x)
+```
+
 #### Reglas aplicadas
 - **Regla del producto**: $x \cdot y = x \cdot y' + y \cdot x'$
 - **Regla de la potencia**: 
@@ -1039,3 +1052,4 @@ Tenemos un producto de dos funciones, por lo que se usara la regla del producto.
 - **Regla de la cadena**:
     $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
 - Recuerda el orden de prioridades de operaciones, primero están las multiplicación sobre las sumas.
+- **Factor común**: $f(x) \times g(x) + f(x) \times h(x) = f(x) \times ( g(x) + h(x) )$
