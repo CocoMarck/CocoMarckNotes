@@ -1009,9 +1009,13 @@ Tenemos un producto de dos funciones, por lo que se usara la regla del producto.
 \text{= }
 \frac{-x^2 + [(2-x) \cdot 4x]}{\sqrt{2-x}} =
 \frac{8x -4x^2 -x^2}{\sqrt{2-x}} =
-\frac{8x -5x^2}{\sqrt{2-x}} =
+\frac{8x -5x^2}{\sqrt{2-x}}
+```
+```math
+\text{= }
 \frac{x \cdot (8 -5x)}{\sqrt{2-x}}
 ```
+Resultado: "x" por ocho menos cinco "x", sobre raíz cuadrada de dos menos "x".
 
 #### Contexto de operaciones
 1. Operar:
@@ -1053,3 +1057,30 @@ Tenemos un producto de dos funciones, por lo que se usara la regla del producto.
     $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
 - Recuerda el orden de prioridades de operaciones, primero están las multiplicación sobre las sumas.
 - **Factor común**: $f(x) \times g(x) + f(x) \times h(x) = f(x) \times ( g(x) + h(x) )$
+
+---
+
+### Ejericio 90
+```math
+y = arccos(x^2)
+```
+Derivar arco coseno de "x" al cuadrado.
+
+```math
+y = \frac{ (-x^2)' }{\sqrt{1 -[ (x^2)^2 ] }} =
+\frac{ 2x }{\sqrt{1 -x^4 }}
+```
+
+#### Contexto de soluciones
+```math
+(x^2)' = 2 \cdot x^{2-1} = 2x
+```
+
+```math
+-[ (x^2)^2 ] = -[ x^{2+2} ] = -x^4
+```
+
+#### Reglas aplicadas
+Tenemos que recordar que si arco coseno de "u", entonces la derivada sera igual, a menos derivada de "u", dividido entre raíz cuadrada de uno menos "u" al cuadrado.
+- $arccos(u)' = \dfrac{-u'}{\sqrt{1 -u^2}}$
+- Regla de derivación de la potencia.
