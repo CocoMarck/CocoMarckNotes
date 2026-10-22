@@ -1068,12 +1068,14 @@ Derivar arco coseno de "x" al cuadrado.
 
 ```math
 y = \frac{ (-x^2)' }{\sqrt{1 -[ (x^2)^2 ] }} =
-\frac{ 2x }{\sqrt{1 -x^4 }}
+\frac{ -2x }{\sqrt{1 -x^4 }}
 ```
+
+Listo se a terminado el ejercicio, un respirito jejej.
 
 #### Contexto de soluciones
 ```math
-(x^2)' = 2 \cdot x^{2-1} = 2x
+(-x^2)' = 2 \cdot -x^{2-1} = -2x
 ```
 
 ```math
@@ -1084,3 +1086,49 @@ y = \frac{ (-x^2)' }{\sqrt{1 -[ (x^2)^2 ] }} =
 Tenemos que recordar que si arco coseno de "u", entonces la derivada sera igual, a menos derivada de "u", dividido entre raíz cuadrada de uno menos "u" al cuadrado.
 - $arccos(u)' = \dfrac{-u'}{\sqrt{1 -u^2}}$
 - Regla de derivación de la potencia.
+
+---
+### Ejercicio 91
+```math
+y = e^x \cdot (1 -x^2)
+```
+
+```math
+y' = [(e^x) \cdot (1 -x^2)'] + [(e^x)' \cdot (1 -x^2)] =
+[ e^x \cdot -2x ] + [e^x \cdot (1 -x^2)]
+```
+```math
+\text{= }
+e^x \cdot (1 -x^2 -2x)
+```
+Resultado: La derivada de "y" es euler elevado a "x", por; uno menos "x" al cuadrado, menos dos "x".
+
+### Contexto de soluciones
+1. Derivamos:
+```math
+(1 -x^2)' = 0 + (2 \cdot -x^{2-1}) = -2x
+```
+2. Derivamos:
+```math
+(e^x)' = x' \cdot e^x \cdot ln(x) = 1 \cdot e^x \cdot 1 = e^x
+```
+3. Derivamos:
+```math
+x' = 1 \cdot x^{1-1} = x^{0} = 1
+```
+4. Sacamos factor común:
+```math
+[ e^x \cdot -2x ] + [e^x \cdot (1 -x^2)] =
+e^x \cdot [-2x + (1 -x^2)]
+```
+
+#### Reglas aplicadas
+- **Regla del producto**: $(x \cdot y)' = x \cdot y' + y \cdot x'$.
+- **Derivada de la función exponencial de base "e"**: $(e^w)' = w' \cdot e^w \cdot ln(e)$.
+- **Logaritmo neperiano de euler es uno**: $ln(e) = 1$
+- **Factor común**: $f(x) \times g(x) + f(x) \times h(x) = f(x) \times ( g(x) + h(x) )$
+
+
+---
+
+## Ejercicio 92
