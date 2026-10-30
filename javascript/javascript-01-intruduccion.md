@@ -62,3 +62,5 @@ Ejemplo:
 ```javascript
 document.getElementById("demo").style.display = "block";
 ```
+
+> JavaScript y Java son dos lenguajes completamente diferentes, tanto en concepto como en diseño. JavaScript fue inventado por BrendanEich en 1995 y se convirtió en un estándar de ECMA, en 1997. `ECMA-262`, es el nombre oficial del estándar. ECMAScript es el nombre oficial del lenguaje.
