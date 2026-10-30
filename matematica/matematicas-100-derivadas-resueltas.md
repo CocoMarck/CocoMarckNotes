@@ -1103,7 +1103,7 @@ e^x \cdot (1 -x^2 -2x)
 ```
 Resultado: La derivada de "y" es euler elevado a "x", por; uno menos "x" al cuadrado, menos dos "x".
 
-### Contexto de soluciones
+#### Contexto de soluciones
 1. Derivamos:
 ```math
 (1 -x^2)' = 0 + (2 \cdot -x^{2-1}) = -2x
@@ -1132,3 +1132,24 @@ e^x \cdot [-2x + (1 -x^2)]
 ---
 
 ## Ejercicio 92
+```math
+y = ln(\frac{e^x}{1 + e^x}) =
+ln(e^x) - ln(1 + e^x)
+```
+
+Esto tal cual como esta, es muy bonito, porque ¿sabéis que?, hay una propiedad que nos dice que: neperiano de "a" partido  de "b", se puede escribir como neperiano de "a" menos neperiano de "b'.
+
+#### Contexto de soluciones
+```math
+ln(e^x) = e \cdot ln(e)
+```
+
+#### Reglas aplicadas
+- $ln(\dfrac{a}{b}) = ln(a) -ln(b)$
+- $log_e(e) = ln(e) = 1$
+- Un logaritmo en base euler, es lo mismo que un logaritmo neperiano.
+    - $log_e(x) = ln(x)$.
+- Recuerda la **propiedad de la potencia**. Esta regla dice que el exponente del argumento de un logaritmo puede "bajar" a multiplicar el logaritmo completo.
+    - $log_b(M^k) = k \cdot log_b(M)$
+- Recuerda la **propiedad fundamental; el logaritmo de un producto es igual a la sumo de los logaritmos de cada factor**.
+    - $log(e^3) = log(e \cdot e \cdot e) = log(e) + log(e) + log(e)$
