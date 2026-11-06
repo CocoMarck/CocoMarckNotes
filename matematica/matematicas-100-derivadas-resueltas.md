@@ -1134,7 +1134,8 @@ e^x \cdot [-2x + (1 -x^2)]
 ## Ejercicio 92
 ```math
 y = ln(\frac{e^x}{1 + e^x}) =
-ln(e^x) - ln(1 + e^x)
+ln(e^x) - ln(1 + e^x) =
+[ x \cdot ln(e) ] - ln(1 + e^x)
 ```
 
 Esto tal cual como esta, es muy bonito, porque ¿sabéis que?, hay una propiedad que nos dice que: neperiano de "a" partido  de "b", se puede escribir como neperiano de "a" menos neperiano de "b'.
