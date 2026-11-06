@@ -11,3 +11,11 @@ Los switches rojos, se ensucian y de una dejan de jalar bien. Los limpio con alc
 
 ### Switches a limpiar:
 - `u`
+- `1`
+- `o`
+- `->`
+- `-`
+- `<-`
+- `p`
+- `v`
+- `end`

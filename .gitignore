@@ -1,4 +1,5 @@
 *.pdf
 *.html
-ai/*.png
 .vscode/
+compras/*.png
+ai/*.png
