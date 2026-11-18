@@ -1,5 +1,6 @@
 # 100 Derivadas resueltas
-[Video de 100 derivadas resueltas](https://www.youtube.com/watch?v=B5oxL1AQpLo)
+- [Video de 100 derivadas resueltas](https://www.youtube.com/watch?v=B5oxL1AQpLo)
+- [10 derivadas con el número $e$ de euler](https://www.youtube.com/watch?v=kLOkAFfeg-g)
 
 ![image](./cat-delta.png)
 
@@ -1135,14 +1136,39 @@ e^x \cdot [-2x + (1 -x^2)]
 ```math
 y = ln(\frac{e^x}{1 + e^x}) =
 ln(e^x) - ln(1 + e^x) =
-[ x \cdot ln(e) ] - ln(1 + e^x)
+[ x \cdot ln(e) ] - ln(1 + e^x) =
+x  -ln(1 + e^x)
 ```
 
 Esto tal cual como esta, es muy bonito, porque ¿sabéis que?, hay una propiedad que nos dice que: neperiano de "a" partido  de "b", se puede escribir como neperiano de "a" menos neperiano de "b'.
 
+```math
+y' = 1 \cdot [ -\frac{1}{1 + e^x} \cdot e^x ] =
+\frac{1 + e^x}{1 + e^x} \cdot [-\frac{e^x}{1 + e^x}] =
+\frac{ (1 + e^x) -e^x }{ 1 + e^x } = 
+\frac{1}{1 + e^x}
+```
+
+Listo esta seria la solución
+
 #### Contexto de soluciones
 ```math
-ln(e^x) = e \cdot ln(e)
+ln(e^x) = x \cdot ln(e) = x \cdot 1
+```
+
+```math
+x' = 1 \cdot 1 \cdot x^{1-1} = x^0 = 1
+```
+
+```math
+[-ln(1 + e^x)]' = 
+-\frac{1}{1 + e^x} \cdot (1 + e^x)' =
+-\frac{1}{1 + e^x} \cdot e^x = 
+-\frac{e^x}{1 + e^x}
+```
+
+```math
+(1 + e^x)' = 0 + e^x = e^x
 ```
 
 #### Reglas aplicadas
@@ -1154,3 +1180,11 @@ ln(e^x) = e \cdot ln(e)
     - $log_b(M^k) = k \cdot log_b(M)$
 - Recuerda la **propiedad fundamental; el logaritmo de un producto es igual a la sumo de los logaritmos de cada factor**.
     - $log(e^3) = log(e \cdot e \cdot e) = log(e) + log(e) + log(e)$
+
+- **La derivada de neperiano de “x”, es uno sobre “x"**: 
+    $ln(x) = \dfrac{1}{x}$
+
+- **Regla de la cadena**:
+    $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
+
+- $(e^x)' = e^x$: Es la una función que hace esta cosa tan impresionante. La derivas y ni se inmuta. derivada de euler elevada a "x", es igual a euler elevada a "x".
