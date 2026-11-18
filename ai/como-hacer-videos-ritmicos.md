@@ -65,3 +65,5 @@ Ejemplo, video a 120 BPM a video 140 BPM:
 19. No hace falta que hagas música, solo haz el video: Androide boxeador golpeando un costal pesado en un gimnasio subterráneo. Cada golpe, cada respiración mecánica y cada rebote del costal coincide con un pulso de 60 BPM; el polvo y el vapor salen del impacto. Cámara en contrapicado y primeros planos de los puños. Compás 4/4.
 
 20. No hace falta que hagas música, solo haz el video: Androide cerrajero abriendo una bóveda en un banco abandonado. Cada giro de la rueda, cada clic del mecanismo y cada chispa de la herramienta cae en un pulso de 60 BPM; la cámara se acerca lentamente a la puerta. Compás 4/4.
+
+21. Video cuya temática sea "Batalla entre personajes de videojuegos". Los tipos de videojuegos serán shooter, fighter games, de carreras, y juegos de mundo abierto. Sera una batalla. Da énfasis a escenas de pelea, ya sea a golpes o a disparos. No agregues texto ni hud de juego, solo muestra la batalla en primer plano, sin tener a ningún personaje como protagonista. Peleas sincronizadas al ritmo de 60 BPM, compás 4/4.
