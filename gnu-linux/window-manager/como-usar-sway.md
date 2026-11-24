@@ -22,11 +22,11 @@ Te recomiendo instalar estas aplicaciones
 Estos son los que estan en root.
 1.  `/etc/sway/config`
 
-Estos son los locales, los tendras que crear.
+Estos son los locales, los tendrás que crear.
 1.  `~/.config/sway/config`
 
 ## Creación de archivos
-Se crearan carpetas y archivos basados en las rutas anteriormente mencionadas. Se daran permisos de lectura y escritura.
+Se crearan carpetas y archivos basados en las rutas anteriormente mencionadas. Se darán permisos de lectura y escritura.
 ```bash
 mkdir -p ~/.config/sway/config
 
@@ -46,7 +46,7 @@ nano ~/.config/sway/config
 ### Variables
 Veremos una sección que contendra `### Variables`, aca podemos agregar algunas variables, pueden ser teclas o programas. Recomiendo poner programas, con su `code-name`, se establecen con `set`, segido del uno `$` y el nombre da la variable, y su valor.
 
-Recomiendo no cambiar las teclas por defecto. Capas nomas las aplicaciones como `$term`, incluso recomiendo crear variables adicionales, solo crealas si vas usarlas mas de una vez.
+Recomiendo no cambiar las teclas por defecto. Capaz nomas las aplicaciones como `$term`, incluso recomiendo crear variables adicionales, solo créalas si vas usarlas mas de una vez.
 
 ```bash
 set $term konsole
@@ -74,7 +74,7 @@ Aca se mencionaran las teclas por defecto. Estas combinaciones de teclas se ven 
 Por defecto las variables `left, right, up, down`, son equivalentes a estas teclas:
 `h, l, k, j`.
 
-Tambien se puede con las flechas direccionales correspondientas a la dirección mencionada.
+Tambien se puede con las flechas direccionales correspondientes a la dirección mencionada.
 
 Cambiar enfoque de ventana:
 - Enfocar ventana izquierda: `Win + h`
@@ -179,3 +179,38 @@ bindsym $mod+Ctrl+/ konsole -e "bash -c 'cat ~/.config/sway/config; read'"
 ```
 
 En mi caso yo uso la terminal konsole, esto abre la terminal y lee y muestra el archivo `~/.config/sway/config`, que es el que indica la config de sway.
+
+#### Ejemplo configuración de mouse
+```
+input "type:mouse" accel_profile "flat"
+input "type:mouse" pointer_accel 1
+input "type:pointer" accel_profile "flat"
+input "type:pointer" pointer_accel 1
+```
+
+#### Configuración de pantalla
+```
+output HDMI-A-1 resolution 1920x1080 position 1920,0 scale 1.0
+```
+
+#### Ejemplo configuración de teclado
+```
+input type:keyboard { 
+    xkb_layout us 
+    xkb_variant altgr-intl
+}
+```
+
+#### Cambio de aplicaciones por defecto y apps default que abren archivos
+Esto se hace en `~/.config/mimeapps.list`.
+
+```
+[Added Associations]
+application/schema+json=com.visualstudio.CodeOSS.desktop;org.kde.kate.desktop;org.kde.
+
+[Default Applications]
+application/schema+json=com.visualstudio.CodeOSS.desktop;
+
+[Removed Associations]
+application/x-dosexec=wine.desktop;wine.desktop;
+```

@@ -1188,3 +1188,39 @@ x' = 1 \cdot 1 \cdot x^{1-1} = x^0 = 1
     $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
 
 - $(e^x)' = e^x$: Es la una función que hace esta cosa tan impresionante. La derivas y ni se inmuta. derivada de euler elevada a "x", es igual a euler elevada a "x".
+
+---
+## Ejercicio 93
+```math
+y = \sqrt{sen(x)} = (sen(x))^{\frac{1}{2}}
+```
+
+```math
+y' = ((sen(x))^{\frac{1}{2}})' = 
+\frac{1}{2} \cdot (sen(x))^{ \frac{1}{2} -1} \cdot (sen(x))' =
+```
+```math
+\text{= }
+\frac{1}{2} \cdot \frac{(sen(x))^{ -\frac{1}{2} }}{1} \cdot cos(x) =
+\frac{1}{2 \cdot (sen(x))^{\frac{1}{2}}} \cdot cos(x) =
+```
+```math
+\frac{cos(x)}{2 \cdot (sen(x))^{\frac{1}{2}}}
+```
+**Listo este es el resultado. Coseno de "x" sobre dos, por raíz cuadrada de "x".**
+
+
+
+#### Reglas aplicadas
+- La regla de la cadena.
+- La regla de la potencia.
+- Recuerda que raíz cuadrada de "x", es lo mismo que "x" elevado a un medio.
+- La derivada de seno de “x” es coseno de “x”: $sin(x)' = cos(x)$
+    $\dfrac{x^{-y}}{1} = \dfrac{1}{x^y}$
+- 
+```math
+\sqrt{x} \cdot x = 
+x^{\frac{1}{2}} \cdot x^{1} = 
+x^{\frac{1}{2} + \frac{2}{2}} =
+x^{\frac{3}{2}}
+```
