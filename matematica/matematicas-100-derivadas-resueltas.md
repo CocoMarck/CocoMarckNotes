@@ -1202,9 +1202,10 @@ y' = ((sen(x))^{\frac{1}{2}})' =
 ```math
 \text{= }
 \frac{1}{2} \cdot \frac{(sen(x))^{ -\frac{1}{2} }}{1} \cdot cos(x) =
-\frac{1}{2 \cdot (sen(x))^{\frac{1}{2}}} \cdot cos(x) =
+\frac{1}{2 \cdot (sen(x))^{\frac{1}{2}}} \cdot cos(x)
 ```
 ```math
+\text{= }
 \frac{cos(x)}{2 \cdot (sen(x))^{\frac{1}{2}}}
 ```
 **Listo este es el resultado. Coseno de "x" sobre dos, por raíz cuadrada de "x".**
@@ -1224,3 +1225,35 @@ x^{\frac{1}{2}} \cdot x^{1} =
 x^{\frac{1}{2} + \frac{2}{2}} =
 x^{\frac{3}{2}}
 ```
+
+---
+## Ejercicio 94
+```math
+y = arccos(ln(x))
+```
+
+Vamos a recordar que si nosotros tenemos el arco-coseno de una función "u" la derivada sera menos la derivada de "u" dividido entre raíz cuadrada de uno menos "u" al cuadrado.
+
+```math
+y' = \frac{ -\frac{1}{x}  }{ \sqrt{1 -ln(x)^2}} =
+\frac{-1}{ {x} \cdot \sqrt{1 -ln(x)^2}}
+```
+**Resultado: menos uno sobre "x" por la raíz cuadrada de uno menos neperiano de "x", al cuadrado**
+
+#### Contexto de soluciones
+```math
+\frac{ -\frac{1}{x}  }{ \sqrt{1 -ln(x)^2}} = 
+1 \cdot \frac{ -\frac{1}{x}  }{ \sqrt{1 -ln(x)^2}} =
+\frac{x}{x} \cdot \frac{ -\frac{1}{x}  }{ \sqrt{1 -ln(x)^2}}
+```
+```math
+\text{= }
+\frac{ \frac{x}{1} \cdot -\frac{1}{x}  }{ {x} \cdot \sqrt{1 -ln(x)^2}} =
+\frac{-1}{ {x} \cdot \sqrt{1 -ln(x)^2}}
+```
+
+#### Reglas aplicadas
+- **Derivada de arco-coseno de "u"**: 
+    $arccos(u)' = \dfrac{-u'}{\sqrt{1 -u^2}}$
+- **La derivada de neperiano de “x”, es uno sobre “x"**: 
+    $ln(x) = \dfrac{1}{x}$
