@@ -1257,3 +1257,29 @@ y' = \frac{ -\frac{1}{x}  }{ \sqrt{1 -ln(x)^2}} =
     $arccos(u)' = \dfrac{-u'}{\sqrt{1 -u^2}}$
 - **La derivada de neperiano de “x”, es uno sobre “x"**: 
     $ln(x) = \dfrac{1}{x}$
+
+---
+## Ejercicio 95
+```math
+y = [sen(x)]^x; ln(y) = ln([sen(x)]^x)
+```
+
+```math
+y' = \frac{1}{[sen(x)]^x} \cdot sen(x)' =
+\frac{1}{[sen(x)]^x} \cdot cos(x)
+```
+
+#### Contexto de soluciones
+```math
+\frac{1}{[sen(x)]^x}
+```
+
+#### Reglas aplicadas
+- **Regla de la cadena**:
+    $y = f(g(x)) {\text{; }} y' = f'[g(x)] \cdot g'(x)$
+- **Regla de la potencia**:
+    $y = ax^b \text{; } y' = a \cdot bx^{b-1}$
+- $sen(x)' = cos(x)$
+- **Propiedad de la igualdad**: Todo lo que haga de un lado lo hago en el otro, y sera equivalente.
+- **La derivada de neperiano de “x”, es uno sobre “x"**: 
+    $ln(x) = \dfrac{1}{x}$
