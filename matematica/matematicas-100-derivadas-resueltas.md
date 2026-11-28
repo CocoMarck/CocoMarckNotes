@@ -1261,7 +1261,9 @@ y' = \frac{ -\frac{1}{x}  }{ \sqrt{1 -ln(x)^2}} =
 ---
 ## Ejercicio 95
 ```math
-y = [sen(x)]^x; ln(y) = ln([sen(x)]^x)
+y = [sen(x)]^x; 
+ln(y) = ln([sen(x)]^x) = 
+x \cdot ln(sen(x))
 ```
 
 ```math
@@ -1283,3 +1285,5 @@ y' = \frac{1}{[sen(x)]^x} \cdot sen(x)' =
 - **Propiedad de la igualdad**: Todo lo que haga de un lado lo hago en el otro, y sera equivalente.
 - **La derivada de neperiano de “x”, es uno sobre “x"**: 
     $ln(x) = \dfrac{1}{x}$
+- Recuerda la **propiedad de la potencia**. Esta regla dice que el exponente del argumento de un logaritmo puede "bajar" a multiplicar el logaritmo completo.
+    - $log_b(M^k) = k \cdot log_b(M)$
